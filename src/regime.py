@@ -44,20 +44,62 @@ def markov_probs(g):
     low = 0 if res.params["const[0]"] < res.params["const[1]"] else 1
     return res.filtered_marginal_probabilities[low].rename("p_weak_growth"), res
 
-def plot_quadrant(g, i, path):
-    tr = pd.concat([g, i], axis=1, keys=["g", "i"]).dropna().iloc[-24:]
-    fig, ax = plt.subplots(figsize=(7, 7))
-    ax.plot(tr.i, tr.g, "-o", alpha=0.5)
-    ax.scatter(tr.i.iloc[-1], tr.g.iloc[-1], s=180, c="red", zorder=5, label=tr.index[-1].strftime("%b %Y"))
-    ax.axhline(0, c="k", lw=0.8); ax.axvline(0, c="k", lw=0.8)
-    xl, yl = ax.get_xlim(), ax.get_ylim()
-    for txt, x, y in [("Goldilocks", xl[0], yl[1]), ("Reflation", xl[1], yl[1]),
-                      ("Stagflation", xl[1], yl[0]), ("Slowdown", xl[0], yl[0])]:
-        ax.text(x, y, txt, ha="left" if x == xl[0] else "right",
-                va="top" if y == yl[1] else "bottom", fontsize=12, alpha=0.5)
-    ax.set_xlabel("Inflation z-score (3m avg)"); ax.set_ylabel("Growth z-score (3m avg)")
-    ax.set_title("Macro regime: last 24 months"); ax.legend()
+def plot_quadrant(g, i, path, months=60):
+    tr = pd.concat([g, i], axis=1, keys=["g", "i"]).dropna().iloc[-months:]
+    reg = classify(tr["g"], tr["i"])
+    share = reg.value_counts(normalize=True).mul(100)
+
+    # Symmetric limits -> four identical squares
+    L = max(tr["i"].abs().max(), tr["g"].abs().max()) * 1.15
+    L = np.ceil(L * 4) / 4
+
+    fig, ax = plt.subplots(figsize=(9, 8.5))
+    ax.set_xlim(-L, L); ax.set_ylim(-L, L); ax.set_aspect("equal")
+
+    # Quadrant shading (axes-fraction bounds; 0.5 == zero because limits are symmetric)
+    shades = {
+        "Goldilocks":  (0.0, 0.5, 0.5, 1.0, "#2e7d32"),   # x: left,  y: top
+        "Reflation":   (0.5, 1.0, 0.5, 1.0, "#f9a825"),   # x: right, y: top
+        "Stagflation": (0.5, 1.0, 0.0, 0.5, "#c62828"),   # x: right, y: bottom
+        "Slowdown":    (0.0, 0.5, 0.0, 0.5, "#1565c0"),   # x: left,  y: bottom
+    }
+    for name, (x0, x1, y0, y1, col) in shades.items():
+        ax.add_patch(plt.Rectangle((x0, y0), x1 - x0, y1 - y0, transform=ax.transAxes,
+                                   color=col, alpha=0.08, zorder=0))
+
+    # Quadrant labels with share of the window spent there
+    pos = {"Goldilocks": (0.02, 0.98, "left", "top"), "Reflation": (0.98, 0.98, "right", "top"),
+           "Stagflation": (0.98, 0.02, "right", "bottom"), "Slowdown": (0.02, 0.02, "left", "bottom")}
+    for name, (x, y, ha, va) in pos.items():
+        ax.text(x, y, f"{name}\n{share.get(name, 0):.0f}% of months", transform=ax.transAxes,
+                ha=ha, va=va, fontsize=12, fontweight="bold", alpha=0.6)
+
+    ax.axhline(0, c="k", lw=1); ax.axvline(0, c="k", lw=1)
+
+    # Month-to-month path: every month is a point, linked in sequence
+    ax.plot(tr["i"], tr["g"], "-", color="grey", lw=0.8, alpha=0.6, zorder=2)
+    c = np.arange(len(tr))
+    sc = ax.scatter(tr["i"], tr["g"], c=c, cmap="viridis", s=38, edgecolor="white",
+                    linewidth=0.5, zorder=3)
+    ax.scatter(tr["i"].iloc[-1], tr["g"].iloc[-1], s=260, facecolors="none",
+               edgecolors="red", linewidths=2.5, zorder=4)
+
+    # Date labels: first, every 6th month, and latest
+    for k in sorted(set([0, len(tr) - 1] + list(range(0, len(tr), 6)))):
+        ax.annotate(tr.index[k].strftime("%b-%y"), (tr["i"].iloc[k], tr["g"].iloc[k]),
+                    xytext=(5, 5), textcoords="offset points", fontsize=8, zorder=5)
+
+    cbar = fig.colorbar(sc, ax=ax, fraction=0.046, pad=0.03)
+    ticks = np.linspace(0, len(tr) - 1, 6, dtype=int)
+    cbar.set_ticks(ticks)
+    cbar.set_ticklabels([tr.index[k].strftime("%b %Y") for k in ticks])
+
+    ax.set_xlabel("Inflation z-score (3m avg)  →  higher inflation pressure")
+    ax.set_ylabel("Growth z-score (3m avg)  →  stronger growth")
+    ax.set_title(f"Macro regime, last {len(tr)} months "
+                 f"({tr.index[0]:%b %Y} to {tr.index[-1]:%b %Y}); red ring = latest")
     fig.savefig(path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
 
 def main():
     G, I = build_growth(), build_inflation()
