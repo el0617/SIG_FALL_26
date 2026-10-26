@@ -1,0 +1,14 @@
+spec,DEF-GRW be beta/25bp,DEF-GRW beta/50bp,t beta,GRW beta/50bp,DEF beta/50bp,impulse now,expected,t,verdict,tilt,tilt t,tilt verdict
+baseline,-1.85,-0.45,-0.65,-0.42,-0.87,0.56,-2.5,-0.74,NEUTRAL,2.8,1.93,SUPPORTS
+nominal 10y instead of real+breakeven,,-1.52,-2.55,-0.15,-1.67,,,,,,,
++ dollar control (2006+),-1.6,-0.86,-1.03,-0.68,-1.54,,,,,,,
+betas excl. 2020,-1.7,-0.61,-0.87,-0.35,-0.96,,,,,,,
+betas 2013+ only,-2.52,0.79,0.75,-1.08,-0.3,,,,,,,
+betas 2020+ only,-1.94,2.43,2.0,-1.48,0.95,,,,,,,
+impulse: 3m changes,,,,,,0.44,-1.1,-0.39,NEUTRAL,3.7,2.51,SUPPORTS
+impulse: 12m changes,,,,,,0.46,-4.0,-1.13,NEUTRAL,1.1,0.75,NEUTRAL
+impulse: drop real10y,,,,,,0.08,-4.9,-1.86,CONTRADICTS,0.3,1.28,NEUTRAL
+impulse: drop nfci,,,,,,0.81,-1.7,-0.5,NEUTRAL,3.7,1.87,SUPPORTS
+impulse: drop neg_liquidity,,,,,,0.79,-2.8,-0.65,NEUTRAL,2.6,1.14,NEUTRAL
+impulse: real 10y only,,,,,,1.52,-0.6,-0.15,NEUTRAL,4.7,1.64,NEUTRAL
+impulse: 2016+ sample only (pre-fix window),,,,,,0.56,-6.2,-1.43,NEUTRAL,3.0,2.59,SUPPORTS
