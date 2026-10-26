@@ -262,9 +262,9 @@ def plot_quadrant(g, i, labels, path, months=60, band=BAND, nowcast=None):
     fig.savefig(path, dpi=200, bbox_inches="tight"); plt.close(fig)
 
 
-def plot_edge_heatmap(stats, eps, path):
+def plot_edge_heatmap(stats, eps, path, order=ORDER, display=DISPLAY, what="regime", horizon="Next-month"):
     s = stats[stats["family"] == "sector"]
-    cols = [c for c in ORDER if c in set(s["state"])]
+    cols = [c for c in order if c in set(s["state"])]
     piv = lambda v: s.pivot(index="series", columns="state", values=v).reindex(columns=cols)
     e, t, q, cred = piv("edge"), piv("t"), piv("q"), piv("credible")
     v = np.nanmax(np.abs(e.values))
@@ -281,11 +281,11 @@ def plot_edge_heatmap(stats, eps, path):
                     ha="center", va="center", fontsize=8, fontweight="bold" if star else "normal",
                     alpha=1 if loud else 0.45)
     ax.set_xticks(range(len(cols)))
-    ax.set_xticklabels([f"{DISPLAY[c]}\n{int(eps.loc[c, 'episodes'])} episodes / {int(eps.loc[c, 'months'])} mo"
+    ax.set_xticklabels([f"{display[c]}\n{int(eps.loc[c, 'episodes'])} episodes / {int(eps.loc[c, 'months'])} mo"
                         for c in cols], fontsize=8)
     ax.set_yticks(range(len(e))); ax.set_yticklabels([ROW_NAME.get(x, x) for x in e.index])
-    ax.set_title("Next-month return vs SPY in each regime, relative to the sector's all-months average "
-                 "(annualized pp)\nt clustered by regime episode · q = Benjamini-Hochberg FDR · "
+    ax.set_title(f"{horizon} return vs SPY in each {what}, relative to the sector's all-months average "
+                 f"(annualized pp)\nt clustered by {what} episode · q = Benjamini-Hochberg FDR · "
                  "★ = q ≤ 0.10, sign survives dropping any one episode, ≥ 5 episodes", fontsize=9.5)
     fig.savefig(path, dpi=200, bbox_inches="tight"); plt.close(fig)
 

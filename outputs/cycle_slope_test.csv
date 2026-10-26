@@ -1,0 +1,7 @@
+,,coef,t
+DEF-GRW,average,-3.115,-1.222
+DEF-GRW,level,-1.595,-0.422
+DEF-GRW,change,1.238,0.621
+CYC-DEF,average,1.915,0.964
+CYC-DEF,level,-0.606,-0.165
+CYC-DEF,change,0.775,0.338

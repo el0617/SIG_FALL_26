@@ -1,0 +1,6 @@
+from,Early,Mid,Late,Contraction,Transition
+Early,0.745,0.091,0.0,0.018,0.145
+Mid,0.0,0.747,0.08,0.0,0.173
+Late,0.0,0.0,0.733,0.111,0.156
+Contraction,0.077,0.01,0.0,0.817,0.096
+Transition,0.077,0.167,0.064,0.167,0.526

@@ -1,0 +1,6 @@
+state,months,episodes,avg_len,longest,ep_3m_plus
+Early,55,14,3.9,9,10
+Mid,72,18,4.0,12,14
+Late,34,9,3.8,8,5
+Contraction,96,18,5.3,12,17
+Transition,75,36,2.1,12,8
