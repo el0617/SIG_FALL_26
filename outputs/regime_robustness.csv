@@ -1,0 +1,12 @@
+spec,agree_%,transition_%,episodes,latest,g,i,DEF-GRW raw,t,verdict
+baseline,100,15,63,Reflation,0.13,0.42,2.5,0.79,NEUTRAL
+window 180m,84,16,63,Transition,0.01,0.72,-6.2,-1.13,NEUTRAL
+expanding window,58,22,75,Stagflation,-0.03,0.34,-8.8,-1.04,NEUTRAL
+no smoothing,76,12,85,Reflation,0.1,0.71,1.3,0.3,NEUTRAL
+band 0.10,90,7,64,Reflation,0.13,0.42,2.2,0.63,NEUTRAL
+band 0.25,90,24,60,Transition,0.13,0.42,-11.8,-2.43,CONTRADICTS
+no hysteresis,84,31,94,Transition,0.13,0.42,-2.0,-0.46,NEUTRAL
+inflation vs rolling median,89,14,71,Reflation,0.13,0.27,1.5,0.63,NEUTRAL
++ 5y5y breakevens (2008+),77,8,36,Reflation,0.13,0.51,0.9,0.3,NEUTRAL
+FRED surveys (Philly),77,11,74,Reflation,0.17,0.21,6.8,2.14,SUPPORTS
+ISM surveys (Bloomberg),100,15,63,Reflation,0.13,0.42,2.5,0.79,NEUTRAL
