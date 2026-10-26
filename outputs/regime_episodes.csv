@@ -1,6 +1,6 @@
-state,episodes,avg_len,longest,ep_3m_plus
-Goldilocks,10,3.4,9,5
-Reflation,12,4.0,23,7
-Slowdown,16,3.3,10,8
-Stagflation,15,3.7,9,7
-Transition,45,3.0,12,21
+state,months,episodes,avg_len,longest,ep_3m_plus
+Goldilocks,65,12,5.4,12,10
+Reflation,72,11,6.5,22,8
+Stagflation,86,11,7.8,25,9
+Slowdown,71,10,7.1,13,8
+Transition,38,30,1.3,4,1
