@@ -1,0 +1,13 @@
+spec,net score now,composite now,n,slope t,expected,t,verdict,tilt,tilt t,tilt verdict
+baseline,-0.1,0.42,273,-1.56,-6.2,-1.76,CONTRADICTS,-2.3,-1.56,NEUTRAL
+thresholds x0.5,-0.3,0.42,273,-1.56,-6.2,-1.76,CONTRADICTS,-2.3,-1.56,NEUTRAL
+thresholds x2,-0.1,0.42,273,-1.56,-6.2,-1.76,CONTRADICTS,-2.3,-1.56,NEUTRAL
+6m horizon (12m for trade_6m),-0.5,-0.1,270,-1.63,-3.4,-1.38,NEUTRAL,0.7,1.63,NEUTRAL
+1m horizon (3m for trade_6m),0.0,0.56,275,-1.48,-7.0,-1.78,CONTRADICTS,-3.1,-1.48,NEUTRAL
+drop group: Cross-asset,-0.14,0.31,286,-1.27,-5.9,-1.86,CONTRADICTS,-1.5,-1.27,NEUTRAL
+drop group: Risk,-0.12,0.31,273,-2.25,-6.7,-1.96,CONTRADICTS,-2.8,-2.25,CONTRADICTS
+drop group: Sector rotation,0.2,0.66,273,-1.19,-6.5,-1.61,NEUTRAL,-2.6,-1.19,NEUTRAL
+drop group: Trend & breadth,0.14,0.39,273,-1.3,-5.2,-1.69,CONTRADICTS,-1.3,-1.3,NEUTRAL
+market-only (drop the trade's own momentum),0.14,0.58,273,-1.56,-6.8,-1.78,CONTRADICTS,-2.9,-1.56,NEUTRAL
+2010+ sample,-0.1,0.42,198,-2.09,-10.1,-2.41,CONTRADICTS,-3.7,-2.09,CONTRADICTS
+with VIX term structure (2008+),-0.1,0.31,188,-2.15,-9.4,-2.26,CONTRADICTS,-3.4,-2.15,CONTRADICTS

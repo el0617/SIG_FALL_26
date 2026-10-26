@@ -1,0 +1,11 @@
+,group,signal,reading,threshold,vote,vote_3m_ago
+trade_3m,Sector rotation,"Defensives minus Growth, 3m return (%)",-0.99,1.5,neutral,CONTRADICTS
+trade_6m,Sector rotation,"Defensives minus Growth, 6m return (%)",-22.17,3.0,CONTRADICTS,CONTRADICTS
+staples_disc,Sector rotation,"Staples minus Discretionary, 3m (%)",4.66,1.5,CONFIRMS,CONTRADICTS
+def_cyc,Sector rotation,"Defensives minus Cyclicals, 3m (%)",-1.94,1.5,CONTRADICTS,neutral
+large_small,Cross-asset,"Large minus small caps (SPY-IWM), 3m (%)",9.64,1.5,CONFIRMS,CONTRADICTS
+gold_copper,Cross-asset,"Gold/copper ratio change, 3m (%)",-2.12,3.0,neutral,CONTRADICTS
+credit,Risk,"HY spread change, 3m (bp)",41.0,25.0,CONFIRMS,CONTRADICTS
+vix_term,Risk,"VIX / VIX3M (>1.00 stress, <0.90 calm)",0.89,rule,CONTRADICTS,CONTRADICTS
+spy_trend,Trend & breadth,SPY trend: % below 10-month average (negative = above),-6.27,2.0,CONTRADICTS,CONTRADICTS
+breadth,Trend & breadth,Sectors above 10-month average (%; <40 / >70),40.0,rule,neutral,CONTRADICTS
