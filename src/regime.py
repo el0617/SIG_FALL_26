@@ -150,18 +150,26 @@ def build_regime(window=WINDOW, smooth=SMOOTH, band=BAND, sticky=STICKY, infl_ce
 
 
 def build_nowcast(window=WINDOW):
-    """Timely read: series published within the reference month, no smoothing, no lag."""
+    """Timely read, no smoothing. Monthly surveys published inside the reference month (Philly, Empire,
+    UMich) enter at lag 0; ISM (published on the 1st business day of the next month) at lag 1;
+    market prices (claims, HY spreads, breakevens) as the month's average."""
+    ism_no, ism_inv, ism_p = optional_csv("ism_new_orders"), optional_csv("ism_inventories"), optional_csv("ism_prices")
+    hy = optional_csv("hy_oas")
     G = pd.concat({k: v for k, v in {
         "claims_inv": -chg(level("ICSA", "mean"), 3),
         "philly_activity": level("GACDFSA066MSFRBPHI", optional=True),
         "philly_orders": level("NOCDFSA066MSFRBPHI", optional=True),
         "empire_activity": level("GACDISA066MSFRBNY", optional=True),
+        "ism_orders_minus_inv": (lagged(monthly(ism_no) - monthly(ism_inv), 1)
+                                 if ism_no is not None and ism_inv is not None else None),
+        "hy_oas_inv": -monthly(hy, "mean") if hy is not None else None,
     }.items() if v is not None}, axis=1, sort=True)
     be = fred_optional("T5YIE")
     I = pd.concat({k: v for k, v in {
         "breakeven_5y": monthly(be, "mean") if be is not None else None,
         "umich_1y": level("MICH", optional=True),
         "philly_prices": level("PPCDFSA066MSFRBPHI", optional=True),
+        "ism_prices": lagged(monthly(ism_p), 1) if ism_p is not None else None,
     }.items() if v is not None}, axis=1, sort=True)
     G, I = finalize(G, "nowcast_g"), finalize(I, "nowcast_i")
     zG, zI = zscore(G, window), zscore(I, window)
@@ -342,7 +350,7 @@ def main():
     R = build_regime()
     g, i, lab = R["g"], R["i"], R["regime"]
     end = lab.dropna().index[-1]
-    print("=" * 90, "\nMODULE 1 - MACRO REGIME (v2)")
+    print("=" * 90, "\nMODULE 1 - MACRO REGIME (v2.1)")
     print(f"  growth survey slot   : {R['sources'][0]}")
     print(f"  inflation survey slot: {R['sources'][1]}")
     print(f"  interpolated months  : {FILL_LOG or 'none'}")
@@ -445,6 +453,14 @@ def main():
               f"{row['raw_hi']:+.1f}), t={row['raw_t']:.2f}, {int(row['episodes'])} episodes, hit {row['hit']:.0f}%")
     print(f"  Probability-weighted DEF-GRW, next 3 months: {expected:+.1f} pp/yr")
     print(f"  Verdict (pre-registered, one-sided 5%): {thesis_verdict(row)}")
+    if optional_csv("ism_new_orders") is not None and optional_csv("ism_prices") is not None:
+        F = build_regime(survey="fred")
+        f_cur = F["regime"].dropna().iloc[-1]
+        f_st = conditional_stats(F["regime"].reindex(ex.index), ex[[SPREAD]], loeo=False).set_index("state")
+        f_row = f_st.loc[f_cur] if f_cur in f_st.index else None
+        same = (F["regime"].loc[SAMPLE_START:] == lab.loc[SAMPLE_START:])[lab.loc[SAMPLE_START:].notna()].mean()
+        print(f"  Input check - same model with free FRED surveys instead of ISM: {DISPLAY[f_cur]}, "
+              f"verdict {thesis_verdict(f_row)}; labels agree {same:.0%} of months since 1999")
     print("=" * 90)
 
 

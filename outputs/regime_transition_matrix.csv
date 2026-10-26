@@ -1,6 +1,6 @@
 from,Goldilocks,Reflation,Stagflation,Slowdown,Transition
-Goldilocks,0.829,0.026,0.0,0.039,0.105
-Reflation,0.0,0.863,0.014,0.0,0.123
-Stagflation,0.0,0.0,0.872,0.023,0.105
-Slowdown,0.068,0.0,0.0,0.851,0.081
-Transition,0.186,0.209,0.233,0.14,0.233
+Goldilocks,0.866,0.0,0.0,0.03,0.104
+Reflation,0.014,0.861,0.028,0.0,0.097
+Stagflation,0.0,0.011,0.886,0.023,0.08
+Slowdown,0.029,0.0,0.014,0.87,0.087
+Transition,0.107,0.179,0.125,0.089,0.5
