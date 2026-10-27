@@ -1,0 +1,13 @@
+window,portfolio,lens,months,factor share %,TE,Market,Value,Momentum,Market (SPY),Real 10y,Breakeven
+60 months,Current (drifted),style,60,62,3.28,-0.06 (-2.9),+0.08 (+1.8),-0.05 (-2.7),,,
+60 months,Current (drifted),macro,60,30,3.31,,,,-0.17 (-4.2),-1.38 (-1.8),+0.97 (+1.2)
+60 months,Recommended core,style,60,63,3.22,-0.05 (-2.3),+0.10 (+2.6),-0.06 (-2.9),,,
+60 months,Recommended core,macro,60,25,3.25,,,,-0.15 (-3.6),-1.23 (-1.7),+0.95 (+1.2)
+36 months,Current (drifted),style,36,66,3.73,-0.09 (-2.9),+0.13 (+1.9),-0.03 (-0.6),,,
+36 months,Current (drifted),macro,36,51,3.77,,,,-0.22 (-4.4),-2.60 (-2.9),-1.54 (-0.8)
+36 months,Recommended core,style,36,67,3.6,-0.08 (-2.6),+0.14 (+2.1),-0.04 (-0.9),,,
+36 months,Recommended core,macro,36,47,3.66,,,,-0.21 (-4.0),-2.51 (-3.0),-1.58 (-0.8)
+since 2007,Current (drifted),style,236,24,2.23,-0.01 (-0.5),+0.02 (+1.1),-0.02 (-1.6),,,
+since 2007,Current (drifted),macro,237,7,2.25,,,,-0.02 (-1.2),+0.28 (+1.4),+0.87 (+4.1)
+since 2007,Recommended core,style,236,34,2.36,+0.00 (+0.4),+0.05 (+2.6),-0.03 (-2.1),,,
+since 2007,Recommended core,macro,237,11,2.38,,,,-0.00 (-0.0),+0.53 (+2.5),+0.91 (+4.2)
