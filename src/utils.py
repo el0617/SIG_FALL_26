@@ -6,6 +6,7 @@ Everything below the v2 marker is used by the regime model.
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
+from scipy import stats
 
 
 # ---------------------------------------------------------------- v1 (kept for Module 2)
@@ -56,7 +57,10 @@ def chg(s, n):
 
 def lagged(s, n):
     """Move observations n month-ends forward (publication lag) WITHOUT dropping the newest one.
-    (v1 used s.shift(n), which pushed the latest release off the end of the series.)"""
+    (v1 used s.shift(n), which pushed the latest release off the end of the series.)
+    Requires a month-end index: on month-start dates freq="ME" would only roll to the same month's end (no lag)."""
+    if not s.index.is_month_end.all():
+        raise ValueError("lagged() needs a month-end DatetimeIndex; resample with data.monthly() first")
     return s.shift(n, freq="ME") if n else s
 
 
@@ -66,8 +70,10 @@ def _mad(x):
 
 
 def robust_scale(df, window, min_periods=60):
+    """1.4826 * rolling MAD; where the MAD is 0 (more than half the values identical), 1.0 * rolling std."""
     w = len(df) if window is None else window
-    return 1.4826 * df.rolling(w, min_periods=min_periods).apply(_mad, raw=True)
+    sc = 1.4826 * df.rolling(w, min_periods=min_periods).apply(_mad, raw=True)
+    return sc.where(sc != 0, df.rolling(w, min_periods=min_periods).std())
 
 
 def zscore(df, window=120, min_periods=60, center=None, floor_window=360, floor_frac=0.75, soft=True):
@@ -75,7 +81,7 @@ def zscore(df, window=120, min_periods=60, center=None, floor_window=360, floor_
 
     centre : rolling median over `window` (None -> expanding), or a fixed anchor per column via
              center={"col": value} (used to measure inflation vs the Fed-consistent rate).
-    scale  : 1.4826 * rolling MAD, floored at floor_frac * a 30-year MAD, so a quiet decade
+    scale  : 1.4826 * rolling MAD (rolling std where the MAD is 0), floored at floor_frac * a 30-year MAD, so a quiet decade
              (2010s) can't shrink the scale and turn ordinary moves into 3-sigma readings.
     squash : 3*tanh(z/3) instead of a hard clip at +-3. Ordering is preserved, so the 2022 peak
              and the 2023 disinflation no longer both read exactly 3.0.
@@ -137,14 +143,16 @@ def classify_direction(g, i, n=3):
 
 
 def run_ids(labels):
-    """Integer id for each consecutive run (episode) of the same label."""
-    l = labels.dropna()
-    return (l != l.shift()).cumsum().astype(int)
+    """Integer id for each consecutive run (episode) of the same label, indexed by the non-missing months.
+    A NaN label is a break: runs on either side of a gap get different ids."""
+    prev = labels.shift()
+    new = (labels != prev) | prev.isna()
+    return new.cumsum()[labels.notna()].astype(int)
 
 
 def episode_table(labels, min_len=3, order=ORDER):
     l = labels.dropna()
-    rid = run_ids(l)
+    rid = run_ids(labels)
     runs = pd.DataFrame({"state": l.groupby(rid).first(), "len": l.groupby(rid).size()})
     t = runs.groupby("state")["len"].agg(episodes="count", avg_len="mean", longest="max",
                                          ep_3m_plus=lambda x: int((x >= min_len).sum()))
@@ -165,14 +173,18 @@ def forward_excess(rets, bench="SPY", spreads=None):
 def bh_qvalues(p):
     """Benjamini-Hochberg false-discovery-rate q-values."""
     p = np.asarray(p, float)
-    n = len(p)
+    out = np.full(len(p), np.nan)
+    ok = ~np.isnan(p)
+    pv = p[ok]
+    n = len(pv)
     if n == 0:
-        return p
-    o = np.argsort(p)
-    ranked = p[o] * n / np.arange(1, n + 1)
+        return out
+    o = np.argsort(pv)
+    ranked = pv[o] * n / np.arange(1, n + 1)
     q = np.minimum.accumulate(ranked[::-1])[::-1]
-    out = np.empty(n)
-    out[o] = np.minimum(q, 1)
+    qv = np.empty(n)
+    qv[o] = np.minimum(q, 1)
+    out[ok] = qv
     return out
 
 
@@ -180,9 +192,11 @@ def conditional_stats(labels, ex, order=ORDER, loeo=True, family=None, q_max=0.1
     """For each series x state: next-month return stats conditional on the label at month-end t.
 
     raw / base / edge : annualized pp; edge = state mean - all-months mean.
-    t, p              : SEs clustered by regime episode (persistent regimes make months non-independent).
+    t, p              : SEs clustered by regime episode (persistent regimes make months non-independent);
+                        p from t(G-1), G = episodes of the state. NaN when G < 2.
+    t_crit            : one-sided 95% critical value of t(G-1), for raw_t.
     t_hac             : HAC (Newey-West, 3 lags) t-stat, for comparison with v1.
-    raw_lo / raw_hi   : 95% interval for the in-state mean (episode-clustered).
+    raw_lo / raw_hi   : 95% interval for the in-state mean (episode-clustered, t(G-1)).
     loeo_min/max      : edge after dropping each single episode of that state, one at a time.
     sign_stable       : edge keeps its sign whichever single episode is dropped.
     q                 : Benjamini-Hochberg q-value within each family of tests.
@@ -203,18 +217,25 @@ def conditional_stats(labels, ex, order=ORDER, loeo=True, family=None, q_max=0.1
             if n < 6 or n == len(D):
                 continue
             X = sm.add_constant(D.values)
-            cl = sm.OLS(y.values, X).fit(cov_type="cluster", cov_kwds={"groups": gid.values})
             hac = sm.OLS(y.values, X).fit(cov_type="HAC", cov_kwds={"maxlags": 3})
             m, mg = y[D == 1], gid[D == 1]
-            raw_fit = sm.OLS(m.values, np.ones(len(m))).fit(cov_type="cluster", cov_kwds={"groups": mg.values})
-            raw_se = float(np.atleast_1d(raw_fit.bse)[0])
             eps = mg.unique()
+            G = len(eps)
+            if G >= 2:   # one cluster has no between-episode variation: clustered inference undefined
+                cl = sm.OLS(y.values, X).fit(cov_type="cluster", cov_kwds={"groups": gid.values})
+                raw_fit = sm.OLS(m.values, np.ones(len(m))).fit(cov_type="cluster", cov_kwds={"groups": mg.values})
+                raw_se = float(np.atleast_1d(raw_fit.bse)[0])
+                t_cl = float(cl.tvalues[1])
+                p_cl = float(2 * stats.t.sf(abs(t_cl), G - 1))
+                t_crit, t_975 = float(stats.t.ppf(0.95, G - 1)), float(stats.t.ppf(0.975, G - 1))
+            else:
+                raw_se = t_cl = p_cl = t_crit = t_975 = np.nan
             edge = (m.mean() - base) * 1200
-            row = dict(series=col, state=s, months=n, episodes=len(eps),
-                       raw=m.mean() * 1200, raw_lo=(m.mean() - 1.96 * raw_se) * 1200,
-                       raw_hi=(m.mean() + 1.96 * raw_se) * 1200, raw_t=m.mean() / raw_se if raw_se > 0 else np.nan,
-                       base=base * 1200, edge=edge,
-                       t=float(cl.tvalues[1]), p=float(cl.pvalues[1]), t_hac=float(hac.tvalues[1]),
+            row = dict(series=col, state=s, months=n, episodes=G,
+                       raw=m.mean() * 1200, raw_lo=(m.mean() - t_975 * raw_se) * 1200,
+                       raw_hi=(m.mean() + t_975 * raw_se) * 1200, raw_t=m.mean() / raw_se if raw_se > 0 else np.nan,
+                       t_crit=t_crit, base=base * 1200, edge=edge,
+                       t=t_cl, p=p_cl, t_hac=float(hac.tvalues[1]),
                        hit=(m > 0).mean() * 100, hit_all=(y > 0).mean() * 100,
                        top_episode_share=float(m.groupby(mg).sum().abs().max() / m.groupby(mg).sum().abs().sum()))
             if loeo and len(eps) > 1:
@@ -240,11 +261,17 @@ def conditional_stats(labels, ex, order=ORDER, loeo=True, family=None, q_max=0.1
 
 
 def transition_matrix(labels, order=ORDER):
-    """Empirical one-month transition probabilities between labels."""
+    """Empirical one-month transition probabilities between labels.
+    Only pairs of consecutive non-missing months count. A state with no outgoing transition stays in itself."""
     l = labels.dropna()
-    m = pd.crosstab(pd.Series(l.values[:-1], name="from"), pd.Series(l.values[1:], name="to"))
+    a, b = labels.iloc[:-1], labels.iloc[1:]
+    ok = a.notna().values & b.notna().values
+    m = pd.crosstab(pd.Series(a.values[ok], name="from"), pd.Series(b.values[ok], name="to"))
     states = [s for s in order if s in set(l)]
     m = m.reindex(index=states, columns=states, fill_value=0)
+    for s in m.index[m.sum(axis=1) == 0]:
+        print(f"  [transition_matrix] '{s}' has no observed outgoing transition -> treated as absorbing (P=1 to itself)")
+        m.loc[s, s] = 1
     return m.div(m.sum(axis=1), axis=0)
 
 

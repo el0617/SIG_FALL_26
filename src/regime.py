@@ -198,12 +198,14 @@ def returns_panel():
 
 
 def thesis_verdict(row):
-    """Pre-registered rule: one-sided 5% test on the in-state DEF-GRW mean (episode-clustered)."""
+    """Pre-registered rule: one-sided 5% test on the in-state DEF-GRW mean (episode-clustered).
+    Critical value is t(G-1) when the row carries t_crit (conditional_stats rows), else 1.65."""
     if row is None or np.isnan(row["raw_t"]):
         return "NO EVIDENCE"
-    if row["raw_t"] >= 1.65:
+    crit = row.get("t_crit", 1.65)
+    if row["raw_t"] >= crit:
         return "SUPPORTS"
-    if row["raw_t"] <= -1.65:
+    if row["raw_t"] <= -crit:
         return "CONTRADICTS"
     return "NEUTRAL"
 
