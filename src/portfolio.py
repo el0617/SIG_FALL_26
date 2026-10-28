@@ -1,14 +1,20 @@
-"""Module 6 - Portfolio risk, scenarios and candidate weightings (v1).
+"""Module 6 - Portfolio risk, scenarios and candidate weightings (v2).
 
 Run:
     python -m src.portfolio            # all candidates: risk, scenarios, insurance, plots
     python -m src.portfolio --robust   # sizing curve for the recommended trades + window checks
 
 INPUT  data/portfolio.csv (created on first run from the Bloomberg PORT screen of 05/29/26):
-       ticker, weight (%, current holdings), benchmark (% S&P 500 sector weight).
-       The benchmark column ships with APPROXIMATE S&P 500 sector weights; replace them with
-       current values from Bloomberg (PORT -> benchmark SPX -> GICS sector weights). They are only
-       used for the active-weight table; all risk numbers use SPY's actual return as the benchmark.
+       ticker, weight (%, current holdings), benchmark (% S&P 500 GICS sector weight).
+       Benchmark = IVV GICS sector weights from Bloomberg PORT (% End Wgt Bmrk, 10/21/26); the 0.26%
+       "not classified" sleeve is dropped and the rest rescaled to 100.
+
+v2 (code review): risk contributions are now an Euler split of ACTIVE risk on active weights
+(portfolio - benchmark) and the covariance of total ETF returns, the way Bloomberg PORT reports CTEV.
+v1 split tracking error vs SPY on HOLDING weights and SPY-relative returns, which inflated the
+overweights (XLE showed 56%) and hid the growth underweight. Check vs PORT (05/29 weights, 60 months):
+VGT 54% vs Bloomberg IT 53%; XLE 19% vs 12% (history includes the 2021-22 energy swings).
+Tracking error vs SPY, beta, VaR/CVaR and scenarios are unchanged.
 
 WHAT IT COMPUTES for each candidate portfolio (benchmark = SPY total return)
   - weights drifted from 05/29/26 to the latest complete month with actual ETF returns
@@ -41,6 +47,9 @@ DRAWDOWN = -5.0
 ERP = 5.0
 HOLDINGS = ["VGT", "XLY", "XLC", "XLF", "XLI", "XLB", "XLE", "XLP", "XLV", "XLU", "SCHH"]
 PROXY = {"VGT": "XLK", "SCHH": "IYR"}          # used before the ETF existed
+RISK_LEGS = {"Growth underweight (VGT, XLY)": ["VGT", "XLY"], "Communication services (XLC)": ["XLC"],
+             "Energy and materials (XLE, XLB)": ["XLE", "XLB"], "Defensive overweight (XLP, XLV, XLU)": ["XLP", "XLV", "XLU"],
+             "Other (XLF, XLI, SCHH)": ["XLF", "XLI", "SCHH"]}     # same grouping as the scorecard's Bloomberg legs
 GROUPS = {"Growth (VGT, XLY)": ["VGT", "XLY"], "Defensive (XLP, XLV, XLU)": ["XLP", "XLV", "XLU"],
           "Inflation hedge (XLE, XLB)": ["XLE", "XLB"], "Real-yield beneficiary (XLF)": ["XLF"],
           "Other (XLC, XLI, SCHH)": ["XLC", "XLI", "SCHH"]}
@@ -48,8 +57,8 @@ DEFAULT = pd.DataFrame({
     "ticker":    HOLDINGS,
     # Bloomberg PORT 'TOPDOWN2', 05/29/26
     "weight":    [28.43, 6.39, 7.73, 10.56, 5.59, 6.39, 8.61, 10.60, 11.28, 2.45, 1.97],
-    # APPROXIMATE S&P 500 GICS weights (mid-2025 levels). REPLACE with current Bloomberg values.
-    "benchmark": [33.0, 10.4, 9.9, 13.7, 8.6, 1.9, 3.0, 5.3, 9.0, 2.4, 2.0],
+    # IVV GICS sector weights, Bloomberg PORT 10/21/26 (% End Wgt Bmrk); 0.26% not classified dropped
+    "benchmark": [38.27, 9.01, 9.40, 11.80, 8.01, 1.67, 3.72, 4.74, 9.69, 1.97, 1.71],
 })
 
 # Trades in percentage points, applied to drifted current weights. Each must net to zero.
@@ -79,7 +88,7 @@ def load_portfolio():
     if not PFILE.exists():
         PFILE.parent.mkdir(exist_ok=True)
         DEFAULT.to_csv(PFILE, index=False)
-        print(f"  created {PFILE} from the 05/29/26 PORT screen; the benchmark column is APPROXIMATE")
+        print(f"  created {PFILE} from the 05/29/26 PORT screen and 10/21/26 IVV sector weights")
     p = pd.read_csv(PFILE).set_index("ticker")
     for c in ("weight", "benchmark"):
         p[c] = p[c] / p[c].sum() * 100
@@ -150,8 +159,9 @@ def etf_sensitivities(R, S):
 
 
 # ------------------------------------------------------------------ portfolio analytics
-def analytics(name, w, R, sens):
+def analytics(name, w, R, sens, bench):
     a = w / 100
+    x = (w - bench.reindex(w.index)) / 100          # active weights; sum to zero
     rel = R[HOLDINGS].sub(R["SPY"], axis=0)
     port_rel_hist = (rel.fillna(0) * a).sum(axis=1).where(rel.notna().all(axis=1))
     last = R.index[-WINDOW:]
@@ -161,7 +171,14 @@ def analytics(name, w, R, sens):
     wts = EWMA_LAMBDA ** np.arange(len(ew))[::-1]
     Cw = np.cov(ew.values.T, aweights=wts)
     te_ewma = float(np.sqrt(a @ Cw @ a * 12))
-    rc = a * (C.values @ a) / (a @ C.values @ a)
+    # Euler split of active risk on active weights, on the covariance of TOTAL ETF returns (as Bloomberg PORT).
+    # Because x sums to zero, x'Cx is the same with total or SPY-relative returns, but the split is not:
+    # on SPY-relative returns each share shifts by x_i * cov(SPY, active return), which inflated overweights
+    # (XLE, XLP, XLB) and shrank the VGT underweight in a low-beta active position.
+    xv = x.values
+    Ct = R[HOLDINGS].loc[last].cov().values
+    te_bench = float(np.sqrt(xv @ Ct @ xv * 12))
+    rc = xv * (Ct @ xv) / (xv @ Ct @ xv)
     port_abs = (R[HOLDINGS].loc[last] * a).sum(axis=1)
     beta = float(np.polyfit(R["SPY"].loc[last], port_abs, 1)[0])
     vol = float(port_abs.std() * np.sqrt(12))
@@ -180,11 +197,16 @@ def analytics(name, w, R, sens):
         x = (a * (sens[f"real_{tag}"] * real / 100 + sens["be_full" if tag == "full" or be else f"be_{tag}"] * be / 100
                   + (sens["beta"] - 1) * eq)).sum()
         scen[s] = float(x)
-    m = dict(portfolio=name, beta=beta, vol=vol, te=te, te_ewma=te_ewma, var1=var1, cvar1=cvar1, var3=var3,
+    m = dict(portfolio=name, beta=beta, vol=vol, te=te, te_bench=te_bench, te_ewma=te_ewma, var1=var1, cvar1=cvar1, var3=var3,
              cvar3=cvar3, beta_cost=(beta - 1) * ERP, carry_3m=carry, protection_3m=prot, p_star=pstar,
              history_from=h.index.min())
     m.update(scen)
     return m, pd.Series(rc * 100, index=HOLDINGS, name=name)
+
+
+def leg_shares(rc):
+    """Active-risk shares (%) summed by thesis leg."""
+    return pd.Series({g: rc[c].sum() for g, c in RISK_LEGS.items()})
 
 
 def group_weights(w):
@@ -201,8 +223,7 @@ def plot_weights(W, bench, path):
     ax.axhline(0, c="k", lw=0.8)
     ax.set_xticks(x); ax.set_xticklabels(HOLDINGS)
     ax.set_ylabel("Active weight vs S&P 500 (pp)")
-    ax.set_title("Active weights by candidate (benchmark weights from data/portfolio.csv; replace the "
-                 "approximate defaults with current Bloomberg values)", fontsize=10)
+    ax.set_title("Active weights by candidate (benchmark: IVV GICS sector weights, Bloomberg 10/21/26)", fontsize=10)
     ax.legend(fontsize=8)
     fig.savefig(path, dpi=200, bbox_inches="tight"); plt.close(fig)
 
@@ -228,8 +249,8 @@ def plot_risk(RC, path):
         ax.bar(x + (k - (RC.shape[1] - 1) / 2) * bw, RC[n], bw, label=n)
     ax.axhline(0, c="k", lw=0.8)
     ax.set_xticks(x); ax.set_xticklabels(HOLDINGS)
-    ax.set_ylabel("Share of tracking error (%)")
-    ax.set_title(f"Where the active risk comes from (contribution to {WINDOW}-month tracking error vs SPY)", fontsize=10)
+    ax.set_ylabel("Share of active risk (%)")
+    ax.set_title(f"Where the active risk comes from (Euler split on active weights, {WINDOW}-month covariance)", fontsize=10)
     ax.legend(fontsize=8)
     fig.savefig(path, dpi=200, bbox_inches="tight"); plt.close(fig)
 
@@ -260,7 +281,7 @@ def build_all(R, sens, p, candidates=CANDIDATES):
     for name, trades in candidates.items():
         w = apply_trades(w0, trades)
         W[name] = w
-        m, rc = analytics(name, w, R, sens)
+        m, rc = analytics(name, w, R, sens, p["benchmark"])
         M.append(m); RC.append(rc)
     return pd.DataFrame(W), pd.DataFrame(M).set_index("portfolio"), pd.concat(RC, axis=1), w0, months
 
@@ -277,20 +298,24 @@ def main():
 
     W, M, RC, w0, months = build_all(R, sens, p)
     print(f"\nWeights drifted from {ASOF} through {months[-1]:%b %Y} ({len(months)} months of returns):")
-    print(pd.concat([p["weight"].rename("05/29/26"), w0.rename("drifted"), p["benchmark"].rename("S&P 500 (approx)")],
-                    axis=1).round(2))
+    print(pd.concat([p["weight"].rename("05/29/26"), w0.rename("drifted"), p["benchmark"].rename("benchmark (IVV)"),
+                     (w0 - p["benchmark"]).rename("active")], axis=1).round(2))
     W.round(2).to_csv(OUT / "portfolio_candidate_weights.csv")
     print("\nCandidate weights (%):\n", W.round(2))
     G = pd.DataFrame({n: group_weights(W[n]) for n in W}).assign(benchmark=group_weights(p["benchmark"]))
     print("\nGroup weights (%):\n", G.round(1))
 
     M.round(3).to_csv(OUT / "portfolio_metrics.csv")
-    risk_cols = ["beta", "vol", "te", "te_ewma", "var1", "cvar1", "var3", "cvar3", "beta_cost", "carry_3m",
+    risk_cols = ["beta", "vol", "te", "te_bench", "te_ewma", "var1", "cvar1", "var3", "cvar3", "beta_cost", "carry_3m",
                  "protection_3m", "p_star"]
-    print("\nRisk vs SPY (annualized %, VaR/CVaR = 95% relative loss vs SPY over 1 and 3 months):\n", M[risk_cols].round(2))
+    print("\nRisk vs SPY (annualized %, VaR/CVaR = 95% relative loss vs SPY over 1 and 3 months; "
+          "te_bench = tracking error vs the sector-weighted benchmark):\n", M[risk_cols].round(2))
     print("\nScenario returns vs SPY (%):\n", M[list(SCENARIOS)].T.round(2))
     RC.round(1).to_csv(OUT / "portfolio_risk_contributions.csv")
-    print("\nShare of tracking error by position (%):\n", RC.round(1))
+    print("\nShare of active risk by position (%; Euler split on active weights, sums to 100):\n", RC.round(1))
+    L = pd.DataFrame({n: leg_shares(RC[n]) for n in RC})
+    L.round(1).to_csv(OUT / "portfolio_risk_legs.csv")
+    print("\nShare of active risk by thesis leg (%):\n", L.round(1))
 
     plot_weights(W, p["benchmark"], OUT / "portfolio_active_weights.png")
     plot_scenarios(M, OUT / "portfolio_scenarios.png")
@@ -299,7 +324,10 @@ def main():
 
     c, r = M.loc["Current (drifted)"], M.loc[RECOMMENDED]
     print("\n" + "=" * 90 + "\nEVIDENCE SUMMARY (current vs recommended)")
-    for k, lab, fmt in [("te", "Tracking error vs SPY", "{:.2f}%"), ("beta", "Beta vs SPY", "{:.2f}"),
+    cur_rc = RC["Current (drifted)"].sort_values(key=abs, ascending=False)
+    print("  Largest active-risk positions (current): " + ", ".join(f"{t} {v:.0f}%" for t, v in cur_rc.head(4).items()))
+    for k, lab, fmt in [("te", "Tracking error vs SPY", "{:.2f}%"), ("te_bench", "Tracking error vs benchmark", "{:.2f}%"),
+                        ("beta", "Beta vs SPY", "{:.2f}"),
                         ("beta_cost", f"Beta cost at {ERP:.0f}% ERP", "{:+.2f} pp/yr"),
                         ("cvar3", "3-month CVaR vs SPY", "{:.2f}%"), ("p_star", "Breakeven drawdown probability", "{:.0%}")]:
         print(f"  {lab:32s} current {fmt.format(c[k]) if pd.notna(c[k]) else 'n/a':>12s}   recommended "
@@ -320,7 +348,7 @@ def robustness():
         cands[f"Recommended x{k}"] = {t: v * k for t, v in base.items()}
     W, M, RC, w0, _ = build_all(R, sens, p, cands)
     print("\nSizing curve for the recommended trades (how risk and exposures scale):\n",
-          M[["te", "beta", "beta_cost", "cvar3"] + list(SCENARIOS)].round(2).to_string())
+          M[["te", "te_bench", "beta", "beta_cost", "cvar3"] + list(SCENARIOS)].round(2).to_string())
     M.round(3).to_csv(OUT / "portfolio_sizing.csv")
 
 
