@@ -1,4 +1,4 @@
-"""Module 3 - Monetary policy, rates and liquidity (v1).
+"""Module 3 - Monetary policy, rates and liquidity (v2).
 
 Run:
     python -m src.policy            # main run: state, rate betas, scenarios, impulse test, plots
@@ -24,6 +24,13 @@ THREE PARTS
      as Modules 1-2 (t >= 1.65 SUPPORTS, <= -1.65 CONTRADICTS, else NEUTRAL).
      A defensive thesis needs: positive slope AND a positive impulse today.
   Plus a descriptive Fed-stance table (hiking / on hold / cutting).
+
+v2 (code review, 2026-10-28)
+  - NFCI: each weekly value is dated the Friday it covers but published the following Wednesday, so the
+    month-end reading now uses only values published by month-end (look-ahead of up to 5 days removed).
+  - 2y minus fed funds: fed funds is now the month-END rate, matching the month-end 2y yield (v1 used the
+    monthly average, which overstated the gap in a month with a hike: Sep 2026 +113bp -> +100bp).
+  - The "now" readings say when they come from a month still in progress.
 """
 import sys
 import numpy as np
@@ -78,15 +85,25 @@ def net_liquidity():
     return (walcl - tga.reindex(idx) - rrp).rename("net_liquidity_bn")
 
 
+NFCI_PUB_LAG_DAYS = 5   # week ending Friday -> released the following Wednesday
+
+
+def nfci_published():
+    """NFCI re-dated to its publication day, so a month-end value only uses releases out by then."""
+    n = fred("NFCI").dropna()
+    n.index = n.index + pd.Timedelta(days=NFCI_PUB_LAG_DAYS)
+    return n
+
+
 def build_state():
     """Month-end levels of rates, policy and liquidity."""
     real10 = monthly(fred("DFII10"))
     be10 = monthly(fred("T10YIE"))
     nom10 = monthly(fred("DGS10"))
     two = monthly(fred("DGS2"))
-    ff = monthly(fred("DFF"), "mean")
+    ff = monthly(fred("DFF"))                                 # month-end, to match the month-end 2y yield
     core = lagged(chg(level("PCEPILFE"), 12), 1)            # core PCE y/y, available with a lag
-    nfci = monthly(fred("NFCI"))
+    nfci = monthly(nfci_published())
     usd = fred_optional("DTWEXBGS")
     cols = {
         "real10y": real10, "breakeven10y": be10, "nominal10y": nom10, "two_year": two,
@@ -191,6 +208,11 @@ def fed_stance(S, band=STANCE_BAND):
     d6 = ff.diff(6)
     lab = np.where(d6 > band, "Hiking", np.where(d6 < -band, "Cutting", "On hold"))
     return pd.Series(lab, index=ff.index, dtype=object).where(d6.notna()).rename("fed_stance")
+
+
+def in_progress(d):
+    """Flag readings from the current, unfinished month (latest data before month-end)."""
+    return ", month in progress" if d >= current_month_end() else ""
 
 
 # ------------------------------------------------------------------ plots
@@ -312,7 +334,7 @@ def main():
     for k, p in P.items():
         print(f"\nImpulse test {k}: next-3-month return on tightening impulse, {p['start']:%Y-%m} to {p['end']:%Y-%m}, "
               f"n={p['n']}\n  slope {p['slope']:+.2f} pp/yr per 1 z (t={p['slope_t']:.2f}); impulse now {p['x_now']:+.2f} "
-              f"({p['asof']:%b %Y})\n  expected {p['fit']:+.1f} pp/yr (95% CI {p['lo']:+.1f} to {p['hi']:+.1f}), t={p['t']:.2f}"
+              f"({p['asof']:%b %Y}{in_progress(p['asof'])})\n  expected {p['fit']:+.1f} pp/yr (95% CI {p['lo']:+.1f} to {p['hi']:+.1f}), t={p['t']:.2f}"
               f" = average {p['avg']:+.1f} + policy tilt {p['tilt']:+.1f} (t={p['tilt_t']:.2f})")
     print("\nImpulse components now (z):", Zimp.dropna().iloc[-1].round(2).to_dict())
 
@@ -339,7 +361,7 @@ def main():
     s50 = tab[(tab.shock_bp == 50) & (tab.series == "DEF-GRW")].iloc[0]
     fsr = fs.set_index("state").reindex([cur_stance])
     print("\n" + "=" * 90 + "\nEVIDENCE SUMMARY (paste into the scorecard)")
-    print(f"  State ({last:%b %Y}): real 10y {S.loc[last, 'real10y']:.2f}% (6m chg {S['real10y'].diff(6).loc[last]*100:+.0f}bp), "
+    print(f"  State ({last:%b %Y}{in_progress(last)}): real 10y {S.loc[last, 'real10y']:.2f}% (6m chg {S['real10y'].diff(6).loc[last]*100:+.0f}bp), "
           f"breakeven {S.loc[last, 'breakeven10y']:.2f}%, real fed funds {S['real_fed_funds'].dropna().iloc[-1]:+.2f}%, "
           f"2y-FF {S.loc[last, 'path_2y_minus_ff']*100:+.0f}bp, NFCI {S['nfci'].dropna().iloc[-1]:+.2f}, "
           f"net liquidity 6m {chg(S['net_liquidity_bn'], 6).dropna().iloc[-1]:+.1f}%")
@@ -353,7 +375,7 @@ def main():
           + ", ".join(f"{k} {v:+.2f}" for k, v in be_signs.items()))
     print(f"  Scenario: real 10y +50bp over 3 months -> DEF-GRW {s50['implied_3m_pct']:+.1f}% "
           f"(95% CI {s50['lo']:+.1f} to {s50['hi']:+.1f}); a rise that large happened in {odds[50]:.0%} of 3-month windows since 2003")
-    print(f"  HEADLINE impulse test: tightening impulse now {p['x_now']:+.2f} z; expected DEF-GRW next 3m {p['fit']:+.1f} pp/yr "
+    print(f"  HEADLINE impulse test: tightening impulse now {p['x_now']:+.2f} z ({p['asof']:%b %Y}{in_progress(p['asof'])}); expected DEF-GRW next 3m {p['fit']:+.1f} pp/yr "
           f"(95% CI {p['lo']:+.1f} to {p['hi']:+.1f}), t={p['t']:.2f}")
     print(f"    = sample average {p['avg']:+.1f} + policy tilt {p['tilt']:+.1f} pp/yr (t={p['tilt_t']:.2f}; slope "
           f"{p['slope']:+.1f} per z, t={p['slope_t']:.2f})")
