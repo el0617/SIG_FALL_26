@@ -2,3 +2,4 @@ candidate,verdict,wins_of_6,worst_vs_current,breakeven_selloff_p
 Team direction: add defensives,ROBUSTLY WORSE,0,0.3,0.29
 Recommended core: fix the defensive leg,MIXED,4,-0.34,0.11
 Core + extend growth underweight,MIXED,2,-0.29,0.03
+Core + trim energy and growth underweight,ROBUSTLY BETTER,6,-0.22,0.17

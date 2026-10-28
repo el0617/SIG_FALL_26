@@ -1,12 +1,12 @@
-ticker,Current (drifted),Team direction: add defensives,Recommended core: fix the defensive leg,Core + extend growth underweight
-VGT,28.93,24.93,28.93,26.93
-XLY,5.65,4.65,5.65,5.65
-XLC,7.29,7.29,7.29,7.29
-XLF,10.77,10.77,13.77,13.77
-XLI,5.3,5.3,5.3,6.3
-XLB,6.0,6.0,6.0,6.0
-XLE,9.32,9.32,9.32,9.32
-XLP,10.21,12.21,7.21,7.21
-XLV,12.53,14.53,12.53,13.53
-XLU,2.16,3.16,2.16,2.16
-SCHH,1.84,1.84,1.84,1.84
+ticker,Current (drifted),Team direction: add defensives,Recommended core: fix the defensive leg,Core + extend growth underweight,Core + trim energy and growth underweight
+VGT,28.93,24.93,28.93,26.93,31.43
+XLY,5.65,4.65,5.65,5.65,5.65
+XLC,7.29,7.29,7.29,7.29,7.29
+XLF,10.77,10.77,13.77,13.77,13.77
+XLI,5.3,5.3,5.3,6.3,5.3
+XLB,6.0,6.0,6.0,6.0,6.0
+XLE,9.32,9.32,9.32,9.32,6.82
+XLP,10.21,12.21,7.21,7.21,7.21
+XLV,12.53,14.53,12.53,13.53,12.53
+XLU,2.16,3.16,2.16,2.16,2.16
+SCHH,1.84,1.84,1.84,1.84,1.84

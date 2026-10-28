@@ -1,13 +1,16 @@
 candidate,prob_set,exp_empirical,exp_model,p_underperform,worst_scenario,worst
 Current (drifted),A base rate,0.138,-0.241,0.461,Growth scare,-0.42
-Current (drifted),B policy analog,0.14,-0.216,0.466,Growth scare,-0.42
+Current (drifted),B policy analog,0.148,-0.221,0.462,Growth scare,-0.42
 Current (drifted),C recession risk,0.125,-0.238,0.466,Growth scare,-0.42
 Team direction: add defensives,A base rate,0.061,-0.372,0.5,Steady state,-0.118
-Team direction: add defensives,B policy analog,0.072,-0.331,0.497,Steady state,-0.118
+Team direction: add defensives,B policy analog,0.076,-0.342,0.496,Steady state,-0.118
 Team direction: add defensives,C recession risk,0.054,-0.363,0.502,Steady state,-0.118
 Recommended core: fix the defensive leg,A base rate,0.139,-0.202,0.475,Growth scare,-0.757
-Recommended core: fix the defensive leg,B policy analog,0.133,-0.183,0.479,Growth scare,-0.757
+Recommended core: fix the defensive leg,B policy analog,0.144,-0.186,0.475,Growth scare,-0.757
 Recommended core: fix the defensive leg,C recession risk,0.122,-0.203,0.481,Growth scare,-0.757
 Core + extend growth underweight,A base rate,0.111,-0.239,0.482,Growth scare,-0.706
-Core + extend growth underweight,B policy analog,0.107,-0.216,0.485,Growth scare,-0.706
+Core + extend growth underweight,B policy analog,0.117,-0.22,0.481,Growth scare,-0.706
 Core + extend growth underweight,C recession risk,0.095,-0.239,0.488,Growth scare,-0.706
+Core + trim energy and growth underweight,A base rate,0.164,-0.137,0.44,Growth scare,-0.642
+Core + trim energy and growth underweight,B policy analog,0.167,-0.126,0.443,Growth scare,-0.642
+Core + trim energy and growth underweight,C recession risk,0.151,-0.138,0.443,Growth scare,-0.642

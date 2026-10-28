@@ -1,0 +1,31 @@
+spec,signal,verdict,oos_r2,cw_t,quarters
+baseline,Cycle momentum (level + change),NO OOS VALUE,-5.9,-0.92,77
+baseline,Policy tightening impulse,NO OOS VALUE,-0.1,0.69,47
+baseline,Market confirmation composite,NO OOS VALUE,1.6,1.46,58
+baseline,Valuation gap (vs median),NO OOS VALUE,-3.9,-0.4,37
+baseline,Relative EPS revisions,NO OOS VALUE,0.7,0.81,48
+training 60 months,Cycle momentum (level + change),NO OOS VALUE,-6.5,-0.99,89
+training 60 months,Policy tightening impulse,NO OOS VALUE,-0.5,0.57,59
+training 60 months,Market confirmation composite,NO OOS VALUE,-0.0,0.33,70
+training 60 months,Valuation gap (vs median),NO OOS VALUE,-4.0,-0.49,49
+training 60 months,Relative EPS revisions,NO OOS VALUE,0.7,0.83,60
+training 120 months,Cycle momentum (level + change),NO OOS VALUE,-4.7,-1.18,69
+training 120 months,Policy tightening impulse,NO OOS VALUE,-0.0,0.65,39
+training 120 months,Market confirmation composite,NO OOS VALUE,1.7,1.45,50
+training 120 months,Valuation gap (vs median),NO OOS VALUE,-3.5,-0.26,29
+training 120 months,Relative EPS revisions,NO OOS VALUE,0.8,0.83,40
+rolling 120-month window,Cycle momentum (level + change),NO OOS VALUE,-8.6,-0.86,77
+rolling 120-month window,Policy tightening impulse,NO OOS VALUE,-1.6,0.14,47
+rolling 120-month window,Market confirmation composite,NO OOS VALUE,2.5,1.43,58
+rolling 120-month window,Valuation gap (vs median),NO OOS VALUE,-4.4,-0.82,37
+rolling 120-month window,Relative EPS revisions,NO OOS VALUE,-0.2,0.96,48
+forecasts from 2013,Cycle momentum (level + change),NO OOS VALUE,-2.9,-0.92,54
+forecasts from 2013,Policy tightening impulse,NO OOS VALUE,-0.1,0.69,47
+forecasts from 2013,Market confirmation composite,NO OOS VALUE,1.6,1.42,54
+forecasts from 2013,Valuation gap (vs median),NO OOS VALUE,-3.9,-0.4,37
+forecasts from 2013,Relative EPS revisions,NO OOS VALUE,0.7,0.81,48
+1-month horizon,Cycle momentum (level + change),NO OOS VALUE,-1.8,-0.4,78
+1-month horizon,Policy tightening impulse,NO OOS VALUE,-0.3,0.31,49
+1-month horizon,Market confirmation composite,NO OOS VALUE,0.2,0.66,59
+1-month horizon,Valuation gap (vs median),NO OOS VALUE,-1.5,-0.28,39
+1-month horizon,Relative EPS revisions,NO OOS VALUE,0.3,0.78,49

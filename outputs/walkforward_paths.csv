@@ -1,0 +1,826 @@
+,date,y,forecast,hist_mean,tilt,slope,n_train
+Cycle momentum (level + change),2007-03-31,-15.211,3.921,2.046,1.875,-8.653,96
+Cycle momentum (level + change),2007-04-30,-24.316,3.521,2.293,1.228,-8.868,97
+Cycle momentum (level + change),2007-05-31,-9.705,2.529,2.282,0.247,-8.842,98
+Cycle momentum (level + change),2007-06-30,9.605,1.425,2.105,-0.68,-8.77,99
+Cycle momentum (level + change),2007-07-31,16.617,1.485,1.841,-0.356,-8.711,100
+Cycle momentum (level + change),2007-08-31,45.62,2.219,1.727,0.493,-8.708,101
+Cycle momentum (level + change),2007-09-30,36.822,2.722,1.804,0.918,-8.69,102
+Cycle momentum (level + change),2007-10-31,36.065,3.596,1.948,1.649,-8.683,103
+Cycle momentum (level + change),2007-11-30,11.657,6.217,2.368,3.849,-8.839,104
+Cycle momentum (level + change),2007-12-31,12.514,8.279,2.696,5.584,-9.036,105
+Cycle momentum (level + change),2008-01-31,-0.632,10.644,3.011,7.634,-9.294,106
+Cycle momentum (level + change),2008-02-29,-15.573,12.143,3.091,9.051,-9.355,107
+Cycle momentum (level + change),2008-03-31,10.333,13.68,3.179,10.501,-9.421,108
+Cycle momentum (level + change),2008-04-30,25.614,14.283,3.144,11.139,-9.149,109
+Cycle momentum (level + change),2008-05-31,20.231,12.869,2.974,9.895,-8.407,110
+Cycle momentum (level + change),2008-06-30,7.744,13.272,3.04,10.232,-8.359,111
+Cycle momentum (level + change),2008-07-31,20.633,12.815,3.241,9.574,-8.767,112
+Cycle momentum (level + change),2008-08-31,68.509,11.902,3.392,8.51,-8.975,113
+Cycle momentum (level + change),2008-09-30,44.514,10.616,3.43,7.186,-8.779,114
+Cycle momentum (level + change),2008-10-31,45.72,11.193,3.58,7.613,-8.985,115
+Cycle momentum (level + change),2008-11-30,-7.865,13.643,4.139,9.504,-10.245,116
+Cycle momentum (level + change),2008-12-31,-30.499,14.479,4.484,9.995,-10.842,117
+Cycle momentum (level + change),2009-01-31,-100.594,18.351,4.834,13.517,-11.468,118
+Cycle momentum (level + change),2009-02-28,-64.926,20.36,4.727,15.633,-10.966,119
+Cycle momentum (level + change),2009-03-31,-30.577,20.791,4.434,16.357,-9.964,120
+Cycle momentum (level + change),2009-04-30,6.712,15.846,3.566,12.28,-6.958,121
+Cycle momentum (level + change),2009-05-31,-14.479,15.103,3.004,12.098,-4.687,122
+Cycle momentum (level + change),2009-06-30,-30.171,18.691,2.731,15.96,-3.384,123
+Cycle momentum (level + change),2009-07-31,-14.529,18.051,2.763,15.288,-3.302,124
+Cycle momentum (level + change),2009-08-31,-11.542,13.321,2.625,10.696,-2.659,125
+Cycle momentum (level + change),2009-09-30,-9.992,5.826,2.365,3.461,-1.962,126
+Cycle momentum (level + change),2009-10-31,4.007,2.331,2.232,0.099,-1.838,127
+Cycle momentum (level + change),2009-11-30,-10.372,-0.24,2.124,-2.364,-1.942,128
+Cycle momentum (level + change),2009-12-31,-16.158,-1.939,2.03,-3.969,-2.157,129
+Cycle momentum (level + change),2010-01-31,-49.938,-2.44,2.046,-4.486,-2.072,130
+Cycle momentum (level + change),2010-02-28,-27.987,-2.569,1.951,-4.52,-2.323,131
+Cycle momentum (level + change),2010-03-31,12.627,-3.102,1.814,-4.915,-2.707,132
+Cycle momentum (level + change),2010-04-30,18.991,-5.214,1.425,-6.638,-3.979,133
+Cycle momentum (level + change),2010-05-31,28.611,-6.324,1.205,-7.529,-4.529,134
+Cycle momentum (level + change),2010-06-30,-16.253,-4.34,1.29,-5.63,-4.114,135
+Cycle momentum (level + change),2010-07-31,-18.889,-2.506,1.42,-3.926,-3.668,136
+Cycle momentum (level + change),2010-08-31,-47.064,-1.166,1.618,-2.785,-3.09,137
+Cycle momentum (level + change),2010-09-30,-28.847,-1.149,1.489,-2.638,-3.291,138
+Cycle momentum (level + change),2010-10-31,-19.592,-0.473,1.342,-1.815,-3.472,139
+Cycle momentum (level + change),2010-11-30,-14.556,0.172,0.996,-0.824,-3.805,140
+Cycle momentum (level + change),2010-12-31,-2.751,0.817,0.785,0.033,-3.945,141
+Cycle momentum (level + change),2011-01-31,10.151,1.563,0.641,0.921,-3.988,142
+Cycle momentum (level + change),2011-02-28,28.974,1.626,0.535,1.091,-3.989,143
+Cycle momentum (level + change),2011-03-31,20.487,1.286,0.512,0.774,-3.986,144
+Cycle momentum (level + change),2011-04-30,5.979,-0.682,0.579,-1.261,-3.976,145
+Cycle momentum (level + change),2011-05-31,15.302,-1.82,0.773,-2.593,-3.891,146
+Cycle momentum (level + change),2011-06-30,24.983,-2.464,0.907,-3.371,-3.81,147
+Cycle momentum (level + change),2011-07-31,5.768,-2.234,0.942,-3.176,-3.771,148
+Cycle momentum (level + change),2011-08-31,-4.903,-1.897,1.038,-2.935,-3.648,149
+Cycle momentum (level + change),2011-09-30,-4.81,-1.353,1.198,-2.55,-3.448,150
+Cycle momentum (level + change),2011-10-31,-5.936,-0.121,1.228,-1.348,-3.412,151
+Cycle momentum (level + change),2011-11-30,-32.752,0.884,1.188,-0.303,-3.421,152
+Cycle momentum (level + change),2011-12-31,-49.238,1.957,1.148,0.809,-3.425,153
+Cycle momentum (level + change),2012-01-31,-20.249,2.978,1.102,1.876,-3.418,154
+Cycle momentum (level + change),2012-02-29,13.826,3.537,0.884,2.653,-3.332,155
+Cycle momentum (level + change),2012-03-31,27.929,2.866,0.563,2.303,-3.201,156
+Cycle momentum (level + change),2012-04-30,30.975,0.923,0.43,0.493,-3.187,157
+Cycle momentum (level + change),2012-05-31,-9.295,-1.006,0.515,-1.521,-3.165,158
+Cycle momentum (level + change),2012-06-30,-17.091,-2.365,0.687,-3.052,-3.045,159
+Cycle momentum (level + change),2012-07-31,-6.757,-3.591,0.877,-4.467,-2.812,160
+Cycle momentum (level + change),2012-08-31,4.777,-3.777,0.813,-4.59,-2.9,161
+Cycle momentum (level + change),2012-09-30,1.635,-3.611,0.703,-4.314,-3.052,162
+Cycle momentum (level + change),2012-10-31,-5.248,-2.012,0.657,-2.669,-3.078,163
+Cycle momentum (level + change),2012-11-30,9.884,-0.505,0.682,-1.187,-3.017,164
+Cycle momentum (level + change),2012-12-31,21.375,0.993,0.688,0.305,-2.994,165
+Cycle momentum (level + change),2013-01-31,18.829,0.807,0.652,0.155,-3.005,166
+Cycle momentum (level + change),2013-02-28,-9.487,0.583,0.708,-0.125,-2.983,167
+Cycle momentum (level + change),2013-03-31,-13.446,0.48,0.831,-0.351,-2.951,168
+Cycle momentum (level + change),2013-04-30,-16.62,0.337,0.937,-0.6,-2.919,169
+Cycle momentum (level + change),2013-05-31,-2.38,0.45,0.876,-0.425,-2.941,170
+Cycle momentum (level + change),2013-06-30,-14.798,-0.648,0.792,-1.44,-2.994,171
+Cycle momentum (level + change),2013-07-31,-17.82,-0.095,0.691,-0.786,-3.046,172
+Cycle momentum (level + change),2013-08-31,-15.475,-0.828,0.673,-1.501,-3.056,173
+Cycle momentum (level + change),2013-09-30,-15.715,-0.8,0.584,-1.384,-3.115,174
+Cycle momentum (level + change),2013-10-31,-0.333,-1.292,0.479,-1.771,-3.185,175
+Cycle momentum (level + change),2013-11-30,3.475,-1.436,0.388,-1.824,-3.244,176
+Cycle momentum (level + change),2013-12-31,22.579,-0.73,0.297,-1.028,-3.288,177
+Cycle momentum (level + change),2014-01-31,17.706,-0.463,0.294,-0.757,-3.284,178
+Cycle momentum (level + change),2014-02-28,12.706,0.85,0.311,0.539,-3.275,179
+Cycle momentum (level + change),2014-03-31,2.916,0.503,0.435,0.067,-3.24,180
+Cycle momentum (level + change),2014-04-30,-21.849,0.437,0.531,-0.093,-3.208,181
+Cycle momentum (level + change),2014-05-31,-9.647,-0.043,0.598,-0.64,-3.191,182
+Cycle momentum (level + change),2014-06-30,-5.002,0.096,0.61,-0.515,-3.187,183
+Cycle momentum (level + change),2014-07-31,24.165,-0.963,0.488,-1.451,-3.245,184
+Cycle momentum (level + change),2014-08-31,13.523,-1.058,0.433,-1.491,-3.278,185
+Cycle momentum (level + change),2014-09-30,12.29,-0.673,0.404,-1.077,-3.293,186
+Cycle momentum (level + change),2014-10-31,13.83,0.343,0.531,-0.188,-3.228,187
+Cycle momentum (level + change),2014-11-30,-9.602,-0.2,0.6,-0.801,-3.182,188
+Cycle momentum (level + change),2014-12-31,-9.039,-0.909,0.662,-1.571,-3.135,189
+Cycle momentum (level + change),2015-01-31,-34.079,-0.403,0.731,-1.134,-3.102,190
+Cycle momentum (level + change),2015-02-28,-2.049,-0.029,0.677,-0.706,-3.124,191
+Cycle momentum (level + change),2015-03-31,-10.654,0.138,0.627,-0.489,-3.145,192
+Cycle momentum (level + change),2015-04-30,2.027,-1.035,0.447,-1.482,-3.241,193
+Cycle momentum (level + change),2015-05-31,1.254,-0.966,0.434,-1.4,-3.245,194
+Cycle momentum (level + change),2015-06-30,5.808,-0.674,0.377,-1.051,-3.257,195
+Cycle momentum (level + change),2015-07-31,-18.161,0.398,0.386,0.013,-3.255,196
+Cycle momentum (level + change),2015-08-31,-24.501,0.682,0.39,0.292,-3.254,197
+Cycle momentum (level + change),2015-09-30,-6.363,0.466,0.417,0.049,-3.257,198
+Cycle momentum (level + change),2015-10-31,28.218,-0.144,0.324,-0.468,-3.235,199
+Cycle momentum (level + change),2015-11-30,36.604,0.196,0.2,-0.004,-3.187,200
+Cycle momentum (level + change),2015-12-31,7.268,0.967,0.167,0.8,-3.169,201
+Cycle momentum (level + change),2016-01-31,1.087,1.635,0.306,1.329,-3.261,202
+Cycle momentum (level + change),2016-02-29,-5.826,1.631,0.485,1.147,-3.381,203
+Cycle momentum (level + change),2016-03-31,28.211,2.071,0.518,1.553,-3.406,204
+Cycle momentum (level + change),2016-04-30,0.777,3.131,0.521,2.611,-3.401,205
+Cycle momentum (level + change),2016-05-31,-7.477,3.468,0.49,2.978,-3.365,206
+Cycle momentum (level + change),2016-06-30,-36.969,2.96,0.624,2.336,-3.47,207
+Cycle momentum (level + change),2016-07-31,-20.414,1.794,0.625,1.169,-3.462,208
+Cycle momentum (level + change),2016-08-31,-28.212,0.774,0.586,0.188,-3.438,209
+Cycle momentum (level + change),2016-09-30,-15.398,-0.226,0.407,-0.633,-3.416,210
+Cycle momentum (level + change),2016-10-31,-21.681,-0.888,0.309,-1.196,-3.449,211
+Cycle momentum (level + change),2016-11-30,7.484,-1.295,0.174,-1.469,-3.528,212
+Cycle momentum (level + change),2016-12-31,-9.505,-1.012,0.101,-1.113,-3.575,213
+Cycle momentum (level + change),2017-01-31,-5.253,-1.177,-0.001,-1.177,-3.657,214
+Cycle momentum (level + change),2017-02-28,-14.429,-1.012,0.034,-1.046,-3.619,215
+Cycle momentum (level + change),2017-03-31,3.292,-1.244,-0.01,-1.234,-3.654,216
+Cycle momentum (level + change),2017-04-30,0.051,-1.843,-0.034,-1.809,-3.673,217
+Cycle momentum (level + change),2017-05-31,3.215,-2.314,-0.1,-2.214,-3.738,218
+Cycle momentum (level + change),2017-06-30,-11.098,-2.96,-0.085,-2.875,-3.712,219
+Cycle momentum (level + change),2017-07-31,-18.845,-2.502,-0.084,-2.418,-3.702,220
+Cycle momentum (level + change),2017-08-31,-20.04,-1.987,-0.069,-1.918,-3.673,221
+Cycle momentum (level + change),2017-09-30,-25.158,-1.002,-0.119,-0.882,-3.711,222
+Cycle momentum (level + change),2017-10-31,-35.668,-0.876,-0.203,-0.673,-3.776,223
+Cycle momentum (level + change),2017-11-30,-51.181,-0.522,-0.292,-0.23,-3.832,224
+Cycle momentum (level + change),2017-12-31,-27.164,-0.668,-0.402,-0.266,-3.888,225
+Cycle momentum (level + change),2018-01-31,-7.655,-1.271,-0.558,-0.713,-3.97,226
+Cycle momentum (level + change),2018-02-28,-14.933,-2.362,-0.781,-1.581,-4.114,227
+Cycle momentum (level + change),2018-03-31,-21.803,-3.373,-0.897,-2.476,-4.215,228
+Cycle momentum (level + change),2018-04-30,-7.157,-2.746,-0.926,-1.82,-4.236,229
+Cycle momentum (level + change),2018-05-31,-1.695,-2.767,-0.987,-1.78,-4.288,230
+Cycle momentum (level + change),2018-06-30,-3.658,-2.853,-1.077,-1.776,-4.378,231
+Cycle momentum (level + change),2018-07-31,20.45,-3.13,-1.104,-2.026,-4.397,232
+Cycle momentum (level + change),2018-08-31,53.342,-2.95,-1.106,-1.844,-4.392,233
+Cycle momentum (level + change),2018-09-30,52.956,-2.487,-1.117,-1.369,-4.395,234
+Cycle momentum (level + change),2018-10-31,4.769,-3.108,-1.025,-2.082,-4.304,235
+Cycle momentum (level + change),2018-11-30,-19.886,-2.309,-0.795,-1.514,-4.142,236
+Cycle momentum (level + change),2018-12-31,-30.254,-1.08,-0.568,-0.512,-4.074,237
+Cycle momentum (level + change),2019-01-31,-36.778,0.42,-0.546,0.966,-4.075,238
+Cycle momentum (level + change),2019-02-28,-5.938,1.197,-0.627,1.824,-4.043,239
+Cycle momentum (level + change),2019-03-31,-12.061,1.233,-0.75,1.983,-3.951,240
+Cycle momentum (level + change),2019-04-30,1.413,2.138,-0.9,3.037,-3.732,241
+Cycle momentum (level + change),2019-05-31,-8.423,2.538,-0.92,3.458,-3.685,242
+Cycle momentum (level + change),2019-06-30,7.26,2.962,-0.966,3.928,-3.583,243
+Cycle momentum (level + change),2019-07-31,13.236,2.356,-0.956,3.312,-3.578,244
+Cycle momentum (level + change),2019-08-31,-7.981,1.725,-0.987,2.712,-3.49,245
+Cycle momentum (level + change),2019-09-30,-12.085,1.313,-0.953,2.267,-3.525,246
+Cycle momentum (level + change),2019-10-31,-11.265,0.838,-0.896,1.734,-3.597,247
+Cycle momentum (level + change),2019-11-30,-7.028,1.137,-0.925,2.062,-3.538,248
+Cycle momentum (level + change),2019-12-31,15.998,1.177,-0.969,2.146,-3.467,249
+Cycle momentum (level + change),2020-01-31,-16.762,1.192,-1.011,2.203,-3.412,250
+Cycle momentum (level + change),2020-02-29,-28.738,0.778,-1.035,1.813,-3.38,251
+Cycle momentum (level + change),2020-03-31,-79.666,-0.717,-0.967,0.25,-3.424,252
+Cycle momentum (level + change),2020-04-30,-43.955,-2.323,-1.029,-1.294,-3.378,253
+Cycle momentum (level + change),2020-05-31,-65.608,-5.188,-1.138,-4.05,-3.353,254
+Cycle momentum (level + change),2020-06-30,-25.078,-5.165,-1.446,-3.719,-3.246,255
+Cycle momentum (level + change),2020-07-31,-12.517,-3.111,-1.612,-1.499,-3.091,256
+Cycle momentum (level + change),2020-08-31,3.025,3.292,-1.861,5.154,-2.681,257
+Cycle momentum (level + change),2020-09-30,-15.52,11.666,-1.951,13.618,-2.535,258
+Cycle momentum (level + change),2020-10-31,-34.861,16.705,-1.992,18.698,-2.47,259
+Cycle momentum (level + change),2020-11-30,-27.891,17.449,-1.973,19.422,-2.472,260
+Cycle momentum (level + change),2020-12-31,-1.867,11.704,-2.025,13.729,-2.045,261
+Cycle momentum (level + change),2021-01-31,-6.057,2.908,-2.15,5.058,-1.549,262
+Cycle momentum (level + change),2021-02-28,18.583,-3.295,-2.248,-1.047,-1.459,263
+Cycle momentum (level + change),2021-03-31,-20.886,-5.619,-2.247,-3.372,-1.485,264
+Cycle momentum (level + change),2021-04-30,-5.505,-6.753,-2.261,-4.492,-1.55,265
+Cycle momentum (level + change),2021-05-31,-16.904,-5.846,-2.183,-3.663,-1.232,266
+Cycle momentum (level + change),2021-06-30,-0.652,-5.902,-2.253,-3.65,-1.48,267
+Cycle momentum (level + change),2021-07-31,-28.765,-5.584,-2.265,-3.319,-1.462,268
+Cycle momentum (level + change),2021-08-31,-48.074,-6.032,-2.319,-3.713,-1.6,269
+Cycle momentum (level + change),2021-09-30,-10.944,-5.888,-2.313,-3.575,-1.539,270
+Cycle momentum (level + change),2021-10-31,29.076,-5.652,-2.411,-3.241,-1.732,271
+Cycle momentum (level + change),2021-11-30,61.57,-4.836,-2.579,-2.257,-1.975,272
+Cycle momentum (level + change),2021-12-31,37.755,-3.837,-2.609,-1.227,-1.99,273
+Cycle momentum (level + change),2022-01-31,57.225,-1.828,-2.494,0.666,-1.956,274
+Cycle momentum (level + change),2022-02-28,58.946,-0.61,-2.261,1.651,-2.06,275
+Cycle momentum (level + change),2022-03-31,77.714,-0.078,-2.116,2.037,-2.194,276
+Cycle momentum (level + change),2022-04-30,-6.985,-0.436,-1.901,1.465,-2.421,277
+Cycle momentum (level + change),2022-05-31,-8.927,-0.908,-1.683,0.775,-2.646,278
+Cycle momentum (level + change),2022-06-30,-24.894,-1.003,-1.398,0.394,-2.963,279
+Cycle momentum (level + change),2022-07-31,32.917,-1.597,-1.418,-0.179,-2.939,280
+Cycle momentum (level + change),2022-08-31,29.075,-1.403,-1.445,0.041,-2.916,281
+Cycle momentum (level + change),2022-09-30,50.409,-0.347,-1.528,1.181,-2.822,282
+Cycle momentum (level + change),2022-10-31,-14.807,2.358,-1.406,3.765,-3.031,283
+Cycle momentum (level + change),2022-11-30,-36.668,3.531,-1.299,4.83,-3.245,284
+Cycle momentum (level + change),2022-12-31,-81.821,4.013,-1.117,5.13,-3.652,285
+Cycle momentum (level + change),2023-01-31,-12.4,3.409,-1.165,4.574,-3.469,286
+Cycle momentum (level + change),2023-02-28,-43.292,2.538,-1.289,3.827,-3.05,287
+Cycle momentum (level + change),2023-03-31,-55.589,0.663,-1.568,2.231,-2.284,288
+Cycle momentum (level + change),2023-04-30,-71.885,-0.369,-1.606,1.237,-2.185,289
+Cycle momentum (level + change),2023-05-31,-35.108,-1.043,-1.75,0.707,-1.917,290
+Cycle momentum (level + change),2023-06-30,-3.901,-1.489,-1.935,0.446,-1.663,291
+Cycle momentum (level + change),2023-07-31,4.768,-1.853,-2.174,0.321,-1.434,292
+Cycle momentum (level + change),2023-08-31,-15.485,-1.991,-2.287,0.295,-1.345,293
+Cycle momentum (level + change),2023-09-30,-30.421,-2.143,-2.292,0.15,-1.341,294
+Cycle momentum (level + change),2023-10-31,-31.863,-2.383,-2.268,-0.115,-1.347,295
+Cycle momentum (level + change),2023-11-30,-20.515,-2.63,-2.313,-0.317,-1.341,296
+Cycle momentum (level + change),2023-12-31,3.188,-2.727,-2.408,-0.319,-1.345,297
+Cycle momentum (level + change),2024-01-31,12.717,-2.76,-2.506,-0.254,-1.373,298
+Cycle momentum (level + change),2024-02-29,33.332,-2.874,-2.567,-0.308,-1.407,299
+Cycle momentum (level + change),2024-03-31,-10.299,-2.79,-2.547,-0.243,-1.397,300
+Cycle momentum (level + change),2024-04-30,-9.004,-2.76,-2.497,-0.263,-1.377,301
+Cycle momentum (level + change),2024-05-31,7.284,-2.592,-2.378,-0.214,-1.326,302
+Cycle momentum (level + change),2024-06-30,24.178,-2.61,-2.404,-0.206,-1.335,303
+Cycle momentum (level + change),2024-07-31,2.671,-2.63,-2.426,-0.205,-1.345,304
+Cycle momentum (level + change),2024-08-31,-42.926,-2.536,-2.394,-0.142,-1.332,305
+Cycle momentum (level + change),2024-09-30,-58.041,-2.266,-2.307,0.041,-1.302,306
+Cycle momentum (level + change),2024-10-31,-44.382,-2.107,-2.291,0.184,-1.297,307
+Cycle momentum (level + change),2024-11-30,10.707,-2.227,-2.423,0.196,-1.319,308
+Cycle momentum (level + change),2024-12-31,67.467,-2.323,-2.603,0.28,-1.291,309
+Cycle momentum (level + change),2025-01-31,51.577,-2.383,-2.738,0.354,-1.241,310
+Cycle momentum (level + change),2025-02-28,-15.462,-2.499,-2.694,0.195,-1.256,311
+Cycle momentum (level + change),2025-03-31,-67.528,-2.681,-2.47,-0.211,-1.293,312
+Cycle momentum (level + change),2025-04-30,-70.646,-2.977,-2.297,-0.68,-1.297,313
+Cycle momentum (level + change),2025-05-31,-35.597,-3.119,-2.339,-0.78,-1.303,314
+Cycle momentum (level + change),2025-06-30,-30.911,-2.898,-2.546,-0.352,-1.358,315
+Cycle momentum (level + change),2025-07-31,-29.297,-2.574,-2.761,0.187,-1.375,316
+Cycle momentum (level + change),2025-08-31,5.655,-2.021,-2.865,0.844,-1.356,317
+Cycle momentum (level + change),2025-09-30,8.861,-1.887,-2.953,1.066,-1.308,318
+Cycle momentum (level + change),2025-10-31,27.138,-1.896,-3.036,1.14,-1.235,319
+Cycle momentum (level + change),2025-11-30,37.675,-2.055,-3.009,0.954,-1.261,320
+Cycle momentum (level + change),2025-12-31,47.061,-2.267,-2.972,0.704,-1.293,321
+Cycle momentum (level + change),2026-01-31,-13.031,-2.677,-2.878,0.201,-1.351,322
+Cycle momentum (level + change),2026-02-28,-105.889,-2.717,-2.752,0.035,-1.396,323
+Cycle momentum (level + change),2026-03-31,-81.468,-2.275,-2.599,0.324,-1.426,324
+Cycle momentum (level + change),2026-04-30,-8.768,-2.261,-2.631,0.37,-1.427,325
+Cycle momentum (level + change),2026-05-31,27.458,-2.855,-2.948,0.092,-1.507,326
+Cycle momentum (level + change),2026-06-30,-4.387,-4.008,-3.188,-0.82,-1.645,327
+Cycle momentum (level + change),2026-07-31,,-4.09,-3.205,-0.885,-1.656,328
+Cycle momentum (level + change),2026-08-31,,-3.931,-3.112,-0.819,-1.594,329
+Cycle momentum (level + change),2026-09-30,,-3.662,-3.115,-0.547,-1.595,330
+Cycle momentum (level + change),2026-10-31,,-3.631,-3.115,-0.516,-1.595,330
+Policy tightening impulse,2014-08-31,13.523,-1.456,-1.893,0.437,5.96,96
+Policy tightening impulse,2014-09-30,12.29,0.138,-1.925,2.063,5.966,97
+Policy tightening impulse,2014-10-31,13.83,0.434,-1.659,2.094,5.915,98
+Policy tightening impulse,2014-11-30,-9.602,2.448,-1.506,3.954,5.936,99
+Policy tightening impulse,2014-12-31,-9.039,1.97,-1.368,3.338,6.016,100
+Policy tightening impulse,2015-01-31,-34.079,3.952,-1.217,5.169,6.105,101
+Policy tightening impulse,2015-02-28,-2.049,2.808,-1.3,4.107,5.947,102
+Policy tightening impulse,2015-03-31,-10.654,-0.192,-1.375,1.183,5.832,103
+Policy tightening impulse,2015-04-30,2.027,1.585,-1.689,3.274,5.239,104
+Policy tightening impulse,2015-05-31,1.254,2.957,-1.693,4.65,5.189,105
+Policy tightening impulse,2015-06-30,5.808,2.366,-1.777,4.143,5.154,106
+Policy tightening impulse,2015-07-31,-18.161,2.668,-1.742,4.409,5.161,107
+Policy tightening impulse,2015-08-31,-24.501,4.088,-1.714,5.802,5.136,108
+Policy tightening impulse,2015-09-30,-6.363,4.487,-1.645,6.131,5.185,109
+Policy tightening impulse,2015-10-31,28.218,2.368,-1.795,4.163,4.872,110
+Policy tightening impulse,2015-11-30,36.604,1.508,-2.0,3.508,4.322,111
+Policy tightening impulse,2015-12-31,7.268,4.046,-2.038,6.085,4.135,112
+Policy tightening impulse,2016-01-31,1.087,3.083,-1.771,4.854,4.513,113
+Policy tightening impulse,2016-02-29,-5.826,1.365,-1.434,2.799,4.975,114
+Policy tightening impulse,2016-03-31,28.211,1.658,-1.358,3.017,5.01,115
+Policy tightening impulse,2016-04-30,0.777,1.062,-1.337,2.4,4.962,116
+Policy tightening impulse,2016-05-31,-7.477,1.083,-1.376,2.459,4.901,117
+Policy tightening impulse,2016-06-30,-36.969,-2.348,-1.125,-1.223,5.148,118
+Policy tightening impulse,2016-07-31,-20.414,-0.902,-1.109,0.207,5.144,119
+Policy tightening impulse,2016-08-31,-28.212,1.658,-1.162,2.82,5.075,120
+Policy tightening impulse,2016-09-30,-15.398,2.67,-1.458,4.128,5.208,121
+Policy tightening impulse,2016-10-31,-21.681,3.221,-1.613,4.834,5.196,122
+Policy tightening impulse,2016-11-30,7.484,2.925,-1.83,4.754,4.941,123
+Policy tightening impulse,2016-12-31,-9.505,3.22,-1.939,5.159,4.73,124
+Policy tightening impulse,2017-01-31,-5.253,1.926,-2.097,4.023,4.393,125
+Policy tightening impulse,2017-02-28,-14.429,0.17,-2.021,2.191,4.47,126
+Policy tightening impulse,2017-03-31,3.292,-2.861,-2.08,-0.781,4.276,127
+Policy tightening impulse,2017-04-30,0.051,-2.278,-2.105,-0.174,4.184,128
+Policy tightening impulse,2017-05-31,3.215,-2.83,-2.2,-0.63,4.085,129
+Policy tightening impulse,2017-06-30,-11.098,-2.894,-2.158,-0.736,4.068,130
+Policy tightening impulse,2017-07-31,-18.845,-2.118,-2.141,0.024,4.066,131
+Policy tightening impulse,2017-08-31,-20.04,-1.981,-2.101,0.12,4.053,132
+Policy tightening impulse,2017-09-30,-25.158,0.079,-2.168,2.247,4.074,133
+Policy tightening impulse,2017-10-31,-35.668,-0.822,-2.293,1.47,4.072,134
+Policy tightening impulse,2017-11-30,-51.181,-1.485,-2.424,0.939,4.064,135
+Policy tightening impulse,2017-12-31,-27.164,-2.212,-2.591,0.379,3.866,136
+Policy tightening impulse,2018-01-31,-7.655,-1.089,-2.833,1.743,3.689,137
+Policy tightening impulse,2018-02-28,-14.933,-0.334,-3.183,2.849,3.53,138
+Policy tightening impulse,2018-03-31,-21.803,-1.646,-3.356,1.709,3.497,139
+Policy tightening impulse,2018-04-30,-7.157,-0.315,-3.386,3.071,3.457,140
+Policy tightening impulse,2018-05-31,-1.695,-0.418,-3.468,3.05,3.294,141
+Policy tightening impulse,2018-06-30,-3.658,-0.72,-3.597,2.877,3.158,142
+Policy tightening impulse,2018-07-31,20.45,-0.787,-3.622,2.836,3.08,143
+Policy tightening impulse,2018-08-31,53.342,-1.24,-3.609,2.369,3.069,144
+Policy tightening impulse,2018-09-30,52.956,-0.936,-3.609,2.673,3.034,145
+Policy tightening impulse,2018-10-31,4.769,-0.175,-3.444,3.27,3.296,146
+Policy tightening impulse,2018-11-30,-19.886,1.077,-3.058,4.135,3.851,147
+Policy tightening impulse,2018-12-31,-30.254,1.821,-2.68,4.501,4.46,148
+Policy tightening impulse,2019-01-31,-36.778,0.992,-2.63,3.621,4.5,149
+Policy tightening impulse,2019-02-28,-5.938,0.243,-2.745,2.988,4.197,150
+Policy tightening impulse,2019-03-31,-12.061,-2.002,-2.927,0.925,3.793,151
+Policy tightening impulse,2019-04-30,1.413,-2.531,-3.149,0.619,3.424,152
+Policy tightening impulse,2019-05-31,-8.423,-3.318,-3.168,-0.151,3.378,153
+Policy tightening impulse,2019-06-30,7.26,-3.721,-3.225,-0.495,3.349,154
+Policy tightening impulse,2019-07-31,13.236,-3.643,-3.196,-0.448,3.358,155
+Policy tightening impulse,2019-08-31,-7.981,-3.621,-3.229,-0.392,3.361,156
+Policy tightening impulse,2019-09-30,-12.085,-2.071,-3.162,1.091,3.341,157
+Policy tightening impulse,2019-10-31,-11.265,-3.431,-3.058,-0.373,3.313,158
+Policy tightening impulse,2019-11-30,-7.028,-3.286,-3.089,-0.197,3.319,159
+Policy tightening impulse,2019-12-31,15.998,-3.948,-3.146,-0.802,3.278,160
+Policy tightening impulse,2020-01-31,-16.762,-4.2,-3.196,-1.004,3.289,161
+Policy tightening impulse,2020-02-29,-28.738,-3.2,-3.22,0.02,3.292,162
+Policy tightening impulse,2020-03-31,-79.666,-4.341,-3.102,-1.239,3.23,163
+Policy tightening impulse,2020-04-30,-43.955,-5.066,-3.185,-1.881,3.279,164
+Policy tightening impulse,2020-05-31,-65.608,-6.291,-3.34,-2.951,3.276,165
+Policy tightening impulse,2020-06-30,-25.078,-8.179,-3.8,-4.38,3.635,166
+Policy tightening impulse,2020-07-31,-12.517,-8.855,-4.04,-4.815,3.906,167
+Policy tightening impulse,2020-08-31,3.025,-11.285,-4.407,-6.879,4.548,168
+Policy tightening impulse,2020-09-30,-15.52,-13.688,-4.529,-9.159,4.769,169
+Policy tightening impulse,2020-10-31,-34.861,-6.608,-4.576,-2.032,4.801,170
+Policy tightening impulse,2020-11-30,-27.891,-5.817,-4.532,-1.286,4.543,171
+Policy tightening impulse,2020-12-31,-1.867,-7.46,-4.595,-2.864,4.593,172
+Policy tightening impulse,2021-01-31,-6.057,-7.918,-4.77,-3.148,4.72,173
+Policy tightening impulse,2021-02-28,18.583,-6.542,-4.903,-1.639,4.786,174
+Policy tightening impulse,2021-03-31,-20.886,-8.071,-4.886,-3.185,4.745,175
+Policy tightening impulse,2021-04-30,-5.505,-9.034,-4.893,-4.142,4.73,176
+Policy tightening impulse,2021-05-31,-16.904,-7.895,-4.76,-3.135,4.638,177
+Policy tightening impulse,2021-06-30,-0.652,-6.089,-4.851,-1.239,4.733,178
+Policy tightening impulse,2021-07-31,-28.765,-7.943,-4.854,-3.089,4.7,179
+Policy tightening impulse,2021-08-31,-48.074,-8.281,-4.921,-3.359,4.764,180
+Policy tightening impulse,2021-09-30,-10.944,-4.503,-4.898,0.395,4.749,181
+Policy tightening impulse,2021-10-31,29.076,-4.723,-5.029,0.306,4.895,182
+Policy tightening impulse,2021-11-30,61.57,-5.426,-5.264,-0.162,5.192,183
+Policy tightening impulse,2021-12-31,37.755,-4.683,-5.295,0.612,5.186,184
+Policy tightening impulse,2022-01-31,57.225,-0.292,-5.109,4.817,5.21,185
+Policy tightening impulse,2022-02-28,58.946,0.505,-4.75,5.256,5.187,186
+Policy tightening impulse,2022-03-31,77.714,1.545,-4.523,6.068,5.239,187
+Policy tightening impulse,2022-04-30,-6.985,7.073,-4.195,11.268,5.797,188
+Policy tightening impulse,2022-05-31,-8.927,9.588,-3.861,13.449,6.402,189
+Policy tightening impulse,2022-06-30,-24.894,13.184,-3.431,16.615,7.283,190
+Policy tightening impulse,2022-07-31,32.917,9.328,-3.45,12.778,6.944,191
+Policy tightening impulse,2022-08-31,29.075,9.462,-3.478,12.94,6.547,192
+Policy tightening impulse,2022-09-30,50.409,8.934,-3.589,12.524,5.802,193
+Policy tightening impulse,2022-10-31,-14.807,7.192,-3.401,10.593,6.219,194
+Policy tightening impulse,2022-11-30,-36.668,5.114,-3.235,8.348,6.558,195
+Policy tightening impulse,2022-12-31,-81.821,4.964,-2.961,7.925,7.255,196
+Policy tightening impulse,2023-01-31,-12.4,3.187,-3.021,6.208,6.93,197
+Policy tightening impulse,2023-02-28,-43.292,3.012,-3.191,6.203,6.509,198
+Policy tightening impulse,2023-03-31,-55.589,-7.615,-3.586,-4.029,5.783,199
+Policy tightening impulse,2023-04-30,-71.885,-4.991,-3.63,-1.361,5.687,200
+Policy tightening impulse,2023-05-31,-35.108,-3.061,-3.828,0.766,5.357,201
+Policy tightening impulse,2023-06-30,-3.901,-5.127,-4.084,-1.043,5.619,202
+Policy tightening impulse,2023-07-31,4.768,-1.278,-4.418,3.14,5.743,203
+Policy tightening impulse,2023-08-31,-15.485,-3.905,-4.568,0.663,5.707,204
+Policy tightening impulse,2023-09-30,-30.421,1.367,-4.565,5.932,5.704,205
+Policy tightening impulse,2023-10-31,-31.863,0.13,-4.52,4.649,5.73,206
+Policy tightening impulse,2023-11-30,-20.515,-1.919,-4.573,2.654,5.72,207
+Policy tightening impulse,2023-12-31,3.188,-4.202,-4.697,0.495,5.468,208
+Policy tightening impulse,2024-01-31,12.717,-5.909,-4.827,-1.082,5.275,209
+Policy tightening impulse,2024-02-29,33.332,-5.822,-4.902,-0.92,5.212,210
+Policy tightening impulse,2024-03-31,-10.299,-7.848,-4.863,-2.985,5.217,211
+Policy tightening impulse,2024-04-30,-9.004,-5.135,-4.78,-0.355,5.187,212
+Policy tightening impulse,2024-05-31,7.284,-3.83,-4.601,0.771,5.135,213
+Policy tightening impulse,2024-06-30,24.178,-1.399,-4.628,3.229,5.147,214
+Policy tightening impulse,2024-07-31,2.671,-1.688,-4.648,2.96,5.149,215
+Policy tightening impulse,2024-08-31,-42.926,-1.958,-4.593,2.635,5.162,216
+Policy tightening impulse,2024-09-30,-58.041,-2.622,-4.461,1.839,5.283,217
+Policy tightening impulse,2024-10-31,-44.382,-5.045,-4.428,-0.617,5.301,218
+Policy tightening impulse,2024-11-30,10.707,-3.719,-4.604,0.885,5.144,219
+Policy tightening impulse,2024-12-31,67.467,-3.005,-4.847,1.842,5.002,220
+Policy tightening impulse,2025-01-31,51.577,-3.17,-5.025,1.855,5.037,221
+Policy tightening impulse,2025-02-28,-15.462,-3.836,-4.955,1.118,5.056,222
+Policy tightening impulse,2025-03-31,-67.528,-3.742,-4.63,0.888,5.251,223
+Policy tightening impulse,2025-04-30,-70.646,-2.218,-4.379,2.161,5.4,224
+Policy tightening impulse,2025-05-31,-35.597,-2.313,-4.428,2.116,5.38,225
+Policy tightening impulse,2025-06-30,-30.911,-6.036,-4.707,-1.328,5.3,226
+Policy tightening impulse,2025-07-31,-29.297,-5.986,-4.998,-0.989,5.097,227
+Policy tightening impulse,2025-08-31,5.655,-4.987,-5.132,0.145,5.002,228
+Policy tightening impulse,2025-09-30,8.861,-3.959,-5.245,1.285,5.049,229
+Policy tightening impulse,2025-10-31,27.138,-4.256,-5.349,1.093,5.082,230
+Policy tightening impulse,2025-11-30,37.675,-4.419,-5.302,0.882,5.085,231
+Policy tightening impulse,2025-12-31,47.061,-3.866,-5.241,1.374,5.109,232
+Policy tightening impulse,2026-01-31,-13.031,-2.801,-5.102,2.3,5.159,233
+Policy tightening impulse,2026-02-28,-105.889,-3.077,-4.919,1.841,5.213,234
+Policy tightening impulse,2026-03-31,-81.468,-2.351,-4.698,2.347,5.314,235
+Policy tightening impulse,2026-04-30,-8.768,-3.785,-4.733,0.948,5.278,236
+Policy tightening impulse,2026-05-31,27.458,-4.369,-5.16,0.79,5.01,237
+Policy tightening impulse,2026-06-30,-4.387,-3.863,-5.48,1.617,4.754,238
+Policy tightening impulse,2026-07-31,,-3.28,-5.494,2.215,4.749,239
+Policy tightening impulse,2026-08-31,,-2.475,-5.357,2.881,4.786,240
+Policy tightening impulse,2026-09-30,,-1.901,-5.353,3.451,4.784,241
+Policy tightening impulse,2026-10-31,,-2.503,-5.353,2.849,4.784,241
+Market confirmation composite,2011-12-31,-49.238,1.773,1.447,0.325,-0.842,96
+Market confirmation composite,2012-01-31,-20.249,1.608,1.371,0.237,-0.945,97
+Market confirmation composite,2012-02-29,13.826,2.076,1.023,1.053,-1.184,98
+Market confirmation composite,2012-03-31,27.929,1.277,0.515,0.762,-0.86,99
+Market confirmation composite,2012-04-30,30.975,0.596,0.308,0.288,-0.777,100
+Market confirmation composite,2012-05-31,-9.295,-0.037,0.442,-0.479,-0.955,101
+Market confirmation composite,2012-06-30,-17.091,0.312,0.711,-0.4,-1.316,102
+Market confirmation composite,2012-07-31,-6.757,0.386,1.005,-0.619,-1.479,103
+Market confirmation composite,2012-08-31,4.777,1.363,0.906,0.457,-1.555,104
+Market confirmation composite,2012-09-30,1.635,1.225,0.735,0.49,-1.637,105
+Market confirmation composite,2012-10-31,-5.248,1.012,0.664,0.348,-1.68,106
+Market confirmation composite,2012-11-30,9.884,0.883,0.702,0.181,-1.696,107
+Market confirmation composite,2012-12-31,21.375,1.128,0.711,0.417,-1.698,108
+Market confirmation composite,2013-01-31,18.829,1.689,0.656,1.032,-1.679,109
+Market confirmation composite,2013-02-28,-9.487,1.492,0.74,0.752,-1.693,110
+Market confirmation composite,2013-03-31,-13.446,1.168,0.926,0.242,-1.768,111
+Market confirmation composite,2013-04-30,-16.62,1.054,1.086,-0.032,-1.925,112
+Market confirmation composite,2013-05-31,-2.38,1.665,0.992,0.673,-1.849,113
+Market confirmation composite,2013-06-30,-14.798,1.269,0.866,0.403,-1.821,114
+Market confirmation composite,2013-07-31,-17.82,1.571,0.714,0.858,-1.826,115
+Market confirmation composite,2013-08-31,-15.475,0.825,0.687,0.138,-1.806,116
+Market confirmation composite,2013-09-30,-15.715,1.352,0.555,0.797,-1.753,117
+Market confirmation composite,2013-10-31,-0.333,1.036,0.399,0.637,-1.619,118
+Market confirmation composite,2013-11-30,3.475,1.101,0.265,0.836,-1.602,119
+Market confirmation composite,2013-12-31,22.579,0.907,0.132,0.775,-1.489,120
+Market confirmation composite,2014-01-31,17.706,0.347,0.128,0.219,-1.482,121
+Market confirmation composite,2014-02-28,12.706,0.343,0.156,0.187,-1.502,122
+Market confirmation composite,2014-03-31,2.916,-0.174,0.338,-0.512,-1.668,123
+Market confirmation composite,2014-04-30,-21.849,0.014,0.478,-0.464,-1.703,124
+Market confirmation composite,2014-05-31,-9.647,0.133,0.576,-0.443,-1.725,125
+Market confirmation composite,2014-06-30,-5.002,0.521,0.595,-0.074,-1.711,126
+Market confirmation composite,2014-07-31,24.165,0.355,0.418,-0.062,-1.8,127
+Market confirmation composite,2014-08-31,13.523,0.287,0.339,-0.052,-1.836,128
+Market confirmation composite,2014-09-30,12.29,-0.644,0.298,-0.942,-1.839,129
+Market confirmation composite,2014-10-31,13.83,-0.011,0.482,-0.492,-1.827,130
+Market confirmation composite,2014-11-30,-9.602,-0.402,0.581,-0.983,-1.822,131
+Market confirmation composite,2014-12-31,-9.039,0.261,0.67,-0.409,-1.726,132
+Market confirmation composite,2015-01-31,-34.079,-0.796,0.769,-1.565,-1.673,133
+Market confirmation composite,2015-02-28,-2.049,0.834,0.691,0.143,-1.747,134
+Market confirmation composite,2015-03-31,-10.654,0.686,0.619,0.067,-1.779,135
+Market confirmation composite,2015-04-30,2.027,1.777,0.364,1.412,-2.225,136
+Market confirmation composite,2015-05-31,1.254,0.262,0.346,-0.085,-2.221,137
+Market confirmation composite,2015-06-30,5.808,-0.246,0.267,-0.513,-2.214,138
+Market confirmation composite,2015-07-31,-18.161,-1.047,0.279,-1.326,-2.218,139
+Market confirmation composite,2015-08-31,-24.501,-1.915,0.286,-2.202,-2.217,140
+Market confirmation composite,2015-09-30,-6.363,-2.469,0.326,-2.795,-2.196,141
+Market confirmation composite,2015-10-31,28.218,-0.763,0.195,-0.959,-2.343,142
+Market confirmation composite,2015-11-30,36.604,-0.888,0.023,-0.911,-2.656,143
+Market confirmation composite,2015-12-31,7.268,-1.286,-0.022,-1.264,-2.709,144
+Market confirmation composite,2016-01-31,1.087,-3.334,0.173,-3.507,-2.55,145
+Market confirmation composite,2016-02-29,-5.826,-2.839,0.423,-3.262,-2.379,146
+Market confirmation composite,2016-03-31,28.211,-0.484,0.469,-0.953,-2.329,147
+Market confirmation composite,2016-04-30,0.777,1.745,0.473,1.271,-2.259,148
+Market confirmation composite,2016-05-31,-7.477,1.96,0.431,1.529,-2.316,149
+Market confirmation composite,2016-06-30,-36.969,0.647,0.616,0.031,-2.17,150
+Market confirmation composite,2016-07-31,-20.414,0.922,0.617,0.305,-2.162,151
+Market confirmation composite,2016-08-31,-28.212,1.346,0.564,0.782,-2.081,152
+Market confirmation composite,2016-09-30,-15.398,1.999,0.319,1.68,-2.078,153
+Market confirmation composite,2016-10-31,-21.681,0.862,0.184,0.678,-2.041,154
+Market confirmation composite,2016-11-30,7.484,1.473,0.001,1.472,-1.9,155
+Market confirmation composite,2016-12-31,-9.505,1.25,-0.098,1.347,-1.725,156
+Market confirmation composite,2017-01-31,-5.253,1.472,-0.235,1.707,-1.633,157
+Market confirmation composite,2017-02-28,-14.429,0.166,-0.186,0.352,-1.696,158
+Market confirmation composite,2017-03-31,3.292,-0.147,-0.245,0.098,-1.593,159
+Market confirmation composite,2017-04-30,0.051,-0.342,-0.276,-0.066,-1.507,160
+Market confirmation composite,2017-05-31,3.215,-0.497,-0.364,-0.133,-1.472,161
+Market confirmation composite,2017-06-30,-11.098,-0.209,-0.342,0.132,-1.474,162
+Market confirmation composite,2017-07-31,-18.845,-0.091,-0.339,0.248,-1.474,163
+Market confirmation composite,2017-08-31,-20.04,-0.127,-0.318,0.191,-1.47,164
+Market confirmation composite,2017-09-30,-25.158,0.075,-0.383,0.458,-1.458,165
+Market confirmation composite,2017-10-31,-35.668,0.023,-0.494,0.517,-1.419,166
+Market confirmation composite,2017-11-30,-51.181,0.111,-0.611,0.722,-1.387,167
+Market confirmation composite,2017-12-31,-27.164,-0.319,-0.757,0.438,-1.29,168
+Market confirmation composite,2018-01-31,-7.655,-0.588,-0.964,0.376,-1.132,169
+Market confirmation composite,2018-02-28,-14.933,-1.1,-1.259,0.159,-0.808,170
+Market confirmation composite,2018-03-31,-21.803,-1.488,-1.411,-0.078,-0.701,171
+Market confirmation composite,2018-04-30,-7.157,-1.488,-1.447,-0.041,-0.675,172
+Market confirmation composite,2018-05-31,-1.695,-1.427,-1.525,0.098,-0.642,173
+Market confirmation composite,2018-06-30,-3.658,-1.523,-1.641,0.118,-0.671,174
+Market confirmation composite,2018-07-31,20.45,-1.6,-1.673,0.073,-0.675,175
+Market confirmation composite,2018-08-31,53.342,-1.658,-1.673,0.016,-0.674,176
+Market confirmation composite,2018-09-30,52.956,-1.659,-1.684,0.025,-0.67,177
+Market confirmation composite,2018-10-31,4.769,-2.243,-1.56,-0.683,-0.699,178
+Market confirmation composite,2018-11-30,-19.886,-2.041,-1.253,-0.787,-0.713,179
+Market confirmation composite,2018-12-31,-30.254,-2.288,-0.952,-1.335,-0.738,180
+Market confirmation composite,2019-01-31,-36.778,-1.285,-0.921,-0.365,-0.661,181
+Market confirmation composite,2019-02-28,-5.938,-0.985,-1.025,0.04,-0.901,182
+Market confirmation composite,2019-03-31,-12.061,-0.331,-1.184,0.853,-1.473,183
+Market confirmation composite,2019-04-30,1.413,-0.688,-1.378,0.69,-1.687,184
+Market confirmation composite,2019-05-31,-8.423,-2.665,-1.403,-1.262,-1.684,185
+Market confirmation composite,2019-06-30,7.26,-1.565,-1.46,-0.106,-1.607,186
+Market confirmation composite,2019-07-31,13.236,-1.901,-1.444,-0.456,-1.617,187
+Market confirmation composite,2019-08-31,-7.981,-1.859,-1.482,-0.378,-1.666,188
+Market confirmation composite,2019-09-30,-12.085,-1.943,-1.435,-0.508,-1.66,189
+Market confirmation composite,2019-10-31,-11.265,-1.949,-1.358,-0.591,-1.612,190
+Market confirmation composite,2019-11-30,-7.028,-0.825,-1.393,0.568,-1.628,191
+Market confirmation composite,2019-12-31,15.998,-0.771,-1.448,0.677,-1.663,192
+Market confirmation composite,2020-01-31,-16.762,-1.736,-1.499,-0.237,-1.701,193
+Market confirmation composite,2020-02-29,-28.738,-3.296,-1.528,-1.768,-1.677,194
+Market confirmation composite,2020-03-31,-79.666,-5.173,-1.438,-3.735,-1.754,195
+Market confirmation composite,2020-04-30,-43.955,-4.101,-1.516,-2.584,-1.778,196
+Market confirmation composite,2020-05-31,-65.608,-3.567,-1.654,-1.913,-2.076,197
+Market confirmation composite,2020-06-30,-25.078,2.409,-2.048,4.457,-3.732,198
+Market confirmation composite,2020-07-31,-12.517,2.041,-2.259,4.3,-4.276,199
+Market confirmation composite,2020-08-31,3.025,2.392,-2.576,4.968,-4.829,200
+Market confirmation composite,2020-09-30,-15.52,-0.321,-2.688,2.367,-4.483,201
+Market confirmation composite,2020-10-31,-34.861,-1.582,-2.736,1.155,-4.338,202
+Market confirmation composite,2020-11-30,-27.891,2.323,-2.708,5.031,-4.352,203
+Market confirmation composite,2020-12-31,-1.867,3.59,-2.771,6.36,-4.275,204
+Market confirmation composite,2021-01-31,-6.057,3.478,-2.927,6.405,-4.19,205
+Market confirmation composite,2021-02-28,18.583,1.638,-3.048,4.687,-3.855,206
+Market confirmation composite,2021-03-31,-20.886,0.436,-3.043,3.479,-3.791,207
+Market confirmation composite,2021-04-30,-5.505,-0.016,-3.057,3.041,-3.666,208
+Market confirmation composite,2021-05-31,-16.904,-2.616,-2.954,0.338,-3.858,209
+Market confirmation composite,2021-06-30,-0.652,-1.567,-3.039,1.472,-3.68,210
+Market confirmation composite,2021-07-31,-28.765,-3.314,-3.051,-0.263,-3.639,211
+Market confirmation composite,2021-08-31,-48.074,-3.198,-3.116,-0.082,-3.629,212
+Market confirmation composite,2021-09-30,-10.944,-3.847,-3.105,-0.743,-3.633,213
+Market confirmation composite,2021-10-31,29.076,-1.76,-3.224,1.464,-3.65,214
+Market confirmation composite,2021-11-30,61.57,-2.667,-3.433,0.766,-3.66,215
+Market confirmation composite,2021-12-31,37.755,-3.465,-3.468,0.003,-3.672,216
+Market confirmation composite,2022-01-31,57.225,-6.317,-3.318,-3.0,-3.785,217
+Market confirmation composite,2022-02-28,58.946,-6.392,-3.02,-3.372,-3.907,218
+Market confirmation composite,2022-03-31,77.714,-4.812,-2.834,-1.978,-3.906,219
+Market confirmation composite,2022-04-30,-6.985,-6.206,-2.561,-3.645,-3.454,220
+Market confirmation composite,2022-05-31,-8.927,-5.482,-2.283,-3.199,-2.957,221
+Market confirmation composite,2022-06-30,-24.894,-6.837,-1.922,-4.915,-2.594,222
+Market confirmation composite,2022-07-31,32.917,-4.235,-1.945,-2.29,-2.616,223
+Market confirmation composite,2022-08-31,29.075,-4.448,-1.976,-2.471,-2.655,224
+Market confirmation composite,2022-09-30,50.409,-3.162,-2.078,-1.084,-2.942,225
+Market confirmation composite,2022-10-31,-14.807,-3.148,-1.923,-1.225,-2.669,226
+Market confirmation composite,2022-11-30,-36.668,-2.273,-1.787,-0.486,-2.411,227
+Market confirmation composite,2022-12-31,-81.821,-2.388,-1.558,-0.83,-2.251,228
+Market confirmation composite,2023-01-31,-12.4,-1.125,-1.616,0.491,-2.297,229
+Market confirmation composite,2023-02-28,-43.292,-1.263,-1.768,0.505,-2.354,230
+Market confirmation composite,2023-03-31,-55.589,-1.579,-2.115,0.535,-2.596,231
+Market confirmation composite,2023-04-30,-71.885,-3.627,-2.159,-1.468,-2.577,232
+Market confirmation composite,2023-05-31,-35.108,-3.999,-2.335,-1.664,-2.502,233
+Market confirmation composite,2023-06-30,-3.901,-1.094,-2.563,1.469,-2.41,234
+Market confirmation composite,2023-07-31,4.768,0.269,-2.858,3.127,-2.733,235
+Market confirmation composite,2023-08-31,-15.485,-0.786,-2.995,2.209,-2.901,236
+Market confirmation composite,2023-09-30,-30.421,-3.402,-2.998,-0.404,-2.887,237
+Market confirmation composite,2023-10-31,-31.863,-5.508,-2.966,-2.542,-2.929,238
+Market confirmation composite,2023-11-30,-20.515,-3.117,-3.018,-0.099,-2.838,239
+Market confirmation composite,2023-12-31,3.188,-1.562,-3.132,1.571,-2.871,240
+Market confirmation composite,2024-01-31,12.717,-1.318,-3.252,1.934,-3.056,241
+Market confirmation composite,2024-02-29,33.332,-1.573,-3.323,1.75,-3.06,242
+Market confirmation composite,2024-03-31,-10.299,-2.863,-3.296,0.433,-3.081,243
+Market confirmation composite,2024-04-30,-9.004,-2.655,-3.231,0.575,-3.153,244
+Market confirmation composite,2024-05-31,7.284,-3.277,-3.081,-0.196,-3.311,245
+Market confirmation composite,2024-06-30,24.178,-3.16,-3.111,-0.049,-3.302,246
+Market confirmation composite,2024-07-31,2.671,-2.916,-3.134,0.218,-3.293,247
+Market confirmation composite,2024-08-31,-42.926,-3.789,-3.092,-0.696,-3.288,248
+Market confirmation composite,2024-09-30,-58.041,-3.042,-2.983,-0.059,-3.285,249
+Market confirmation composite,2024-10-31,-44.382,-3.348,-2.96,-0.387,-3.288,250
+Market confirmation composite,2024-11-30,10.707,-0.858,-3.12,2.262,-3.354,251
+Market confirmation composite,2024-12-31,67.467,-2.792,-3.338,0.546,-3.362,252
+Market confirmation composite,2025-01-31,51.577,-2.221,-3.5,1.279,-3.4,253
+Market confirmation composite,2025-02-28,-15.462,-4.458,-3.444,-1.014,-3.464,254
+Market confirmation composite,2025-03-31,-67.528,-6.364,-3.166,-3.198,-3.554,255
+Market confirmation composite,2025-04-30,-70.646,-8.156,-2.952,-5.204,-3.713,256
+Market confirmation composite,2025-05-31,-35.597,-4.939,-3.001,-1.938,-3.74,257
+Market confirmation composite,2025-06-30,-30.911,-2.201,-3.251,1.049,-4.176,258
+Market confirmation composite,2025-07-31,-29.297,-0.499,-3.511,3.011,-4.847,259
+Market confirmation composite,2025-08-31,5.655,-0.869,-3.634,2.765,-4.964,260
+Market confirmation composite,2025-09-30,8.861,-1.595,-3.739,2.144,-4.907,261
+Market confirmation composite,2025-10-31,27.138,-1.846,-3.836,1.991,-4.769,262
+Market confirmation composite,2025-11-30,37.675,-3.603,-3.8,0.197,-4.798,263
+Market confirmation composite,2025-12-31,47.061,-3.411,-3.752,0.342,-4.833,264
+Market confirmation composite,2026-01-31,-13.031,-3.008,-3.636,0.628,-4.925,265
+Market confirmation composite,2026-02-28,-105.889,-4.889,-3.48,-1.408,-4.937,266
+Market confirmation composite,2026-03-31,-81.468,-6.582,-3.291,-3.291,-4.964,267
+Market confirmation composite,2026-04-30,-8.768,-2.795,-3.327,0.532,-4.954,268
+Market confirmation composite,2026-05-31,27.458,0.976,-3.709,4.685,-5.177,269
+Market confirmation composite,2026-06-30,-4.387,0.896,-3.997,4.893,-5.555,270
+Market confirmation composite,2026-07-31,,-2.986,-4.014,1.028,-5.551,271
+Market confirmation composite,2026-08-31,,-3.397,-3.899,0.502,-5.734,272
+Market confirmation composite,2026-09-30,,-6.152,-3.9,-2.251,-5.697,273
+Valuation gap (vs median),2017-02-28,-14.429,-6.894,-5.784,-1.11,-31.514,96
+Valuation gap (vs median),2017-03-31,3.292,-7.589,-5.822,-1.766,-31.567,97
+Valuation gap (vs median),2017-04-30,0.051,-7.783,-5.816,-1.967,-31.492,98
+Valuation gap (vs median),2017-05-31,3.215,-7.84,-5.903,-1.937,-31.623,99
+Valuation gap (vs median),2017-06-30,-11.098,-6.798,-5.811,-0.986,-31.317,100
+Valuation gap (vs median),2017-07-31,-18.845,-7.115,-5.753,-1.361,-31.073,101
+Valuation gap (vs median),2017-08-31,-20.04,-6.82,-5.665,-1.155,-30.743,102
+Valuation gap (vs median),2017-09-30,-25.158,-7.075,-5.718,-1.357,-30.812,103
+Valuation gap (vs median),2017-10-31,-35.668,-8.17,-5.844,-2.326,-31.069,104
+Valuation gap (vs median),2017-11-30,-51.181,-8.008,-5.98,-2.028,-31.312,105
+Valuation gap (vs median),2017-12-31,-27.164,-8.682,-6.16,-2.521,-31.702,106
+Valuation gap (vs median),2018-01-31,-7.655,-10.549,-6.436,-4.113,-32.717,107
+Valuation gap (vs median),2018-02-28,-14.933,-12.309,-6.851,-5.459,-34.084,108
+Valuation gap (vs median),2018-03-31,-21.803,-11.339,-7.037,-4.302,-34.777,109
+Valuation gap (vs median),2018-04-30,-7.157,-11.397,-7.043,-4.354,-34.547,110
+Valuation gap (vs median),2018-05-31,-1.695,-12.957,-7.114,-5.843,-34.736,111
+Valuation gap (vs median),2018-06-30,-3.658,-12.215,-7.245,-4.97,-35.356,112
+Valuation gap (vs median),2018-07-31,20.45,-11.204,-7.244,-3.96,-35.089,113
+Valuation gap (vs median),2018-08-31,53.342,-12.353,-7.195,-5.157,-34.185,114
+Valuation gap (vs median),2018-09-30,52.956,-11.955,-7.165,-4.791,-33.645,115
+Valuation gap (vs median),2018-10-31,4.769,-8.625,-6.926,-1.699,-32.018,116
+Valuation gap (vs median),2018-11-30,-19.886,-7.132,-6.411,-0.72,-27.505,117
+Valuation gap (vs median),2018-12-31,-30.254,-6.214,-5.908,-0.306,-23.407,118
+Valuation gap (vs median),2019-01-31,-36.778,-7.143,-5.819,-1.324,-23.13,119
+Valuation gap (vs median),2019-02-28,-5.938,-7.515,-5.936,-1.579,-23.283,120
+Valuation gap (vs median),2019-03-31,-12.061,-8.265,-6.137,-2.129,-23.421,121
+Valuation gap (vs median),2019-04-30,1.413,-9.697,-6.388,-3.309,-24.191,122
+Valuation gap (vs median),2019-05-31,-8.423,-8.247,-6.384,-1.862,-24.127,123
+Valuation gap (vs median),2019-06-30,7.26,-8.99,-6.43,-2.56,-24.271,124
+Valuation gap (vs median),2019-07-31,13.236,-9.223,-6.367,-2.856,-23.585,125
+Valuation gap (vs median),2019-08-31,-7.981,-8.618,-6.384,-2.234,-23.595,126
+Valuation gap (vs median),2019-09-30,-12.085,-8.364,-6.276,-2.088,-22.841,127
+Valuation gap (vs median),2019-10-31,-11.265,-8.255,-6.124,-2.131,-21.647,128
+Valuation gap (vs median),2019-11-30,-7.028,-8.559,-6.138,-2.421,-21.64,129
+Valuation gap (vs median),2019-12-31,15.998,-8.632,-6.184,-2.448,-21.8,130
+Valuation gap (vs median),2020-01-31,-16.762,-8.804,-6.223,-2.582,-21.928,131
+Valuation gap (vs median),2020-02-29,-28.738,-9.032,-6.229,-2.803,-21.849,132
+Valuation gap (vs median),2020-03-31,-79.666,-9.85,-6.062,-3.789,-20.652,133
+Valuation gap (vs median),2020-04-30,-43.955,-13.521,-6.141,-7.379,-21.073,134
+Valuation gap (vs median),2020-05-31,-65.608,-15.427,-6.309,-9.118,-22.166,135
+Valuation gap (vs median),2020-06-30,-25.078,-20.038,-6.848,-13.19,-27.544,136
+Valuation gap (vs median),2020-07-31,-12.517,-20.074,-7.119,-12.955,-31.433,137
+Valuation gap (vs median),2020-08-31,3.025,-25.584,-7.543,-18.041,-38.516,138
+Valuation gap (vs median),2020-09-30,-15.52,-23.525,-7.669,-15.856,-38.4,139
+Valuation gap (vs median),2020-10-31,-34.861,-20.801,-7.704,-13.098,-36.956,140
+Valuation gap (vs median),2020-11-30,-27.891,-19.992,-7.628,-12.364,-32.978,141
+Valuation gap (vs median),2020-12-31,-1.867,-21.54,-7.683,-13.857,-32.317,142
+Valuation gap (vs median),2021-01-31,-6.057,-21.709,-7.873,-13.835,-33.894,143
+Valuation gap (vs median),2021-02-28,18.583,-22.678,-8.012,-14.665,-34.651,144
+Valuation gap (vs median),2021-03-31,-20.886,-19.696,-7.97,-11.726,-32.348,145
+Valuation gap (vs median),2021-04-30,-5.505,-18.228,-7.957,-10.271,-30.842,146
+Valuation gap (vs median),2021-05-31,-16.904,-15.238,-7.776,-7.462,-26.894,147
+Valuation gap (vs median),2021-06-30,-0.652,-16.208,-7.865,-8.343,-27.185,148
+Valuation gap (vs median),2021-07-31,-28.765,-14.694,-7.849,-6.846,-26.346,149
+Valuation gap (vs median),2021-08-31,-48.074,-14.678,-7.909,-6.768,-26.46,150
+Valuation gap (vs median),2021-09-30,-10.944,-14.738,-7.861,-6.876,-25.448,151
+Valuation gap (vs median),2021-10-31,29.076,-16.426,-7.999,-8.427,-26.243,152
+Valuation gap (vs median),2021-11-30,61.57,-18.254,-8.261,-9.994,-28.038,153
+Valuation gap (vs median),2021-12-31,37.755,-15.991,-8.278,-7.713,-27.77,154
+Valuation gap (vs median),2022-01-31,57.225,-13.425,-8.037,-5.387,-24.756,155
+Valuation gap (vs median),2022-02-28,58.946,-11.12,-7.591,-3.529,-19.224,156
+Valuation gap (vs median),2022-03-31,77.714,-9.847,-7.302,-2.545,-16.493,157
+Valuation gap (vs median),2022-04-30,-6.985,-7.638,-6.894,-0.744,-13.651,158
+Valuation gap (vs median),2022-05-31,-8.927,-6.777,-6.48,-0.297,-11.255,159
+Valuation gap (vs median),2022-06-30,-24.894,-5.584,-5.953,0.369,-8.732,160
+Valuation gap (vs median),2022-07-31,32.917,-6.618,-5.96,-0.658,-8.738,161
+Valuation gap (vs median),2022-08-31,29.075,-6.445,-5.978,-0.467,-8.751,162
+Valuation gap (vs median),2022-09-30,50.409,-6.28,-6.094,-0.186,-8.592,163
+Valuation gap (vs median),2022-10-31,-14.807,-6.066,-5.856,-0.21,-8.015,164
+Valuation gap (vs median),2022-11-30,-36.668,-5.673,-5.645,-0.028,-7.652,165
+Valuation gap (vs median),2022-12-31,-81.821,-4.757,-5.307,0.549,-7.426,166
+Valuation gap (vs median),2023-01-31,-12.4,-5.94,-5.364,-0.576,-7.472,167
+Valuation gap (vs median),2023-02-28,-43.292,-6.352,-5.55,-0.802,-7.492,168
+Valuation gap (vs median),2023-03-31,-55.589,-6.912,-6.001,-0.911,-6.394,169
+Valuation gap (vs median),2023-04-30,-71.885,-6.716,-6.039,-0.677,-6.482,170
+Valuation gap (vs median),2023-05-31,-35.108,-7.78,-6.257,-1.523,-7.234,171
+Valuation gap (vs median),2023-06-30,-3.901,-8.71,-6.544,-2.166,-8.541,172
+Valuation gap (vs median),2023-07-31,4.768,-9.184,-6.921,-2.262,-9.809,173
+Valuation gap (vs median),2023-08-31,-15.485,-9.438,-7.083,-2.354,-10.845,174
+Valuation gap (vs median),2023-09-30,-30.421,-9.045,-7.065,-1.98,-10.566,175
+Valuation gap (vs median),2023-10-31,-31.863,-8.588,-6.998,-1.59,-9.964,176
+Valuation gap (vs median),2023-11-30,-20.515,-9.23,-7.046,-2.184,-10.214,177
+Valuation gap (vs median),2023-12-31,3.188,-9.535,-7.177,-2.358,-10.94,178
+Valuation gap (vs median),2024-01-31,12.717,-9.65,-7.315,-2.335,-11.597,179
+Valuation gap (vs median),2024-02-29,33.332,-10.232,-7.389,-2.843,-12.008,180
+Valuation gap (vs median),2024-03-31,-10.299,-9.694,-7.33,-2.364,-11.506,181
+Valuation gap (vs median),2024-04-30,-9.004,-8.789,-7.22,-1.569,-10.716,182
+Valuation gap (vs median),2024-05-31,7.284,-8.138,-6.998,-1.14,-8.939,183
+Valuation gap (vs median),2024-06-30,24.178,-8.854,-7.016,-1.838,-8.992,184
+Valuation gap (vs median),2024-07-31,2.671,-8.344,-7.027,-1.317,-9.009,185
+Valuation gap (vs median),2024-08-31,-42.926,-7.741,-6.95,-0.791,-8.672,186
+Valuation gap (vs median),2024-09-30,-58.041,-7.661,-6.784,-0.877,-7.521,187
+Valuation gap (vs median),2024-10-31,-44.382,-7.65,-6.733,-0.917,-7.26,188
+Valuation gap (vs median),2024-11-30,10.707,-8.278,-6.925,-1.353,-7.805,189
+Valuation gap (vs median),2024-12-31,67.467,-9.445,-7.194,-2.251,-8.797,190
+Valuation gap (vs median),2025-01-31,51.577,-9.454,-7.389,-2.065,-9.568,191
+Valuation gap (vs median),2025-02-28,-15.462,-8.378,-7.294,-1.083,-8.991,192
+Valuation gap (vs median),2025-03-31,-67.528,-7.13,-6.907,-0.223,-5.698,193
+Valuation gap (vs median),2025-04-30,-70.646,-6.856,-6.606,-0.251,-3.571,194
+Valuation gap (vs median),2025-05-31,-35.597,-7.269,-6.651,-0.618,-3.737,195
+Valuation gap (vs median),2025-06-30,-30.911,-7.823,-6.962,-0.862,-4.116,196
+Valuation gap (vs median),2025-07-31,-29.297,-8.365,-7.285,-1.08,-4.847,197
+Valuation gap (vs median),2025-08-31,5.655,-8.578,-7.428,-1.15,-5.598,198
+Valuation gap (vs median),2025-09-30,8.861,-8.988,-7.546,-1.442,-6.362,199
+Valuation gap (vs median),2025-10-31,27.138,-9.269,-7.655,-1.614,-7.094,200
+Valuation gap (vs median),2025-11-30,37.675,-8.387,-7.588,-0.799,-6.609,201
+Valuation gap (vs median),2025-12-31,47.061,-8.308,-7.507,-0.801,-5.962,202
+Valuation gap (vs median),2026-01-31,-13.031,-7.703,-7.336,-0.366,-4.67,203
+Valuation gap (vs median),2026-02-28,-105.889,-6.956,-7.116,0.16,-3.81,204
+Valuation gap (vs median),2026-03-31,-81.468,-6.673,-6.851,0.179,-2.661,205
+Valuation gap (vs median),2026-04-30,-8.768,-6.948,-6.881,-0.067,-2.734,206
+Valuation gap (vs median),2026-05-31,27.458,-7.559,-7.36,-0.2,-2.059,207
+Valuation gap (vs median),2026-06-30,-4.387,-7.708,-7.716,0.008,-1.269,208
+Valuation gap (vs median),2026-07-31,,-7.625,-7.721,0.096,-1.273,209
+Valuation gap (vs median),2026-08-31,,-7.508,-7.553,0.045,-0.731,210
+Valuation gap (vs median),2026-09-30,,-7.507,-7.538,0.032,-0.735,211
+Relative EPS revisions,2014-06-30,-5.002,-0.906,-0.735,-0.171,-22.166,96
+Relative EPS revisions,2014-07-31,24.165,-1.352,-0.953,-0.399,-22.25,97
+Relative EPS revisions,2014-08-31,13.523,-1.508,-1.042,-0.466,-22.181,98
+Relative EPS revisions,2014-09-30,12.29,-1.235,-1.082,-0.154,-22.209,99
+Relative EPS revisions,2014-10-31,13.83,-0.861,-0.829,-0.031,-21.768,100
+Relative EPS revisions,2014-11-30,-9.602,-0.73,-0.687,-0.043,-21.474,101
+Relative EPS revisions,2014-12-31,-9.039,-0.488,-0.56,0.072,-21.392,102
+Relative EPS revisions,2015-01-31,-34.079,-0.257,-0.42,0.163,-21.376,103
+Relative EPS revisions,2015-02-28,-2.049,-0.417,-0.509,0.092,-21.393,104
+Relative EPS revisions,2015-03-31,-10.654,-0.711,-0.59,-0.121,-21.364,105
+Relative EPS revisions,2015-04-30,2.027,-1.223,-0.906,-0.317,-21.119,106
+Relative EPS revisions,2015-05-31,1.254,-1.201,-0.916,-0.284,-21.114,107
+Relative EPS revisions,2015-06-30,5.808,-1.191,-1.007,-0.184,-21.168,108
+Relative EPS revisions,2015-07-31,-18.161,-1.104,-0.979,-0.125,-21.119,109
+Relative EPS revisions,2015-08-31,-24.501,-1.082,-0.958,-0.124,-21.087,110
+Relative EPS revisions,2015-09-30,-6.363,-0.975,-0.898,-0.077,-21.031,111
+Relative EPS revisions,2015-10-31,28.218,-0.967,-1.052,0.084,-21.125,112
+Relative EPS revisions,2015-11-30,36.604,-1.077,-1.259,0.182,-21.254,113
+Relative EPS revisions,2015-12-31,7.268,-1.213,-1.304,0.091,-21.271,114
+Relative EPS revisions,2016-01-31,1.087,-1.262,-1.047,-0.214,-21.386,115
+Relative EPS revisions,2016-02-29,-5.826,-0.776,-0.723,-0.054,-21.694,116
+Relative EPS revisions,2016-03-31,28.211,-0.774,-0.654,-0.12,-21.726,117
+Relative EPS revisions,2016-04-30,0.777,-0.717,-0.64,-0.078,-21.707,118
+Relative EPS revisions,2016-05-31,-7.477,-0.896,-0.683,-0.213,-21.719,119
+Relative EPS revisions,2016-06-30,-36.969,-0.624,-0.442,-0.182,-21.568,120
+Relative EPS revisions,2016-07-31,-20.414,-0.334,-0.432,0.098,-21.564,121
+Relative EPS revisions,2016-08-31,-28.212,-0.435,-0.49,0.055,-21.628,122
+Relative EPS revisions,2016-09-30,-15.398,-0.849,-0.787,-0.063,-21.918,123
+Relative EPS revisions,2016-10-31,-21.681,-0.997,-0.945,-0.052,-21.828,124
+Relative EPS revisions,2016-11-30,7.484,-1.169,-1.163,-0.006,-21.761,125
+Relative EPS revisions,2016-12-31,-9.505,-0.958,-1.276,0.318,-21.801,126
+Relative EPS revisions,2017-01-31,-5.253,-1.044,-1.437,0.393,-21.848,127
+Relative EPS revisions,2017-02-28,-14.429,-0.939,-1.367,0.428,-21.846,128
+Relative EPS revisions,2017-03-31,3.292,-1.151,-1.43,0.279,-21.727,129
+Relative EPS revisions,2017-04-30,0.051,-1.228,-1.46,0.232,-21.655,130
+Relative EPS revisions,2017-05-31,3.215,-1.395,-1.559,0.163,-21.407,131
+Relative EPS revisions,2017-06-30,-11.098,-1.258,-1.522,0.264,-21.462,132
+Relative EPS revisions,2017-07-31,-18.845,-1.276,-1.51,0.234,-21.475,133
+Relative EPS revisions,2017-08-31,-20.04,-1.287,-1.475,0.188,-21.508,134
+Relative EPS revisions,2017-09-30,-25.158,-1.355,-1.546,0.191,-21.393,135
+Relative EPS revisions,2017-10-31,-35.668,-1.349,-1.673,0.324,-21.212,136
+Relative EPS revisions,2017-11-30,-51.181,-1.466,-1.807,0.341,-21.06,137
+Relative EPS revisions,2017-12-31,-27.164,-1.587,-1.976,0.39,-20.862,138
+Relative EPS revisions,2018-01-31,-7.655,-1.711,-2.219,0.508,-20.368,139
+Relative EPS revisions,2018-02-28,-14.933,-2.065,-2.569,0.503,-19.611,140
+Relative EPS revisions,2018-03-31,-21.803,-2.381,-2.743,0.362,-19.17,141
+Relative EPS revisions,2018-04-30,-7.157,-2.551,-2.778,0.227,-19.043,142
+Relative EPS revisions,2018-05-31,-1.695,-2.485,-2.863,0.378,-18.736,143
+Relative EPS revisions,2018-06-30,-3.658,-2.514,-2.994,0.48,-18.394,144
+Relative EPS revisions,2018-07-31,20.45,-2.69,-3.023,0.333,-18.346,145
+Relative EPS revisions,2018-08-31,53.342,-2.897,-3.014,0.117,-18.364,146
+Relative EPS revisions,2018-09-30,52.956,-3.118,-3.018,-0.1,-18.336,147
+Relative EPS revisions,2018-10-31,4.769,-3.05,-2.86,-0.19,-18.73,148
+Relative EPS revisions,2018-11-30,-19.886,-2.918,-2.482,-0.436,-19.055,149
+Relative EPS revisions,2018-12-31,-30.254,-2.5,-2.113,-0.387,-18.758,150
+Relative EPS revisions,2019-01-31,-36.778,-2.506,-2.067,-0.439,-18.689,151
+Relative EPS revisions,2019-02-28,-5.938,-2.324,-2.184,-0.139,-19.068,152
+Relative EPS revisions,2019-03-31,-12.061,-2.585,-2.368,-0.218,-19.607,153
+Relative EPS revisions,2019-04-30,1.413,-2.472,-2.591,0.12,-20.359,154
+Relative EPS revisions,2019-05-31,-8.423,-2.638,-2.613,-0.025,-20.38,155
+Relative EPS revisions,2019-06-30,7.26,-2.6,-2.673,0.073,-20.476,156
+Relative EPS revisions,2019-07-31,13.236,-2.744,-2.647,-0.097,-20.499,157
+Relative EPS revisions,2019-08-31,-7.981,-2.858,-2.684,-0.174,-20.506,158
+Relative EPS revisions,2019-09-30,-12.085,-2.872,-2.621,-0.25,-20.539,159
+Relative EPS revisions,2019-10-31,-11.265,-2.939,-2.522,-0.417,-20.467,160
+Relative EPS revisions,2019-11-30,-7.028,-2.798,-2.556,-0.241,-20.51,161
+Relative EPS revisions,2019-12-31,15.998,-2.743,-2.615,-0.128,-20.617,162
+Relative EPS revisions,2020-01-31,-16.762,-2.554,-2.668,0.114,-20.775,163
+Relative EPS revisions,2020-02-29,-28.738,-2.704,-2.695,-0.009,-20.821,164
+Relative EPS revisions,2020-03-31,-79.666,-4.932,-2.581,-2.35,-20.713,165
+Relative EPS revisions,2020-04-30,-43.955,-7.212,-2.667,-4.545,-20.637,166
+Relative EPS revisions,2020-05-31,-65.608,-8.186,-2.823,-5.363,-20.647,167
+Relative EPS revisions,2020-06-30,-25.078,-6.936,-3.28,-3.655,-28.613,168
+Relative EPS revisions,2020-07-31,-12.517,-1.713,-3.521,1.808,-35.417,169
+Relative EPS revisions,2020-08-31,3.025,2.285,-3.886,6.172,-47.022,170
+Relative EPS revisions,2020-09-30,-15.52,2.118,-4.01,6.129,-48.628,171
+Relative EPS revisions,2020-10-31,-34.861,-0.701,-4.06,3.359,-48.133,172
+Relative EPS revisions,2020-11-30,-27.891,-1.3,-4.019,2.719,-48.214,173
+Relative EPS revisions,2020-12-31,-1.867,-4.228,-4.085,-0.143,-46.43,174
+Relative EPS revisions,2021-01-31,-6.057,-4.24,-4.261,0.02,-44.548,175
+Relative EPS revisions,2021-02-28,18.583,-4.553,-4.395,-0.158,-43.38,176
+Relative EPS revisions,2021-03-31,-20.886,-2.15,-4.381,2.231,-43.372,177
+Relative EPS revisions,2021-04-30,-5.505,-1.047,-4.39,3.343,-43.371,178
+Relative EPS revisions,2021-05-31,-16.904,-0.467,-4.262,3.795,-43.303,179
+Relative EPS revisions,2021-06-30,-0.652,-0.231,-4.354,4.123,-42.52,180
+Relative EPS revisions,2021-07-31,-28.765,-1.252,-4.36,3.108,-42.247,181
+Relative EPS revisions,2021-08-31,-48.074,-2.382,-4.429,2.048,-41.12,182
+Relative EPS revisions,2021-09-30,-10.944,-3.477,-4.409,0.932,-41.107,183
+Relative EPS revisions,2021-10-31,29.076,-5.087,-4.541,-0.546,-39.539,184
+Relative EPS revisions,2021-11-30,61.57,-4.883,-4.776,-0.106,-37.786,185
+Relative EPS revisions,2021-12-31,37.755,-4.643,-4.81,0.167,-37.664,186
+Relative EPS revisions,2022-01-31,57.225,-3.679,-4.628,0.949,-37.279,187
+Relative EPS revisions,2022-02-28,58.946,-3.955,-4.276,0.321,-37.13,188
+Relative EPS revisions,2022-03-31,77.714,-3.425,-4.054,0.629,-37.28,189
+Relative EPS revisions,2022-04-30,-6.985,-3.882,-3.731,-0.15,-38.49,190
+Relative EPS revisions,2022-05-31,-8.927,-3.836,-3.403,-0.432,-38.907,191
+Relative EPS revisions,2022-06-30,-24.894,-3.992,-2.981,-1.011,-39.965,192
+Relative EPS revisions,2022-07-31,32.917,-4.02,-3.001,-1.019,-39.977,193
+Relative EPS revisions,2022-08-31,29.075,-4.155,-3.032,-1.123,-40.025,194
+Relative EPS revisions,2022-09-30,50.409,-4.316,-3.144,-1.172,-40.439,195
+Relative EPS revisions,2022-10-31,-14.807,-5.144,-2.96,-2.184,-39.701,196
+Relative EPS revisions,2022-11-30,-36.668,-4.702,-2.797,-1.904,-38.977,197
+Relative EPS revisions,2022-12-31,-81.821,-4.456,-2.529,-1.927,-37.75,198
+Relative EPS revisions,2023-01-31,-12.4,-4.085,-2.59,-1.494,-38.189,199
+Relative EPS revisions,2023-02-28,-43.292,-3.987,-2.761,-1.226,-39.411,200
+Relative EPS revisions,2023-03-31,-55.589,-4.541,-3.154,-1.387,-42.453,201
+Relative EPS revisions,2023-04-30,-71.885,-3.383,-3.2,-0.183,-42.683,202
+Relative EPS revisions,2023-05-31,-35.108,-3.345,-3.397,0.052,-43.611,203
+Relative EPS revisions,2023-06-30,-3.901,-2.594,-3.653,1.059,-44.89,204
+Relative EPS revisions,2023-07-31,4.768,-2.012,-3.986,1.974,-45.101,205
+Relative EPS revisions,2023-08-31,-15.485,-0.902,-4.137,3.235,-45.067,206
+Relative EPS revisions,2023-09-30,-30.421,-1.175,-4.136,2.961,-45.052,207
+Relative EPS revisions,2023-10-31,-31.863,-1.816,-4.093,2.278,-45.288,208
+Relative EPS revisions,2023-11-30,-20.515,-3.172,-4.148,0.976,-44.478,209
+Relative EPS revisions,2023-12-31,3.188,-2.959,-4.273,1.314,-43.01,210
+Relative EPS revisions,2024-01-31,12.717,-3.219,-4.404,1.185,-41.872,211
+Relative EPS revisions,2024-02-29,33.332,-2.983,-4.48,1.497,-41.592,212
+Relative EPS revisions,2024-03-31,-10.299,-3.769,-4.444,0.674,-41.741,213
+Relative EPS revisions,2024-04-30,-9.004,-3.13,-4.363,1.233,-42.086,214
+Relative EPS revisions,2024-05-31,7.284,-2.915,-4.188,1.273,-43.08,215
+Relative EPS revisions,2024-06-30,24.178,-2.637,-4.216,1.579,-42.997,216
+Relative EPS revisions,2024-07-31,2.671,-2.799,-4.238,1.44,-42.862,217
+Relative EPS revisions,2024-08-31,-42.926,-3.3,-4.186,0.886,-43.093,218
+Relative EPS revisions,2024-09-30,-58.041,-3.224,-4.056,0.832,-43.843,219
+Relative EPS revisions,2024-10-31,-44.382,-3.861,-4.026,0.165,-43.977,220
+Relative EPS revisions,2024-11-30,10.707,-3.679,-4.202,0.522,-43.36,221
+Relative EPS revisions,2024-12-31,67.467,-3.978,-4.444,0.466,-42.576,222
+Relative EPS revisions,2025-01-31,51.577,-4.016,-4.623,0.607,-42.466,223
+Relative EPS revisions,2025-02-28,-15.462,-3.985,-4.555,0.57,-42.602,224
+Relative EPS revisions,2025-03-31,-67.528,-3.759,-4.235,0.476,-43.197,225
+Relative EPS revisions,2025-04-30,-70.646,-4.57,-3.988,-0.582,-43.797,226
+Relative EPS revisions,2025-05-31,-35.597,-4.945,-4.038,-0.907,-43.675,227
+Relative EPS revisions,2025-06-30,-30.911,-4.831,-4.317,-0.514,-43.142,228
+Relative EPS revisions,2025-07-31,-29.297,-3.262,-4.606,1.345,-43.816,229
+Relative EPS revisions,2025-08-31,5.655,-2.695,-4.741,2.046,-44.294,230
+Relative EPS revisions,2025-09-30,8.861,-2.608,-4.854,2.246,-44.525,231
+Relative EPS revisions,2025-10-31,27.138,-2.683,-4.96,2.277,-43.916,232
+Relative EPS revisions,2025-11-30,37.675,-2.417,-4.914,2.498,-44.218,233
+Relative EPS revisions,2025-12-31,47.061,-2.132,-4.855,2.723,-44.66,234
+Relative EPS revisions,2026-01-31,-13.031,-1.899,-4.719,2.82,-45.821,235
+Relative EPS revisions,2026-02-28,-105.889,-2.636,-4.54,1.903,-47.515,236
+Relative EPS revisions,2026-03-31,-81.468,-1.284,-4.322,3.037,-49.746,237
+Relative EPS revisions,2026-04-30,-8.768,-1.227,-4.358,3.132,-49.205,238
+Relative EPS revisions,2026-05-31,27.458,-0.394,-4.783,4.39,-46.121,239
+Relative EPS revisions,2026-06-30,-4.387,-1.464,-5.103,3.639,-42.499,240
+Relative EPS revisions,2026-07-31,,-0.679,-5.118,4.439,-42.198,241
+Relative EPS revisions,2026-08-31,,-0.992,-4.983,3.992,-44.211,242
+Relative EPS revisions,2026-09-30,,-1.856,-4.981,3.125,-44.013,243
