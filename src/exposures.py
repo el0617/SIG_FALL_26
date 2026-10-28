@@ -20,6 +20,13 @@ HOW
   covariance) plus a sector-specific remainder the factors do not explain.
 
   This is a DESCRIPTIVE risk tool. It produces no verdict and does not forecast factor returns.
+
+READING THE STYLE LENS (code review, 2026-10-28; cross-checked with Bloomberg PORT, MAC3)
+  Ken French has no low-beta factor, so the portfolio's low-beta / defensive tilt shows up as value (HML),
+  conservative investment (CMA) and profitability (RMW) loadings. Bloomberg's model, which has a Beta
+  style factor, puts 38.7% of active risk on Beta and 2.6% on Valuation, with no momentum exposure.
+  Describe the portfolio as a LOW-BETA / DEFENSIVE STYLE BET; do not headline "value" or "momentum".
+  The momentum loading here is historical co-movement over the window, not a momentum position.
 """
 import sys
 import numpy as np
@@ -46,9 +53,9 @@ LABEL = {"Mkt-RF": "Market", "SMB": "Size (small)", "HML": "Value", "RMW": "Prof
 # Which exposures the thesis argues for. Everything else is a side effect to watch.
 INTENDED = {
     "Mkt-RF": "intended: lower beta is part of the defensive tilt",
-    "SMB": "unintended", "HML": "unintended: watch (value lagged after real-yield jumps)",
+    "SMB": "unintended", "HML": "mostly the low-beta tilt seen through Ken French factors (Bloomberg: valuation 2.6%)",
     "RMW": "consistent with the defensive leg (quality)", "CMA": "consistent with the defensive leg",
-    "Mom": "unintended",
+    "Mom": "unintended: historical co-movement only (Bloomberg: no momentum exposure)",
     "Market": "intended: lower beta", "Real yield": "intended: growth underweight should gain when real yields rise",
     "Breakeven": "intended: energy overweight should gain when breakevens rise", "Dollar": "unintended",
 }
@@ -239,6 +246,9 @@ def main():
             print(f"    {LABEL[f]}: {e['exposure']:+.2f}% (t={e['t']:.1f}) -> "
                   f"{'as intended' if e['exposure'] > 0 else 'opposite to the thesis'}"
                   f"{'' if abs(e['t']) >= 1.65 else ' (not significant)'}")
+    print("  Reading: Ken French has no low-beta factor, so value/investment/profitability loadings largely stand in\n"
+          "  for the low-beta defensive tilt (Bloomberg MAC3: Beta 38.7% of active risk, Valuation 2.6%, Momentum ~0).\n"
+          "  Describe TOPDOWN2 as a low-beta / defensive style bet.")
     for lens, f in [("style", "HML"), ("macro", "Real yield"), ("macro", "Breakeven"), ("style", "Mkt-RF")]:
         a = E[(E.lens == lens) & (E.portfolio == cur) & (E.factor == f)]
         b = E[(E.lens == lens) & (E.portfolio == rec) & (E.factor == f)]
