@@ -122,6 +122,11 @@ def valuation_context(T):
     return T, True
 
 
+def ordinal(x):
+    n = int(round(float(x)))
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
 def flags(r):
     f = []
     if r["risk_share"] >= 15:
@@ -132,9 +137,9 @@ def flags(r):
         f.append(f"Sensitive to real yields ({r['real_beta']:+.1f}% per 100bp, t {r['real_t']:.1f})")
     if pd.notna(r.get("pe_pct")):
         if r["pe_pct"] >= 80:
-            f.append(f"Expensive vs its own history ({r['pe_pct']:.0f}th percentile)")
+            f.append(f"Expensive vs its own history ({ordinal(r['pe_pct'])} percentile)")
         elif r["pe_pct"] <= 20:
-            f.append(f"Cheap vs its own history ({r['pe_pct']:.0f}th percentile)")
+            f.append(f"Cheap vs its own history ({ordinal(r['pe_pct'])} percentile)")
     if pd.notna(r.get("rev3")) and r["rev3"] <= 0:
         f.append(f"Earnings estimates falling ({r['rev3']:+.1f}% in 3 months)")
     if abs(r["rel_3m"]) >= 8:
@@ -194,8 +199,8 @@ def page(pdf, t, r, scen, rel, now_regime, have_val, asof):
     if now_regime is not None and pd.notna(r.get("regime_edge")):
         items.append((f"Edge in {now_regime} (M1)", f"{r['regime_edge']:+.1f} pp/yr (t {r['regime_t']:.1f})"))
     if have_val and pd.notna(r.get("fwd_pe")):
-        items += [("Forward P/E", f"{r['fwd_pe']:.1f}"), ("Percentile, own history", f"{r['pe_pct']:.0f}th"),
-                  ("Percentile vs S&P 500", "—" if pd.isna(r.get("rel_pct")) else f"{r['rel_pct']:.0f}th"),
+        items += [("Forward P/E", f"{r['fwd_pe']:.1f}"), ("Percentile, own history", ordinal(r['pe_pct'])),
+                  ("Percentile vs S&P 500", "—" if pd.isna(r.get("rel_pct")) else ordinal(r['rel_pct'])),
                   ("EPS revision 3m / 12m", f"{r['rev3']:+.1f}% / {r['rev12']:+.1f}%"), ("Dividend yield", f"{r['dy']:.2f}%")]
     if not items:
         items = [("Regime and valuation", "run Modules 1 and 7 first")]
