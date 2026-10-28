@@ -1,0 +1,13 @@
+spec,sell-off p (C),rec - cur (A),rec - cur (C),recommended,team direction
+baseline,11.9,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
+drawdown -4%,14.8,0.0,-0.01,MIXED (4/6),ROBUSTLY WORSE (0/6)
+drawdown -7%,8.0,0.0,0.0,ROBUSTLY BETTER (6/6),ROBUSTLY WORSE (0/6)
+breakeven 15bp,11.9,0.0,-0.01,MIXED (4/6),ROBUSTLY WORSE (0/6)
+breakeven 25bp,11.9,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
+real 20bp,11.9,0.0,-0.01,MIXED (4/6),ROBUSTLY WORSE (0/6)
+real 35bp,11.9,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
+shrinkage K=6,11.9,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
+shrinkage K=24,11.8,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
+sample 2010+,13.7,0.02,-0.0,ROBUSTLY BETTER (5/6),ROBUSTLY WORSE (0/6)
+model betas post-2020,11.9,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
+policy band 50bp,11.9,0.0,-0.0,MIXED (4/6),ROBUSTLY WORSE (0/6)
