@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 from src.data import (fred, fred_optional, level, monthly, optional_csv, sector_returns,
-                      complete_months, current_month_end, FILL_LOG)
+                      complete_months, current_month_end, fill_single_gaps, FILL_LOG)
 from src.utils import (ann_change, chg, lagged, zscore, classify, classify_direction, episode_table,
                        forward_excess, conditional_stats, transition_matrix, forward_distribution,
                        ORDER, DISPLAY, DIR_ORDER)
@@ -104,13 +104,25 @@ def survey_prices(source):
     return level("MICH"), "UMich 1-year inflation expectations (FRED, lag 0)"
 
 
+CLAIMS_PUB_LAG_DAYS = 5   # initial claims for the week ending Saturday are released the following Thursday
+
+
+def claims_published():
+    """Monthly average of initial claims using only weekly releases published by month-end.
+    (v2 code review: ICSA is dated by the week it covers, so the last week of a month was counted before
+    its release, a look-ahead of up to 5 days.)"""
+    c = fred("ICSA").dropna()
+    c.index = c.index + pd.Timedelta(days=CLAIMS_PUB_LAG_DAYS)
+    return fill_single_gaps(monthly(c, "mean"), "ICSA")
+
+
 def build_growth(source=SURVEY):
     so, src = survey_orders(source)
     G = pd.concat({
         "payrolls":      lagged(ann_change(level("PAYEMS")), LAG),
         "indpro":        lagged(ann_change(level("INDPRO")), LAG),
         "real_retail":   lagged(ann_change(level("RRSFS")), LAG),
-        "claims_inv":    -chg(level("ICSA", "mean"), 3),          # weekly -> monthly avg, timely
+        "claims_inv":    -chg(claims_published(), 3),          # weekly -> monthly avg, timely
         "survey_orders": so,
     }, axis=1, sort=True)
     return finalize(G, "growth"), src
@@ -156,7 +168,7 @@ def build_nowcast(window=WINDOW):
     ism_no, ism_inv, ism_p = optional_csv("ism_new_orders"), optional_csv("ism_inventories"), optional_csv("ism_prices")
     hy = optional_csv("hy_oas")
     G = pd.concat({k: v for k, v in {
-        "claims_inv": -chg(level("ICSA", "mean"), 3),
+        "claims_inv": -chg(claims_published(), 3),
         "philly_activity": level("GACDFSA066MSFRBPHI", optional=True),
         "philly_orders": level("NOCDFSA066MSFRBPHI", optional=True),
         "empire_activity": level("GACDISA066MSFRBNY", optional=True),
