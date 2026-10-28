@@ -71,6 +71,10 @@ CANDIDATES = {
     "Recommended core: fix the defensive leg": {"XLP": -3, "XLF": +3},
     # conditional step: only if real yields keep rising with breakevens stable (see triggers)
     "Core + extend growth underweight": {"XLP": -3, "XLF": +3, "VGT": -2, "XLV": +1, "XLI": +1},
+    # Added 2026-10-28 AFTER seeing Modules 9-10 (post hoc, labelled as such): no timing signal survives out of
+    # sample, so cut active risk where the evidence is weakest; energy trimmed for its oil-crash tail and its
+    # +0.63 correlation with the growth underweight; the growth underweight is kept but smaller.
+    "Core + trim energy and growth underweight": {"XLP": -3, "XLF": +3, "XLE": -2.5, "VGT": +2.5},
 }
 RECOMMENDED = "Recommended core: fix the defensive leg"
 SCENARIOS = {   # name: (real-yield bp, breakeven bp, equity %, which real-yield beta)
