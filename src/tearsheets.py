@@ -209,12 +209,16 @@ def summary_page(pdf, T, asof):
     fig, ax = plt.subplots(figsize=(11, 8.5)); ax.axis("off")
     ax.set_title(f"TOPDOWN2 sector tear sheets: summary (data through {asof:%b %Y})", loc="left", fontsize=14, fontweight="bold")
     cols = ["weight", "benchmark", "active", "risk_share", "rel_3m", "rel_since_0529", "be_beta", "real_beta"]
-    head = ["Weight", "Bmrk", "Active", "Risk %", "vs SPY 3m", "Since 05/29", "BE beta", "Real beta"]
+    head = ["Weight", "Bmrk", "Active", "Risk %", "3m vs SPY", "Since 5/29", "BE beta", "Real beta"]
     cell = [[f"{T.loc[t, c]:+.1f}" if c in ("active", "rel_3m", "rel_since_0529", "be_beta", "real_beta") else f"{T.loc[t, c]:.1f}"
              for c in cols] + [str(len(flags(T.loc[t])))] for t in T.index]
-    tb = ax.table(cellText=cell, rowLabels=[f"{t} {T.loc[t, 'sector']}" for t in T.index], colLabels=head + ["Flags"],
-                  loc="upper left", bbox=[0.3, 0.25, 0.7, 0.65])
-    tb.auto_set_font_size(False); tb.set_fontsize(9)
+    cell = [[f"{t}  {T.loc[t, 'sector']}"] + row for t, row in zip(T.index, cell)]
+    tb = ax.table(cellText=cell, colLabels=["Holding"] + head + ["Flags"], loc="upper left", bbox=[0.0, 0.25, 1.0, 0.65],
+                  colWidths=[0.26] + [0.08] * len(head) + [0.06], cellLoc="right")
+    tb.auto_set_font_size(False); tb.set_fontsize(8.5)
+    for (r_, c_), cl in tb.get_celld().items():
+        if c_ == 0:
+            cl.set_text_props(ha="left")
     ax.text(0, 0.15, "Risk % = share of active risk (Euler on active weights, 60 months). BE / Real beta = return vs SPY per +100bp in the\n"
             "10y breakeven / real 10y, monthly since 2003. Flags follow fixed rules listed in src/tearsheets.py.", fontsize=8.5, color="0.35")
     pdf.savefig(fig); plt.close(fig)
