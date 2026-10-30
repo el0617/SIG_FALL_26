@@ -41,6 +41,7 @@ from src.utils import (chg, lagged, zscore, run_ids, episode_table, forward_exce
                        transition_matrix, forward_distribution, _mad)
 from src.regime import (finalize, EDGE_LOG, thesis_verdict, plot_edge_heatmap, build_regime,
                         SECTORS, ROW_NAME, DEFENSIVE, GROWTH, SAMPLE_START)
+from src.quadrant_plot import plot_quadrant_path
  
 OUT = Path("outputs"); OUT.mkdir(exist_ok=True)
  
@@ -262,38 +263,21 @@ def plot_dashboard(C, prob, path, start="1997-01-01"):
  
  
 def plot_clock(lvl, mom, labels, path, months=60):
-    tr = pd.concat([mom, lvl], axis=1, keys=["x", "y"], sort=True).dropna().iloc[-months:]
-    share = labels.reindex(tr.index).value_counts(normalize=True).mul(100)
-    L = np.ceil(max(tr.abs().max().max() * 1.15, 1.0) * 4) / 4
-    fig, ax = plt.subplots(figsize=(9.5, 9))
-    ax.set_xlim(-L, L); ax.set_ylim(-L, L); ax.set_aspect("equal")
-    quads = {"Early": (0.5, 0.0), "Mid": (0.5, 0.5), "Late": (0.0, 0.5), "Contraction": (0.0, 0.0)}
-    pos = {"Mid": (0.98, 0.98, "right", "top"), "Late": (0.02, 0.98, "left", "top"),
-           "Contraction": (0.02, 0.02, "left", "bottom"), "Early": (0.98, 0.02, "right", "bottom")}
-    for k, (x0, y0) in quads.items():
-        ax.add_patch(plt.Rectangle((x0, y0), 0.5, 0.5, transform=ax.transAxes, color=PCOLORS[k], alpha=0.08, zorder=0))
-        x, y, ha, va = pos[k]
-        ax.text(x, y, f"{PDISPLAY[k]}\n{share.get(k, 0):.0f}% of months", transform=ax.transAxes, ha=ha, va=va,
-                fontsize=10.5, fontweight="bold", color=PCOLORS[k], alpha=0.85)
-    ax.axhline(0, c="k", lw=1); ax.axvline(0, c="k", lw=1)
-    ax.axhspan(-BAND_LEVEL, BAND_LEVEL, color="grey", alpha=0.12); ax.axvspan(-BAND_MOM, BAND_MOM, color="grey", alpha=0.12)
-    ax.plot(tr["x"], tr["y"], "-", color="grey", lw=0.8, alpha=0.6, zorder=2)
-    sc = ax.scatter(tr["x"], tr["y"], c=np.arange(len(tr)), cmap="viridis", s=38, edgecolor="white", lw=0.5, zorder=3)
-    ax.scatter(tr["x"].iloc[-1], tr["y"].iloc[-1], s=260, facecolors="none", edgecolors="red", lw=2.5, zorder=4)
-    for k in sorted(set([0, len(tr) - 1] + list(range(0, len(tr), 6)))):
-        ax.annotate(tr.index[k].strftime("%b-%y"), (tr["x"].iloc[k], tr["y"].iloc[k]), xytext=(5, 5),
-                    textcoords="offset points", fontsize=8)
-    cb = fig.colorbar(sc, ax=ax, fraction=0.046, pad=0.03)
-    t = np.linspace(0, len(tr) - 1, 6, dtype=int)
-    cb.set_ticks(t); cb.set_ticklabels([tr.index[k].strftime("%b %Y") for k in t])
-    ax.set_xlabel("Momentum: 3-month change of the composite (robust units)  →  improving")
-    ax.set_ylabel("Level: leading composite vs 10-year baseline (z, 3m avg)  →  above average")
-    ax.set_title(f"Cycle clock, {tr.index[0]:%b %Y} to {tr.index[-1]:%b %Y} (monthly; red ring = latest)\n"
-                 f"Counter-clockwise: Recovery → Expansion → Late → Contraction; "
-                 f"{share.get('Transition', 0):.0f}% of months in Transition", fontsize=10.5)
-    fig.savefig(path, dpi=200, bbox_inches="tight"); plt.close(fig)
- 
- 
+    """Cycle clock: level (y) vs momentum (x); phases rotate counter-clockwise."""
+    tr = pd.concat([mom, lvl], axis=1).dropna().iloc[-months:]
+    plot_quadrant_path(
+        mom, lvl, labels, path, months=months,
+        quads={"Mid": (1, 1), "Late": (-1, 1), "Contraction": (-1, -1), "Early": (1, -1)},
+        colors=PCOLORS, display=PDISPLAY, band_x=BAND_MOM, band_y=BAND_LEVEL,
+        xlabel="Momentum, 3-month change of the composite (robust units)  →  improving",
+        ylabel="Level, leading composite vs 10-year baseline (z, 3m avg)  →  above average",
+        title="Module 2 · Cycle clock",
+        subtitle=f"Leading-indicator level vs momentum, {tr.index[0]:%b %Y} to {tr.index[-1]:%b %Y}, monthly. "
+                 f"Phases rotate counter-clockwise: Recovery → Expansion → Late → Contraction.",
+        footer="Leading inputs: ISM new orders less inventories, building permits, manufacturing hours, "
+               "consumer sentiment, credit spreads (6-month changes).")
+
+
 def plot_thesis(stats3, current, slope, path):
     fig, axes = plt.subplots(1, 2, figsize=(13, 5.5), sharey=True)
     for ax, name, ttl in [(axes[0], "DEF-GRW", "Defensives (XLP,XLU,XLV) minus Growth (XLK,XLY)"),

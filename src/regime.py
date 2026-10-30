@@ -31,6 +31,7 @@ from src.data import (fred, fred_optional, level, monthly, optional_csv, sector_
 from src.utils import (ann_change, chg, lagged, zscore, classify, classify_direction, episode_table,
                        forward_excess, conditional_stats, transition_matrix, forward_distribution,
                        ORDER, DISPLAY, DIR_ORDER)
+from src.quadrant_plot import plot_quadrant_path
 
 OUT = Path("outputs"); OUT.mkdir(exist_ok=True)
 
@@ -233,47 +234,22 @@ def _square_axes(ax, L):
 
 
 def plot_quadrant(g, i, labels, path, months=60, band=BAND, nowcast=None):
-    tr = pd.concat([g, i], axis=1, keys=["g", "i"]).dropna().iloc[-months:]
-    share = labels.reindex(tr.index).value_counts(normalize=True).mul(100)
-    L = np.ceil(max(tr.abs().max().max() * 1.15, 1.0) * 4) / 4
-    if nowcast is not None:
-        L = max(L, np.ceil(max(abs(nowcast[0]), abs(nowcast[1])) * 1.15 * 4) / 4)
-
-    fig, ax = plt.subplots(figsize=(9.5, 9))
-    _square_axes(ax, L)
-    pos = {"Goldilocks": (0.02, 0.98, "left", "top"), "Reflation": (0.98, 0.98, "right", "top"),
-           "Stagflation": (0.98, 0.02, "right", "bottom"), "Slowdown": (0.02, 0.02, "left", "bottom")}
-    for name, (x, y, ha, va) in pos.items():
-        ax.text(x, y, f"{DISPLAY[name]}\n{share.get(name, 0):.0f}% of months", transform=ax.transAxes,
-                ha=ha, va=va, fontsize=11, fontweight="bold", color=COLORS[name], alpha=0.85)
-    ax.axhline(0, c="k", lw=1); ax.axvline(0, c="k", lw=1)
-    ax.axhspan(-band, band, color="grey", alpha=0.12, zorder=1)
-    ax.axvspan(-band, band, color="grey", alpha=0.12, zorder=1)
-
-    ax.plot(tr["i"], tr["g"], "-", color="grey", lw=0.8, alpha=0.6, zorder=2)
-    sc = ax.scatter(tr["i"], tr["g"], c=np.arange(len(tr)), cmap="viridis", s=38,
-                    edgecolor="white", linewidth=0.5, zorder=3)
-    ax.scatter(tr["i"].iloc[-1], tr["g"].iloc[-1], s=260, facecolors="none",
-               edgecolors="red", linewidths=2.5, zorder=4, label=f"Composite, {tr.index[-1]:%b %Y}")
-    for k in sorted(set([0, len(tr) - 1] + list(range(0, len(tr), 6)))):
-        ax.annotate(tr.index[k].strftime("%b-%y"), (tr["i"].iloc[k], tr["g"].iloc[k]),
-                    xytext=(5, 5), textcoords="offset points", fontsize=8, zorder=5)
+    """Growth (y) vs inflation (x) path. nowcast = (growth, inflation, date) or None."""
+    tr = pd.concat([g, i], axis=1).dropna().iloc[-months:]
+    nc = None
     if nowcast is not None and not np.isnan(nowcast[0]) and not np.isnan(nowcast[1]):
-        ax.scatter(nowcast[1], nowcast[0], marker="*", s=420, c="red", edgecolor="k",
-                   zorder=6, label=f"Nowcast (timely data), {nowcast[2]:%b %Y}")
-        ax.annotate("", xy=(nowcast[1], nowcast[0]), xytext=(tr["i"].iloc[-1], tr["g"].iloc[-1]),
-                    arrowprops=dict(arrowstyle="->", color="red", lw=1.2, ls="--"), zorder=5)
-
-    cbar = fig.colorbar(sc, ax=ax, fraction=0.046, pad=0.03)
-    ticks = np.linspace(0, len(tr) - 1, 6, dtype=int)
-    cbar.set_ticks(ticks); cbar.set_ticklabels([tr.index[k].strftime("%b %Y") for k in ticks])
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.07), ncol=2, fontsize=8, frameon=False)
-    ax.set_xlabel("Inflation pressure, z-score vs Fed-consistent anchor (3m avg)  →")
-    ax.set_ylabel("Growth, z-score vs 10-year trend (3m avg)  →")
-    ax.set_title(f"Macro regime, {tr.index[0]:%b %Y} to {tr.index[-1]:%b %Y} (monthly)\n"
-                 f"grey band = transition zone (|z| < {band}); "
-                 f"{share.get('Transition', 0):.0f}% of months in Transition", fontsize=11)
-    fig.savefig(path, dpi=200, bbox_inches="tight"); plt.close(fig)
+        nc = (nowcast[1], nowcast[0], nowcast[2])
+    plot_quadrant_path(
+        i, g, labels, path, months=months, nowcast=nc,
+        quads={"Goldilocks": (-1, 1), "Reflation": (1, 1), "Stagflation": (1, -1), "Slowdown": (-1, -1)},
+        colors=COLORS, display=DISPLAY, band_x=band, band_y=band,
+        xlabel="Inflation pressure, z vs Fed-consistent anchor (3m avg)  →",
+        ylabel="Growth, z vs 10-year trend (3m avg)  →",
+        title="Module 1 · Macro regime",
+        subtitle=f"Growth vs inflation, {tr.index[0]:%b %Y} to {tr.index[-1]:%b %Y}, monthly. "
+                 f"Grey cross = transition zone (|z| < {band}).",
+        footer="Coincident data: payrolls, industrial production, real retail sales, claims, survey new orders; "
+               "realized core inflation and survey prices.")
 
 
 def plot_edge_heatmap(stats, eps, path, order=ORDER, display=DISPLAY, what="regime", horizon="Next-month"):
