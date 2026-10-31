@@ -1,0 +1,106 @@
+sample,scen_spec,code,total,first,C1,C2,C3,C4,C5,C6
+1999,baseline,E,3,True,0,0,1,1,1,0
+1999,baseline,D,1,False,0,1,0,-1,0,1
+1999,baseline,B,0,False,0,0,0,0,0,0
+1999,baseline,A,-1,False,0,0,-1,-1,0,1
+1999,baseline,C,-2,False,0,0,0,-1,-1,0
+1999,drawdown -4%,E,3,True,0,0,1,1,1,0
+1999,drawdown -4%,D,1,False,0,1,0,-1,0,1
+1999,drawdown -4%,B,0,False,0,0,0,0,0,0
+1999,drawdown -4%,C,-1,False,0,0,0,-1,0,0
+1999,drawdown -4%,A,-1,False,0,0,-1,-1,0,1
+1999,drawdown -7%,E,3,True,0,0,1,1,1,0
+1999,drawdown -7%,D,1,False,0,1,0,-1,0,1
+1999,drawdown -7%,B,0,False,0,0,0,0,0,0
+1999,drawdown -7%,C,-1,False,0,0,0,-1,0,0
+1999,drawdown -7%,A,-1,False,0,0,-1,-1,0,1
+1999,breakeven 15bp,E,3,True,0,0,1,1,1,0
+1999,breakeven 15bp,D,1,False,0,1,0,-1,0,1
+1999,breakeven 15bp,B,0,False,0,0,0,0,0,0
+1999,breakeven 15bp,C,-1,False,0,0,0,-1,0,0
+1999,breakeven 15bp,A,-1,False,0,0,-1,-1,0,1
+1999,breakeven 25bp,E,3,True,0,0,1,1,1,0
+1999,breakeven 25bp,D,1,False,0,1,0,-1,0,1
+1999,breakeven 25bp,B,0,False,0,0,0,0,0,0
+1999,breakeven 25bp,A,-1,False,0,0,-1,-1,0,1
+1999,breakeven 25bp,C,-2,False,0,0,0,-1,-1,0
+1999,real 20bp,E,3,True,0,0,1,1,1,0
+1999,real 20bp,D,1,False,0,1,0,-1,0,1
+1999,real 20bp,B,0,False,0,0,0,0,0,0
+1999,real 20bp,A,-1,False,0,0,-1,-1,0,1
+1999,real 20bp,C,-2,False,0,0,0,-1,-1,0
+1999,real 35bp,E,3,True,0,0,1,1,1,0
+1999,real 35bp,D,1,False,0,1,0,-1,0,1
+1999,real 35bp,B,0,False,0,0,0,0,0,0
+1999,real 35bp,C,-1,False,0,0,0,-1,0,0
+1999,real 35bp,A,-1,False,0,0,-1,-1,0,1
+2003,baseline,E,4,True,1,0,1,1,1,0
+2003,baseline,D,1,False,0,1,0,-1,0,1
+2003,baseline,B,0,False,0,0,0,0,0,0
+2003,baseline,A,-1,False,0,0,-1,-1,0,1
+2003,baseline,C,-2,False,0,0,0,-1,-1,0
+2003,drawdown -4%,E,4,True,1,0,1,1,1,0
+2003,drawdown -4%,D,1,False,0,1,0,-1,0,1
+2003,drawdown -4%,B,0,False,0,0,0,0,0,0
+2003,drawdown -4%,C,-1,False,0,0,0,-1,0,0
+2003,drawdown -4%,A,-1,False,0,0,-1,-1,0,1
+2003,drawdown -7%,E,4,True,1,0,1,1,1,0
+2003,drawdown -7%,D,1,False,0,1,0,-1,0,1
+2003,drawdown -7%,B,0,False,0,0,0,0,0,0
+2003,drawdown -7%,C,-1,False,0,0,0,-1,0,0
+2003,drawdown -7%,A,-1,False,0,0,-1,-1,0,1
+2003,breakeven 15bp,E,4,True,1,0,1,1,1,0
+2003,breakeven 15bp,D,1,False,0,1,0,-1,0,1
+2003,breakeven 15bp,B,0,False,0,0,0,0,0,0
+2003,breakeven 15bp,C,-1,False,0,0,0,-1,0,0
+2003,breakeven 15bp,A,-1,False,0,0,-1,-1,0,1
+2003,breakeven 25bp,E,4,True,1,0,1,1,1,0
+2003,breakeven 25bp,D,1,False,0,1,0,-1,0,1
+2003,breakeven 25bp,B,0,False,0,0,0,0,0,0
+2003,breakeven 25bp,A,-1,False,0,0,-1,-1,0,1
+2003,breakeven 25bp,C,-2,False,0,0,0,-1,-1,0
+2003,real 20bp,E,4,True,1,0,1,1,1,0
+2003,real 20bp,D,1,False,0,1,0,-1,0,1
+2003,real 20bp,B,0,False,0,0,0,0,0,0
+2003,real 20bp,A,-1,False,0,0,-1,-1,0,1
+2003,real 20bp,C,-2,False,0,0,0,-1,-1,0
+2003,real 35bp,E,4,True,1,0,1,1,1,0
+2003,real 35bp,D,1,False,0,1,0,-1,0,1
+2003,real 35bp,B,0,False,0,0,0,0,0,0
+2003,real 35bp,C,-1,False,0,0,0,-1,0,0
+2003,real 35bp,A,-1,False,0,0,-1,-1,0,1
+2010,baseline,E,4,True,1,0,1,1,1,0
+2010,baseline,D,0,False,0,1,-1,-1,0,1
+2010,baseline,B,-2,False,0,0,-1,-1,0,0
+2010,baseline,A,-2,False,-1,0,-1,-1,0,1
+2010,baseline,C,-4,False,-1,0,-1,-1,-1,0
+2010,drawdown -4%,E,4,True,1,0,1,1,1,0
+2010,drawdown -4%,D,0,False,0,1,-1,-1,0,1
+2010,drawdown -4%,B,-2,False,0,0,-1,-1,0,0
+2010,drawdown -4%,A,-2,False,-1,0,-1,-1,0,1
+2010,drawdown -4%,C,-4,False,-1,0,-1,-1,-1,0
+2010,drawdown -7%,E,4,True,1,0,1,1,1,0
+2010,drawdown -7%,D,0,False,0,1,-1,-1,0,1
+2010,drawdown -7%,B,-2,False,0,0,-1,-1,0,0
+2010,drawdown -7%,A,-2,False,-1,0,-1,-1,0,1
+2010,drawdown -7%,C,-4,False,-1,0,-1,-1,-1,0
+2010,breakeven 15bp,E,4,True,1,0,1,1,1,0
+2010,breakeven 15bp,D,0,False,0,1,-1,-1,0,1
+2010,breakeven 15bp,B,-2,False,0,0,-1,-1,0,0
+2010,breakeven 15bp,A,-2,False,-1,0,-1,-1,0,1
+2010,breakeven 15bp,C,-4,False,-1,0,-1,-1,-1,0
+2010,breakeven 25bp,E,4,True,1,0,1,1,1,0
+2010,breakeven 25bp,D,0,False,0,1,-1,-1,0,1
+2010,breakeven 25bp,B,-2,False,0,0,-1,-1,0,0
+2010,breakeven 25bp,A,-2,False,-1,0,-1,-1,0,1
+2010,breakeven 25bp,C,-4,False,-1,0,-1,-1,-1,0
+2010,real 20bp,E,4,True,1,0,1,1,1,0
+2010,real 20bp,D,0,False,0,1,-1,-1,0,1
+2010,real 20bp,B,-2,False,0,0,-1,-1,0,0
+2010,real 20bp,A,-2,False,-1,0,-1,-1,0,1
+2010,real 20bp,C,-4,False,-1,0,-1,-1,-1,0
+2010,real 35bp,E,4,True,1,0,1,1,1,0
+2010,real 35bp,D,0,False,0,1,-1,-1,0,1
+2010,real 35bp,B,-2,False,0,0,-1,-1,0,0
+2010,real 35bp,A,-2,False,-1,0,-1,-1,0,1
+2010,real 35bp,C,-4,False,-1,0,-1,-1,-1,0
