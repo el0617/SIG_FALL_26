@@ -5,3 +5,4 @@ data/raw/bloomberg*.xlsx
 data/raw/val_*.csv
 data/raw/ism_*.csv
 data/raw/hy_oas.csv
+outputs/tournament_valuation*
