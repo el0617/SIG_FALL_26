@@ -1,0 +1,113 @@
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+====================================================================================================
+WEIGHTING ENGINE (rules: docs/weighting_preregistration.md); returns to Oct 2026
+====================================================================================================
+Construction: {'Conservative': {'hedge_ratio': 0.537, 'b3_ratio': 0.0, 's1': 6.183}, 'Base': {'hedge_ratio': 0.537, 'b3_ratio': 0.0, 's1': 10.306}, 'Conviction': {'hedge_ratio': 0.537, 'b3_ratio': 0.461, 's1': 10.93}, 'Base capped (post hoc)': {'cap': 10.344, 'base_defensive': 9.398, 'scale': 1.0, 'binds': 0.0}}
+
+Weights (%):
+         Current  Proposal  XLP->XLF only  Conservative  Base  Conviction  Base capped (post hoc)  benchmark
+ticker                                                                                                     
+VGT        26.2      28.7           26.2          34.2  31.2        26.9                    31.2       38.3
+XLY         5.8       5.8            5.8           8.0   7.4         6.3                     7.4        9.0
+XLC         6.4       6.4            6.4           8.4   7.7         8.5                     7.7        9.4
+XLF        11.1      14.1           14.1          10.5   9.7        10.7                     9.7       11.8
+XLI         5.2       5.2            5.2           7.1   6.6         7.2                     6.6        8.0
+XLB         6.3       6.3            6.3           3.2   4.2         4.5                     4.2        1.7
+XLE        10.3       7.8           10.3           5.1   6.0         6.5                     6.0        3.7
+XLP        11.0       8.0            8.0           6.6   7.9         8.5                     7.9        4.7
+XLV        13.4      13.4           13.4          11.4  12.6        13.7                    12.6        9.7
+XLU         2.3       2.3            2.3           4.0   5.3         5.7                     5.3        2.0
+SCHH        1.9       1.9            1.9           1.5   1.4         1.5                     1.4        1.7
+
+Active weights (pp):
+         Current  Proposal  XLP->XLF only  Conservative  Base  Conviction  Base capped (post hoc)
+ticker                                                                                          
+VGT       -12.1      -9.6          -12.1          -4.1  -7.1       -11.4                    -7.1
+XLY        -3.2      -3.2           -3.2          -1.0  -1.6        -2.7                    -1.6
+XLC        -3.0      -3.0           -3.0          -1.0  -1.7        -0.9                    -1.7
+XLF        -0.7       2.3            2.3          -1.3  -2.1        -1.1                    -2.1
+XLI        -2.8      -2.8           -2.8          -0.9  -1.4        -0.8                    -1.4
+XLB         4.7       4.7            4.7           1.5   2.5         2.8                     2.5
+XLE         6.6       4.1            6.6           1.4   2.3         2.8                     2.3
+XLP         6.3       3.3            3.3           1.9   3.2         3.8                     3.2
+XLV         3.7       3.7            3.7           1.7   2.9         4.0                     2.9
+XLU         0.3       0.3            0.3           2.0   3.3         3.7                     3.3
+SCHH        0.2       0.2            0.2          -0.2  -0.3        -0.2                    -0.3
+
+Trades from current (pp; = $m on $100M):
+         Conservative  Base  Conviction  Base capped (post hoc)
+ticker                                                        
+VGT              8.0   5.0         0.7                     5.0
+XLY              2.2   1.6         0.5                     1.6
+XLC              2.0   1.3         2.1                     1.3
+XLF             -0.6  -1.4        -0.4                    -1.4
+XLI              1.9   1.4         2.0                     1.4
+XLB             -3.1  -2.1        -1.8                    -2.1
+XLE             -5.2  -4.3        -3.8                    -4.3
+XLP             -4.4  -3.1        -2.5                    -3.1
+XLV             -2.0  -0.8         0.3                    -0.8
+XLU              1.7   3.0         3.4                     3.0
+SCHH            -0.4  -0.5        -0.4                    -0.5
+
+Base capped (post hoc): defensive overweight cap +10.34pp (today); Base +9.40pp; cap does not bind (variant = Base)
+
+Metrics:
+ portfolio               Current  Proposal  XLP->XLF only  Conservative   Base  Conviction  Base capped (post hoc)
+te_bench                   4.45      3.48           4.30          1.48   2.51        3.48                    2.51
+te_spy                     4.38      3.56           4.29          2.09   2.72        3.47                    2.72
+beta                       0.89      0.92           0.90          0.98   0.94        0.91                    0.94
+cvar3                      3.34      2.62           3.26          1.22   2.06        2.88                    2.06
+be_25bp                    0.00      0.02           0.07         -0.07  -0.11       -0.15                   -0.11
+real_50bp_post             0.45      0.34           0.46          0.12   0.21        0.31                    0.21
+selloff_3m                 0.60      0.26           0.24          0.39   0.65        0.71                    0.65
+exp_A                     -0.20     -0.17          -0.20         -0.07  -0.11       -0.19                   -0.11
+exp_B                     -0.18     -0.16          -0.19         -0.06  -0.10       -0.17                   -0.10
+exp_C                     -0.20     -0.18          -0.20         -0.06  -0.11       -0.18                   -0.11
+exp_Inflation persists    -0.15     -0.14          -0.13         -0.08  -0.15       -0.23                   -0.15
+exp_Higher for longer     -0.11     -0.12          -0.12         -0.04  -0.07       -0.13                   -0.07
+exp_Hard landing          -0.01     -0.08          -0.12          0.06   0.10        0.07                    0.10
+exp_Soft landing          -0.23     -0.20          -0.24         -0.06  -0.11       -0.19                   -0.11
+gross_active              21.78     18.57          21.07          8.51  14.21       17.11                   14.21
+risk_Defensives            9.43      8.64           6.33         16.15  16.05       13.62                   16.05
+risk_Inflation hedges     23.66     19.96          26.40         11.82  11.55       10.25                   11.55
+risk_Growth               57.99     60.45          58.67         59.87  60.71       72.10                   60.71
+risk_Other                 8.92     10.94           8.60         12.16  11.69        4.03                   11.69
+
+Base active weights under other covariance windows (pp):
+        60m   36m  TE60_of_36m   96m  TE60_of_96m
+VGT  -7.07 -6.57         2.36 -8.27         2.96
+XLY  -1.61 -1.51         2.36 -1.91         2.96
+XLC  -1.70 -1.60         2.36 -2.00         2.96
+XLF  -2.10 -2.00         2.36 -2.50         2.96
+XLI  -1.41 -1.41         2.36 -1.71         2.96
+XLB   2.53  2.43         2.36  3.03         2.96
+XLE   2.28  2.18         2.36  2.68         2.96
+XLP   3.16  2.96         2.36  3.76         2.96
+XLV   2.91  2.71         2.36  3.41         2.96
+XLU   3.33  3.13         2.36  3.93         2.96
+SCHH -0.31 -0.31         2.36 -0.41         2.96
+
+Pre-registered checks (Base vs Current):
+                                       check                              value  pass
+            1 TE vs benchmark below Current                     2.51% vs 4.45%  True
+        2 Sell-off payoff >= 75% of Current                   +0.65% vs +0.60%  True
+           3 |breakeven beta| below Current                   -0.112 vs +0.005 False
+4 Expected (set A) within 0.10pp of Current                   -0.114 vs -0.196  True
+         5 Stable across 36/96m covariances max change 1.20pp, signs kept True  True
+
+VERDICT: no version recommended by the engine: 4/5 checks
+
+Same checks for Base capped (post hoc) (context only, post hoc):
+                                       check                              value  pass
+            1 TE vs benchmark below Current                     2.51% vs 4.45%  True
+        2 Sell-off payoff >= 75% of Current                   +0.65% vs +0.60%  True
+           3 |breakeven beta| below Current                   -0.112 vs +0.005 False
+4 Expected (set A) within 0.10pp of Current                   -0.114 vs -0.196  True
+         5 Stable across 36/96m covariances max change 0.50pp, signs kept True  True

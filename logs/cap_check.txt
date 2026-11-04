@@ -1,0 +1,24 @@
+Defensive active weight: Current +10.3pp, Base +9.4pp
+Cap does not bind: Base is the recommendation as pre-registered
+                        te_bench  beta  cvar3  selloff_3m  be_25bp  exp_A
+portfolio                                                                
+Current                     4.45  0.89   3.34        0.60     0.00  -0.20
+Base                        2.51  0.94   2.06        0.65    -0.11  -0.11
+Base capped (post hoc)      2.51  0.94   2.06        0.65    -0.11  -0.11
+
+Pre-registered checks, Base:
+check,value,pass
+1 TE vs benchmark below Current,2.51% vs 4.45%,True
+2 Sell-off payoff >= 75% of Current,+0.65% vs +0.60%,True
+3 |breakeven beta| below Current,-0.112 vs +0.005,False
+4 Expected (set A) within 0.10pp of Current,-0.114 vs -0.196,True
+5 Stable across 36/96m covariances,"max change 1.20pp, signs kept True",True
+
+Same checks, Base capped (context):
+check,value,pass
+1 TE vs benchmark below Current,2.51% vs 4.45%,True
+2 Sell-off payoff >= 75% of Current,+0.65% vs +0.60%,True
+3 |breakeven beta| below Current,-0.112 vs +0.005,False
+4 Expected (set A) within 0.10pp of Current,-0.114 vs -0.196,True
+5 Stable across 36/96m covariances,"max change 0.50pp, signs kept True",True
+

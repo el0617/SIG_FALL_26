@@ -1,0 +1,76 @@
+==========================================================================================
+MODULE 8 - PROBABILITY-WEIGHTED SCENARIO TREE (next 3 months)
+==========================================================================================
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+Windows: 2003-01 to 2026-07 start months, n=283 (about 94 non-overlapping quarters). As of 2026-10-31.
+Policy analog: market prices HIKES (source 2y - fed funds; 2y-FF +68bp), 145 analog windows
+Recession risk: probit 24% -> low tercile (cut-offs 26% / 54%), 99 analog windows
+
+Scenario tree (median moves in bp / %, probabilities in %):
+                          d_real  d_be  spy  windows  A base rate  B policy analog  C recession risk  DEF-GRW 3m %
+scenario                                                                                                         
+Stagflationary sell-off   -19.0   8.0 -8.8       10          3.5              4.1               3.1          4.30
+Growth scare              -11.0 -43.0 -9.0       21          7.4              9.5               8.9          6.87
+Inflation scare            -1.0  32.0  7.7       48         17.0             19.1              17.1         -6.18
+Real-yield squeeze         39.0   0.0  2.4       39         13.8             12.5              11.4         -1.95
+Easing rally              -38.0  -5.5  3.9       38         13.4             11.9              14.1          0.70
+Steady state               -2.0   0.0  4.2      127         44.9             42.9              45.4         -1.32
+
+Active return vs SPY by scenario, 3 months (%), empirical:
+ scenario                                   Stagflationary sell-off  Growth scare  Inflation scare  Real-yield squeeze  Easing rally  Steady state
+Current (drifted)                                             1.22         -0.36             0.58                0.11          0.04         -0.06
+Team direction: add defensives                                1.41         -0.00             0.27                0.00          0.03         -0.15
+Recommended core: fix the defensive leg                       0.83         -0.70             0.78                0.15         -0.03         -0.04
+Core + extend growth underweight                              0.84         -0.64             0.72                0.12         -0.06         -0.07
+Core + trim energy and growth underweight                     0.64         -0.58             0.74                0.11          0.04          0.01
+
+Same, model (sensitivities x median moves):
+                                            Stagflationary sell-off  Growth scare  Inflation scare  Real-yield squeeze  Easing rally  Steady state
+Current (drifted)                                             1.06          0.75            -0.68               -0.28         -0.47         -0.48
+Team direction: add defensives                                1.40          1.30            -1.13               -0.40         -0.58         -0.66
+Recommended core: fix the defensive leg                       0.95          0.52            -0.50               -0.20         -0.48         -0.43
+Core + extend growth underweight                              1.05          0.66            -0.62               -0.23         -0.53         -0.48
+Core + trim energy and growth underweight                     0.74          0.41            -0.39               -0.17         -0.36         -0.33
+
+Expected 3-month active return (%), empirical payoffs:
+ prob_set                                   A base rate  B policy analog  C recession risk
+candidate                                                                                
+Core + extend growth underweight                  0.08             0.09              0.06
+Core + trim energy and growth underweight         0.13             0.14              0.12
+Current (drifted)                                 0.11             0.12              0.10
+Recommended core: fix the defensive leg           0.11             0.11              0.09
+Team direction: add defensives                    0.03             0.05              0.03
+
+Expected 3-month active return (%), model payoffs:
+ prob_set                                   A base rate  B policy analog  C recession risk
+candidate                                                                                
+Core + extend growth underweight                 -0.34            -0.31             -0.34
+Core + trim energy and growth underweight        -0.23            -0.21             -0.23
+Current (drifted)                                -0.34            -0.31             -0.33
+Recommended core: fix the defensive leg          -0.30            -0.28             -0.30
+Team direction: add defensives                   -0.47            -0.44             -0.46
+
+P(underperform SPY over 3 months):
+ prob_set                                   A base rate  B policy analog  C recession risk
+candidate                                                                                
+Core + extend growth underweight                  48.0             47.0              48.0
+Core + trim energy and growth underweight         46.0             46.0              46.0
+Current (drifted)                                 49.0             48.0              49.0
+Recommended core: fix the defensive leg           48.0             47.0              48.0
+Team direction: add defensives                    52.0             51.0              52.0
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  A base rate: most likely Steady state 45%, then Inflation scare 17%; sell-off (1+2) 11%
+  B policy analog: most likely Steady state 43%, then Inflation scare 19%; sell-off (1+2) 14%
+  C recession risk: most likely Steady state 45%, then Inflation scare 17%; sell-off (1+2) 12%
+  Team direction: add defensives vs current: ROBUSTLY WORSE (higher expected return in 0/6; worst scenario +0.21pp; ties with current at sell-off probability 29%)
+  Recommended core: fix the defensive leg vs current: MIXED (higher expected return in 3/6; worst scenario -0.34pp; ties with current at sell-off probability 11%)
+  Core + extend growth underweight vs current: ROBUSTLY WORSE (higher expected return in 0/6; worst scenario -0.29pp; ties with current at sell-off probability 2%)
+  Core + trim energy and growth underweight vs current: ROBUSTLY BETTER (higher expected return in 6/6; worst scenario -0.22pp; ties with current at sell-off probability 17%)
+  In-sample, overlapping windows: describes history in similar conditions, not a forecast.
+==========================================================================================

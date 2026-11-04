@@ -1,0 +1,76 @@
+========================================================================================== 
+MODULE 5 - MARKET-BASED CONFIRMATION (v1)
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  latest complete month: Oct 2026; composite available from Oct 2003
+  first available: trade_3m 1999-04, trade_6m 1999-07, staples_disc 1999-04, def_cyc 1999-04, large_small 2000-08, gold_copper 2000-11, credit 1999-04, vix_term 2007-12, spy_trend 1999-10, breadth 1999-10
+
+Scorecard (Oct 2026):
+                         group  reading threshold         vote  vote_3m_ago
+trade_3m      Sector rotation     4.62       1.5     CONFIRMS  CONTRADICTS
+trade_6m      Sector rotation     3.07       3.0     CONFIRMS  CONTRADICTS
+staples_disc  Sector rotation     6.22       1.5     CONFIRMS     CONFIRMS
+def_cyc       Sector rotation     3.13       1.5     CONFIRMS      neutral
+large_small       Cross-asset     5.24       1.5     CONFIRMS      neutral
+gold_copper       Cross-asset    -5.40       3.0  CONTRADICTS  CONTRADICTS
+credit                   Risk    58.00      25.0     CONFIRMS      neutral
+vix_term                 Risk     0.93      rule      neutral  CONTRADICTS
+spy_trend     Trend & breadth    -4.16       2.0  CONTRADICTS  CONTRADICTS
+breadth       Trend & breadth    70.00      rule      neutral  CONTRADICTS
+
+Net vote score: +0.40 (3 months ago -0.50, 6 months ago -0.40); continuous composite +0.55 z
+Signal correlations since 2003 (z, oriented):
+               trade_3m  trade_6m  staples_disc  def_cyc  large_small  gold_copper  credit  spy_trend  breadth
+trade_3m          1.00      0.65          0.90     0.64         0.29         0.27    0.50       0.39     0.19
+trade_6m          0.65      1.00          0.61     0.47         0.17         0.27    0.45       0.55     0.21
+staples_disc      0.90      0.61          1.00     0.63         0.41         0.25    0.52       0.41     0.23
+def_cyc           0.64      0.47          0.63     1.00         0.47         0.55    0.61       0.46     0.35
+large_small       0.29      0.17          0.41     0.47         1.00         0.24    0.42       0.20     0.20
+gold_copper       0.27      0.27          0.25     0.55         0.24         1.00    0.50       0.40     0.34
+credit            0.50      0.45          0.52     0.61         0.42         0.50    1.00       0.55     0.47
+spy_trend         0.39      0.55          0.41     0.46         0.20         0.40    0.55       1.00     0.83
+breadth           0.19      0.21          0.23     0.35         0.20         0.34    0.47       0.83     1.00
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+
+Composite test DEF-GRW: next-3-month return on market composite, 2003-10 to 2026-07, n=274
+  slope -5.73 pp/yr per 1 z (t=-1.57); composite now +0.55
+  expected -6.8 pp/yr (95% CI -14.4 to +0.7), t=-1.77 = average -3.8 + market tilt -3.0 (t=-1.57)
+
+Composite test CYC-DEF: next-3-month return on market composite, 2003-10 to 2026-07, n=274
+  slope -0.98 pp/yr per 1 z (t=-0.26); composite now +0.55
+  expected +0.6 pp/yr (95% CI -5.8 to +6.9), t=0.18 = average +1.1 + market tilt -0.5 (t=-0.26)
+
+DEF-GRW next 3 months by net vote bucket (cut-offs ±0.3):
+                     months  episodes    raw  raw_lo  raw_hi  raw_t    hit
+state                                                                    
+Market contradicts     155        38   1.26   -4.11    6.63   0.47  47.74
+Mixed                   83        51  -4.39  -12.46    3.67  -1.09  46.99
+Market confirms         71        31 -13.49  -24.52   -2.45  -2.50  30.99
+
+Individual signals: slope of next-3m DEF-GRW on each oriented z (descriptive; 9 tests, expect ~1 false |t|>2):
+               slope     t    n
+signal                        
+trade_3m      -4.81 -1.66  293
+trade_6m      -4.64 -1.64  290
+staples_disc  -4.74 -1.56  293
+def_cyc       -4.17 -2.09  293
+large_small   -2.84 -1.01  277
+gold_copper   -2.48 -1.33  274
+credit        -0.25 -0.10  293
+spy_trend     -4.52 -1.58  287
+breadth       -4.89 -1.65  287
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  Market view (Oct 2026): 6 of 10 signals confirm, 2 contradict; net score +0.40 -> Market confirms
+    confirming: trade_3m, trade_6m, staples_disc, def_cyc, large_small, credit
+    contradicting: gold_copper, spy_trend
+  Trend: net score 3 months ago -0.50, now +0.40
+  Is the trade already working? DEF-GRW last 3m +4.6%, last 6m +3.1%
+  Descriptive: DEF-GRW next 3m when 'Market confirms': -13.5 pp/yr (t=-2.50, 31 episodes)
+  HEADLINE composite test: composite now +0.55 z; expected DEF-GRW next 3m -6.8 pp/yr (95% CI -14.4 to +0.7), t=-1.77
+    = sample average -3.8 + market tilt -3.0 pp/yr (t=-1.57; slope -5.7 per z, t=-1.57)
+  Verdict (pre-registered, one-sided 5%, on the expected spread): CONTRADICTS
+  Market-tilt verdict (same rule, on the tilt alone): NEUTRAL
+==========================================================================================

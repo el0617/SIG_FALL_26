@@ -1,0 +1,68 @@
+  running: baseline
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+  running: training 60 months
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+  running: training 120 months
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+  running: rolling 120-month window
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+  running: forecasts from 2013
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+  running: 1-month horizon
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+
+ spec                            1-month horizon      baseline forecasts from 2013 rolling 120-month window training 120 months training 60 months
+signal                                                                                                                                           
+Cycle momentum (level + change)    NO OOS VALUE  NO OOS VALUE        NO OOS VALUE             NO OOS VALUE        NO OOS VALUE       NO OOS VALUE
+Market confirmation composite      NO OOS VALUE  NO OOS VALUE        NO OOS VALUE             NO OOS VALUE        NO OOS VALUE       NO OOS VALUE
+Policy tightening impulse          NO OOS VALUE  NO OOS VALUE        NO OOS VALUE             NO OOS VALUE        NO OOS VALUE       NO OOS VALUE
+Relative EPS revisions             NO OOS VALUE  NO OOS VALUE        NO OOS VALUE             NO OOS VALUE        NO OOS VALUE       NO OOS VALUE
+Valuation gap (vs median)          NO OOS VALUE  NO OOS VALUE        NO OOS VALUE             NO OOS VALUE        NO OOS VALUE       NO OOS VALUE
+
+Clark-West t:
+ spec                             1-month horizon  baseline  forecasts from 2013  rolling 120-month window  training 120 months  training 60 months
+signal                                                                                                                                            
+Cycle momentum (level + change)            -0.43     -0.93                -0.93                     -0.86                -1.19               -1.00
+Market confirmation composite               0.36      1.48                 1.44                      1.45                 1.47                0.34
+Policy tightening impulse                   0.48      0.72                 0.72                      0.15                 0.69                0.59
+Relative EPS revisions                      1.12      0.94                 0.94                      1.11                 0.96                0.96
+Valuation gap (vs median)                  -0.27     -0.40                -0.40                     -0.94                -0.25               -0.49
+
+OOS R2 (%):
+ spec                             1-month horizon  baseline  forecasts from 2013  rolling 120-month window  training 120 months  training 60 months
+signal                                                                                                                                            
+Cycle momentum (level + change)             -1.7      -5.9                 -3.0                      -8.6                 -4.8                -6.5
+Market confirmation composite                0.1       1.7                  1.7                       2.6                  1.7                 0.0
+Policy tightening impulse                   -0.1      -0.0                 -0.0                      -1.5                  0.1                -0.5
+Relative EPS revisions                       0.5       0.8                  0.8                       0.2                  0.9                 0.8
+Valuation gap (vs median)                   -1.4      -3.9                 -3.9                      -4.8                 -3.5                -3.9

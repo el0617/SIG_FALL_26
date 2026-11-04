@@ -83,7 +83,7 @@ sample,scen_spec,code,total,first,C1,C2,C3,C4,C5,C6
 2010,drawdown -7%,D,0,False,0,1,-1,-1,0,1
 2010,drawdown -7%,B,-2,False,0,0,-1,-1,0,0
 2010,drawdown -7%,A,-2,False,-1,0,-1,-1,0,1
-2010,drawdown -7%,C,-4,False,-1,0,-1,-1,-1,0
+2010,drawdown -7%,C,-3,False,-1,0,-1,-1,0,0
 2010,breakeven 15bp,E,4,True,1,0,1,1,1,0
 2010,breakeven 15bp,D,0,False,0,1,-1,-1,0,1
 2010,breakeven 15bp,B,-2,False,0,0,-1,-1,0,0

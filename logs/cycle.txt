@@ -1,0 +1,111 @@
+========================================================================================== 
+MODULE 2 - BUSINESS CYCLE / LEADING INDICATORS (v2)
+  orders input : ISM new orders minus inventories (Bloomberg, lag 1)
+  credit input : Bloomberg HY OAS (LF98OAS) from 1999, Baa-Treasury before (spliced in z-space)
+  interpolated months : {'UMCSENT': ['1977-12']}
+  ragged-edge carries : {cycle.ism_nmi: ['2026-11'], cycle.permits: ['2026-11'], cycle.hours: ['2026-11'], cycle.sentiment: ['2026-10'], cycle.credit_hy: ['2026-11'], cycle.credit_baa: ['2026-11']}
+  composite available from Dec 1980; latest row Oct 2026
+
+Input correlations since 1999 (should be positive, not ~1):
+            ism_nmi  permits  hours  sentiment  credit
+ism_nmi       1.00     0.35   0.47       0.32    0.49
+permits       0.35     1.00   0.31       0.19    0.38
+hours         0.47     0.31   1.00       0.19    0.30
+sentiment     0.32     0.19   0.19       1.00    0.53
+credit        0.49     0.38   0.30       0.53    1.00
+Independence from Module 1: corr(momentum, Module 1 growth, same month) = 0.58
+
+Current state (last 8 months):
+             momentum_z  momentum_chg  diffusion       phase  p_recession_12m  curve  baa_spread
+2026-04-30        0.29          0.76       60.0         Mid             0.35   0.71        1.71
+2026-05-31        0.27          0.55       60.0         Mid             0.30   0.88        1.62
+2026-06-30        0.12         -0.31       40.0  Transition             0.30   0.81        1.53
+2026-07-31        0.13         -0.36       40.0  Transition             0.30   0.87        1.59
+2026-08-31        0.13         -0.31       60.0  Transition             0.28   0.96        1.64
+2026-09-30        0.02         -0.23       20.0  Transition             0.24   1.05        1.48
+2026-10-31        0.05         -0.17       40.0  Transition             0.24   1.08        1.46
+2026-11-30         NaN           NaN        NaN         NaN              NaN    NaN         NaN
+
+Transition share since 1999: 23%  (target 15-30%)
+Momentum-band sensitivity (Transition share since 1999, labels only):
+  band_mom 0.15: 19%
+  band_mom 0.25: 23%
+  band_mom 0.35: 25%
+
+Lead validation: peak corr with Module 1 growth at k=0 months (0.58); with 6m IP growth at k=1 months (0.58)
+
+Recession probit (full-sample coefficients, HAC t):
+              coef      t
+const      -0.672 -1.802
+curve      -0.557 -4.195
+baa_spread  0.355  1.818
+AUC in-sample 0.76; REAL-TIME out-of-sample 0.79 over 670 months
+Latest real-time P(recession within 12m): 24% (Oct 2026)
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+
+Episodes per phase (return sample):
+              months  episodes  avg_len  longest  ep_3m_plus
+state                                                      
+Early            55        14      3.9        9          10
+Mid              72        18      4.0       12          14
+Late             34         9      3.8        8           5
+Contraction      96        18      5.3       12          17
+Transition       76        36      2.1       12           8
+
+DEF-GRW by phase, NEXT 3 MONTHS (annualized pp):
+              months  episodes   raw  raw_lo  raw_hi  raw_t  edge     t    hit  sign_stable
+state                                                                                     
+Early            55        14 -1.83  -18.29   14.62  -0.24  1.21  0.18  43.64        False
+Mid              72        18 -3.52  -10.66    3.62  -1.04 -0.47 -0.13  38.89        False
+Late             34         9 -8.97  -20.26    2.31  -1.83 -5.93 -1.21  32.35         True
+Contraction      96        18 -2.13  -16.39   12.14  -0.31  0.92  0.18  44.79        False
+Transition       74        36 -1.95  -10.13    6.22  -0.49  1.09  0.28  48.65        False
+
+CYC-DEF by phase, NEXT 3 MONTHS (annualized pp):
+              months  episodes   raw  raw_lo  raw_hi  raw_t  edge     t    hit  sign_stable
+state                                                                                     
+Early            55        14 -0.75  -16.41   14.91  -0.10 -2.62 -0.43  58.18        False
+Mid              72        18  3.86   -5.86   13.59   0.84  1.99  0.51  58.33        False
+Late             34         9  2.51  -11.68   16.70   0.41  0.64  0.11  61.76        False
+Contraction      96        18  4.72   -2.63   12.06   1.36  2.85  0.95  60.42         True
+Transition       74        36 -2.10   -7.06    2.86  -0.86 -3.98 -1.48  45.95         True
+
+Credible sector cells, next 3 months (q<=0.10, sign-stable, >=5 episodes): none
+
+Slope test DEF-GRW (next-3-month return on momentum level and change, HAC(6)), 1999-01 to 2026-07, n=331:
+           coef      t
+average -3.046 -1.200
+level   -1.536 -0.406
+change   1.210  0.608
+  fitted at Oct 2026 readings: -3.5 pp/yr (95% CI -8.1 to +1.0), t=-1.53  =  average -3.0 + cycle tilt -0.5 (t=-0.57)
+
+Slope test CYC-DEF (next-3-month return on momentum level and change, HAC(6)), 1999-01 to 2026-07, n=331:
+           coef      t
+average  1.871  0.945
+level   -0.640 -0.174
+change   0.791  0.345
+  fitted at Oct 2026 readings: +1.6 pp/yr (95% CI -1.7 to +4.9), t=0.95  =  average +1.9 + cycle tilt -0.3 (t=-0.28)
+
+One-month phase transition matrix:
+ to           Early   Mid  Late  Contraction  Transition
+from                                                   
+Early         0.75  0.09  0.00         0.02        0.15
+Mid           0.00  0.75  0.08         0.00        0.17
+Late          0.00  0.00  0.73         0.11        0.16
+Contraction   0.08  0.01  0.00         0.82        0.10
+Transition    0.08  0.17  0.06         0.17        0.53
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  Phase (Oct 2026): Transition (no clear phase)  [level +0.05, momentum -0.17, diffusion 40%]
+  Leads Module 1 growth by ~0 months; real-time recession AUC 0.79
+  P(recession within 12m), real-time: 24%
+  Next-3-month phase odds: Recovery 6%, Expansion 13%, Late cycle 5%, Contraction 13%, Transition 62%
+  DEF-GRW next 3m in current phase: -2.0 pp/yr (95% CI -10.1 to +6.2), t=-0.49, 36 episodes -> NEUTRAL
+  Probability-weighted DEF-GRW (next-month returns, 3 months): +1.0 pp/yr
+  HEADLINE slope test: DEF-GRW next 3m at today's readings -3.5 pp/yr (95% CI -8.1 to +1.0), t=-1.53
+    = sample average -3.0 (secular drift) + cycle tilt -0.5 pp/yr (t=-0.57; positive = cycle points toward defensives)
+  Verdict (pre-registered, one-sided 5%, on the expected spread): NEUTRAL
+  Cycle-tilt verdict (same rule, on the tilt alone): NEUTRAL
+  Cross-check CYC-DEF slope test: +1.6 pp/yr, t=0.95 (a defensive thesis expects this to be NEGATIVE)
+==========================================================================================

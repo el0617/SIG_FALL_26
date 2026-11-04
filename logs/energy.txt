@@ -1,0 +1,73 @@
+==========================================================================================
+MODULE 10 - ENERGY DEEP DIVE
+==========================================================================================
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+Position: XLE 10.33% vs benchmark 3.72% -> active +6.61pp (drifted to Oct 2026)
+
+A. What moves XLE vs SPY (monthly %, HAC). Oil per +10%, rates per +100bp, SPY per +1%, dollar per +1%:
+           since 2003     t  since 2020    t 
+oil              2.57  3.04        2.35  1.83
+breakeven        6.42  2.22       10.69  1.46
+real             1.31  0.76        3.21  0.63
+spy             -0.31 -2.31       -0.30 -0.85
+dollar          -0.14 -0.70       -0.31 -0.63
+  R2 31% since 2003 (n=249), 27% since 2020 (n=82)
+
+B. Correlation of energy's active return with the other bets (today's weights on history):
+                                       last 60 months  since 2003  SPY-down months since 2003
+growth underweight (VGT, XLY)                   0.65        0.35                        0.31
+defensive overweight (XLP, XLV, XLU)            0.45       -0.01                       -0.02
+rest of portfolio (ex XLE)                      0.60        0.27                        0.26
+
+C. Oil-crash stress (cumulative):
+                                    months  XLE minus SPY (%)  cost of today's overweight (pp)
+episode                                                                                      
+2008 crisis (Jul 2008 - Feb 2009)       7              -3.36                            -0.22
+Oil glut (Jul 2014 - Jan 2016)         18             -40.68                            -2.69
+Covid (Jan - Apr 2020)                  3             -18.12                            -1.20
+Post-peak (Jun - Dec 2022)              6              22.67                             1.50
+  Worst 3-month XLE minus SPY since 2003 (%): 2020-03 -31.1, 2020-09 -28.6, 2026-06 -27.8, 2014-11 -22.5, 2020-08 -22.1
+
+D. Module 8 scenarios:
+                          windows  XLE minus SPY, 3m (%)  XLE beat SPY (% of windows)  portfolio impact of overweight (pp)
+scenario                                                                                                                 
+Stagflationary sell-off       10                   8.55                        80.00                                 0.57
+Growth scare                  21                  -6.14                        19.05                                -0.41
+Inflation scare               48                   3.83                        64.58                                 0.25
+Real-yield squeeze            39                   2.55                        48.72                                 0.17
+Easing rally                  38                  -1.87                        42.11                                -0.12
+Steady state                 127                  -0.68                        40.16                                -0.04
+
+E. Sizing (60-month covariance):
+                  tracking error (%)  energy share of active risk (%)
+XLE active (pp)                                                     
+0.0                            3.30                             0.00
+1.0                            3.44                             2.64
+2.0                            3.60                             5.73
+3.0                            3.76                             9.08
+4.0                            3.94                            12.53
+5.0                            4.13                            15.98
+6.0                            4.32                            19.34
+7.0                            4.53                            22.58
+8.0                            4.73                            25.66
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+
+F. Valuation and revisions (Module 7):
+         fwd_pe  pe_pct  rel_pct  rev3  rev12   dy
+ticker                                           
+XLE       13.1    51.0     23.3  11.7   63.6  2.6
+  WTI 99.6 on 2026-11: +9% over 6 months, +70% over 12; 89th percentile since 2003
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  Position: XLE active +6.61pp; 23% of active risk at about that size
+  1 Inflation hedge: breakeven beta +6.42% per 100bp (t=2.2) -> PASS
+  2 Diversifier: corr with growth underweight +0.65 (60m; limit +0.30) -> FAIL
+  3 Scenario payoff: inflation scare +3.8%, stagflationary sell-off +8.5% -> PASS
+  4 Tail cost: worst oil crash would cost -2.69pp at today's overweight (limit -1.0) -> FAIL
+  Verdict (pre-registered, 2/4): PARTLY JUSTIFIED
+  Oil is the main driver: +10% oil -> XLE +2.6% vs SPY (t=3.0)
+==========================================================================================

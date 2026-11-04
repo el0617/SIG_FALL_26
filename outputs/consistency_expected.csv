@@ -1,0 +1,19 @@
+candidate,prob_set,exp_empirical,exp_model,p_underperform,worst_scenario,worst
+Current (drifted),A base rate,0.1077,-0.339,0.4876,Growth scare,-0.358
+Current (drifted),B policy analog,0.1189,-0.3121,0.4839,Growth scare,-0.358
+Current (drifted),C recession risk,0.0954,-0.3327,0.4913,Growth scare,-0.358
+Add defensives,A base rate,0.0321,-0.4734,0.5159,Steady state,-0.1533
+Add defensives,B policy analog,0.0482,-0.4362,0.5113,Steady state,-0.1533
+Add defensives,C recession risk,0.0255,-0.46,0.5179,Steady state,-0.1533
+Proposal,A base rate,0.1312,-0.2316,0.4594,Growth scare,-0.5803
+Proposal,B policy analog,0.1367,-0.2133,0.4607,Growth scare,-0.5803
+Proposal,C recession risk,0.1187,-0.2295,0.4634,Growth scare,-0.5803
+Base (half hedge),A base rate,0.1898,-0.1661,0.4205,Growth scare,-0.128
+Base (half hedge),B policy analog,0.1959,-0.1521,0.4219,Growth scare,-0.128
+Base (half hedge),C recession risk,0.1867,-0.1589,0.4189,Growth scare,-0.128
+"Base (full hedge, post hoc)",A base rate,0.2124,-0.1322,0.4311,Growth scare,-0.4746
+"Base (full hedge, post hoc)",B policy analog,0.2163,-0.1208,0.4331,Growth scare,-0.4746
+"Base (full hedge, post hoc)",C recession risk,0.2024,-0.1298,0.4321,Growth scare,-0.4746
+Base capped (post hoc),A base rate,0.1898,-0.1661,0.4205,Growth scare,-0.128
+Base capped (post hoc),B policy analog,0.1959,-0.1521,0.4219,Growth scare,-0.128
+Base capped (post hoc),C recession risk,0.1867,-0.1589,0.4189,Growth scare,-0.128

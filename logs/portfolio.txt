@@ -1,0 +1,116 @@
+/workspaces/SIG_FALL_26/src/portfolio.py:312: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  M.round(3).to_csv(OUT / "portfolio_metrics.csv")
+========================================================================================== 
+MODULE 6 - PORTFOLIO RISK, SCENARIOS AND CANDIDATE WEIGHTINGS (v1)
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+
+ETF sensitivities (beta: 60m vs SPY; real/be: % vs SPY per +100bp):
+       beta  real_full  be_full  real_post  be_post  real_ex22  be_ex22
+VGT   1.36      -0.41     2.34      -2.63    -0.26      -0.73    -1.51
+XLY   1.20      -1.09     0.75      -3.35     2.52      -3.94     3.65
+XLC   1.01      -0.53    -2.12      -0.48    -2.76       0.20     0.17
+XLF   0.85       3.14     1.78       1.88     3.32       1.40     4.98
+XLI   0.98       0.71     2.03      -0.25     2.95      -1.10     2.99
+XLB   0.89      -0.41     5.54      -2.16     1.17      -4.85     2.48
+XLE   0.44       2.15    10.62       6.66    18.21       2.85    19.40
+XLP   0.44      -1.01    -6.57       1.56    -5.76      -1.34    -6.53
+XLV   0.52      -0.80    -4.88       1.13    -8.96      -1.16   -10.29
+XLU   0.54      -4.18    -8.52       0.32    -7.42      -2.09    -7.52
+SCHH  0.92      -4.54    -3.11      -3.60    -2.18      -6.64    -1.42
+
+Weights drifted from 2026-05-29 through Oct 2026 (5 months of returns):
+        05/29/26  drifted  benchmark (IVV)  active
+ticker                                            
+VGT        28.43    26.22            38.27  -12.05
+XLY         6.39     5.83             9.01   -3.18
+XLC         7.73     6.39             9.40   -3.01
+XLF        10.56    11.10            11.80   -0.70
+XLI         5.59     5.17             8.01   -2.84
+XLB         6.39     6.33             1.67    4.66
+XLE         8.61    10.33             3.72    6.61
+XLP        10.60    11.04             4.74    6.30
+XLV        11.28    13.40             9.69    3.71
+XLU         2.45     2.31             1.97    0.34
+SCHH        1.97     1.87             1.71    0.16
+
+Candidate weights (%):
+         Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight  Core + trim energy and growth underweight
+ticker                                                                                                                                                                         
+VGT                 26.22                           22.22                                    26.22                             24.22                                      28.72
+XLY                  5.83                            4.83                                     5.83                              5.83                                       5.83
+XLC                  6.39                            6.39                                     6.39                              6.39                                       6.39
+XLF                 11.10                           11.10                                    14.10                             14.10                                      14.10
+XLI                  5.17                            5.17                                     5.17                              6.17                                       5.17
+XLB                  6.33                            6.33                                     6.33                              6.33                                       6.33
+XLE                 10.33                           10.33                                    10.33                             10.33                                       7.83
+XLP                 11.04                           13.04                                     8.04                              8.04                                       8.04
+XLV                 13.40                           15.40                                    13.40                             14.40                                      13.40
+XLU                  2.31                            3.31                                     2.31                              2.31                                       2.31
+SCHH                 1.87                            1.87                                     1.87                              1.87                                       1.87
+
+Group weights (%):
+                               Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight  Core + trim energy and growth underweight  benchmark
+Growth (VGT, XLY)                          32.1                            27.1                                     32.1                              30.1                                       34.6       47.3
+Defensive (XLP, XLV, XLU)                  26.7                            31.7                                     23.7                              24.7                                       23.7       16.4
+Inflation hedge (XLE, XLB)                 16.7                            16.7                                     16.7                              16.7                                       14.2        5.4
+Real-yield beneficiary (XLF)               11.1                            11.1                                     14.1                              14.1                                       14.1       11.8
+Other (XLC, XLI, SCHH)                     13.4                            13.4                                     13.4                              14.4                                       13.4       19.1
+
+Risk vs SPY (annualized %, VaR/CVaR = 95% relative loss vs SPY over 1 and 3 months; te_bench = tracking error vs the sector-weighted benchmark):
+                                            beta    vol    te  te_bench  te_ewma  var1  cvar1  var3  cvar3  beta_cost  carry_3m  protection_3m  p_star
+portfolio                                                                                                                                            
+Current (drifted)                          0.89  14.28  4.38      4.45     5.25  1.42   2.07  2.57   3.65      -0.57     -0.12           0.61    0.16
+Team direction: add defensives             0.84  13.90  5.32      5.50     6.33  1.86   2.63  2.98   4.67      -0.78     -0.31           1.00    0.24
+Recommended core: fix the defensive leg    0.90  14.45  4.29      4.30     5.10  1.44   2.11  2.71   3.60      -0.51     -0.06           0.34    0.15
+Core + extend growth underweight           0.89  14.35  4.62      4.67     5.50  1.72   2.27  3.03   4.02      -0.57     -0.13           0.40    0.24
+Core + trim energy and growth underweight  0.92  14.63  3.56      3.48     4.33  1.17   1.78  1.97   2.77      -0.39     -0.00           0.26    0.00
+
+Scenario returns vs SPY (%):
+ portfolio                                     Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight  Core + trim energy and growth underweight
+Real yields +50bp (post-2020 betas)                        0.05                            0.15                                     0.05                              0.08                                      -0.06
+Real yields +50bp (post-2020 ex-2022)                     -0.40                           -0.40                                    -0.36                             -0.36                                      -0.40
+Breakevens +25bp (inflation scare)                         0.16                            0.06                                     0.22                              0.20                                       0.17
+Stagflation: breakevens +25bp, real +25bp                  0.18                            0.13                                     0.25                              0.25                                       0.14
+Equity -10% (risk-off)                                     1.14                            1.55                                     1.02                              1.14                                       0.79
+Growth scare: equity -10%, real yields -50bp               1.09                            1.41                                     0.97                              1.06                                       0.85
+
+Share of active risk by position (%; Euler split on active weights, sums to 100):
+       Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight  Core + trim energy and growth underweight
+VGT                49.9                            55.2                                     50.7                              55.0                                       50.3
+XLY                 8.1                             9.0                                      7.9                               7.3                                       10.1
+XLC                 6.8                             5.6                                      6.6                               6.1                                        8.5
+XLF                 0.1                             0.2                                      0.2                               0.2                                        0.1
+XLI                 2.1                             1.8                                      1.9                               1.0                                        2.4
+XLB                 2.3                             1.5                                      2.8                               2.6                                        3.5
+XLE                21.3                            15.5                                     23.6                              21.0                                       16.4
+XLP                 6.6                             7.1                                      3.3                               3.1                                        4.4
+XLV                 2.6                             3.4                                      2.8                               3.4                                        4.0
+XLU                 0.2                             0.8                                      0.2                               0.2                                        0.3
+SCHH               -0.1                            -0.1                                     -0.1                              -0.1                                       -0.1
+
+Share of active risk by thesis leg (%):
+                                       Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight  Core + trim energy and growth underweight
+Growth underweight (VGT, XLY)                      58.0                            64.2                                     58.7                              62.3                                       60.4
+Communication services (XLC)                        6.8                             5.6                                      6.6                               6.1                                        8.5
+Energy and materials (XLE, XLB)                    23.7                            17.1                                     26.4                              23.7                                       20.0
+Defensive overweight (XLP, XLV, XLU)                9.4                            11.3                                      6.3                               6.8                                        8.6
+Other (XLF, XLI, SCHH)                              2.2                             1.9                                      2.0                               1.2                                        2.4
+
+==========================================================================================
+EVIDENCE SUMMARY (current vs recommended)
+  Largest active-risk positions (current): VGT 50%, XLE 21%, XLY 8%, XLC 7%
+  Tracking error vs SPY            current        4.38%   recommended        4.29%
+  Tracking error vs benchmark      current        4.45%   recommended        4.30%
+  Beta vs SPY                      current         0.89   recommended         0.90
+  Beta cost at 5% ERP              current  -0.57 pp/yr   recommended  -0.51 pp/yr
+  3-month CVaR vs SPY              current        3.65%   recommended        3.60%
+  Breakeven drawdown probability   current          16%   recommended          15%
+  Real yields +50bp (post-2020 betas)            current +0.05%   recommended +0.05%
+  Real yields +50bp (post-2020 ex-2022)          current -0.40%   recommended -0.36%
+  Breakevens +25bp (inflation scare)             current +0.16%   recommended +0.22%
+  Stagflation: breakevens +25bp, real +25bp      current +0.18%   recommended +0.25%
+  Equity -10% (risk-off)                         current +1.14%   recommended +1.02%
+  Growth scare: equity -10%, real yields -50bp   current +1.09%   recommended +0.97%
+==========================================================================================

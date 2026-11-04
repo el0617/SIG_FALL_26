@@ -1,0 +1,183 @@
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+====================================================================================================
+THESIS TOURNAMENT (rules: docs/tournament_preregistration.md)
+====================================================================================================
+Returns 1999-01 to 2026-10; scenario windows 2003-01 to 2026-07
+
+                            thesis  C1  C2  C3  C4  C5  C6  total  rank
+code                                                                   
+E       Growth drift (anti-thesis)   0   0   1   1   1   0      3     1
+D           Hard-landing insurance   0   1   0  -1   0   1      1     2
+B             Inflation-hedge tilt   0   0   0   0   0   0      0     3
+A     Defensive tilt (team thesis)   0   0  -1  -1   0   1     -1     4
+C     Barbell (TOPDOWN2 structure)   0   0   0  -1  -1   0     -2     5
+
+Statistics behind the scores:
+ code                       E      D      B      A      C
+mean_pp_yr              2.30  -0.93   1.70  -3.23  -1.91
+t_mean                  1.62  -0.49   0.64  -1.09  -0.66
+alpha_pp_yr             0.08   3.27   1.46   3.18   2.28
+t_alpha                 0.06   2.26   0.51   1.32   0.83
+beta                    0.24  -0.45   0.03  -0.68  -0.45
+half1_pp_yr             1.42   1.24   6.49  -0.18   2.44
+half2_pp_yr             3.18  -3.13  -3.15  -6.31  -6.32
+vol_pp_yr               8.06  10.53  13.79  16.80  15.51
+ir                      0.28  -0.09   0.12  -0.19  -0.12
+ev_A                    0.68  -0.48   0.04  -1.15  -0.89
+ev_B                    0.68  -0.40   0.05  -1.08  -0.85
+ev_C                    0.66  -0.37  -0.08  -1.04  -0.89
+ev_Inflation persists   0.86  -1.06   1.01  -1.92  -0.88
+ev_Higher for longer    0.55  -0.28   0.14  -0.83  -0.62
+ev_Hard landing         0.25   1.45  -0.94   1.19  -0.01
+ev_Soft landing         0.64  -0.34  -0.27  -0.98  -0.93
+selloff_3m             -0.48   5.56  -1.59   6.04   2.42
+t_selloff              -0.41   4.87  -0.59   3.07   1.02
+n_selloff              31.00  31.00  31.00  31.00  31.00
+ev_A_at_TE              0.21  -0.11   0.01  -0.17  -0.14
+
+Mean 3-month tilt return by scenario (%):
+                             A     B     C     D     E
+scenario                                             
+Stagflationary sell-off  4.30  6.22  5.13  4.58  0.27
+Growth scare             6.87 -5.31  1.13  6.03 -0.84
+Inflation scare         -6.18  3.10 -2.47 -4.36  1.82
+Real-yield squeeze      -1.95  0.70 -0.79 -1.58  0.37
+Easing rally             0.70 -0.88 -0.17  0.92  0.22
+Steady state            -1.32 -0.64 -1.34 -0.56  0.75
+
+Robustness: 3 sample starts x 7 scenario specs = 21 settings
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+                            thesis  min_total  max_total  median_total  first_in C1_range C2_range C3_range C4_range C5_range C6_range
+code                                                                                                                                  
+E       Growth drift (anti-thesis)          3          4           4.0        21   +0..+1   +0..+0   +1..+1   +1..+1   +1..+1   +0..+0
+D           Hard-landing insurance          0          1           1.0         0   +0..+0   +1..+1   -1..+0   -1..-1   +0..+0   +1..+1
+B             Inflation-hedge tilt         -2          0           0.0         0   +0..+0   +0..+0   -1..+0   -1..+0   +0..+0   +0..+0
+A     Defensive tilt (team thesis)         -2         -1          -1.0         0   -1..+0   +0..+0   -1..-1   -1..-1   +0..+0   +1..+1
+C     Barbell (TOPDOWN2 structure)         -4         -1          -2.0         0   -1..+0   +0..+0   -1..+0   -1..-1   -1..+0   +0..+0
+
+VERDICT (pre-registered language)
+  Strongest backing: Growth drift (anti-thesis)  [first in 21/21 settings]
+  E Growth drift (anti-thesis): total +3 -> SUPPORTED
+  D Hard-landing insurance: total +1 -> mixed
+  B Inflation-hedge tilt: total +0 -> mixed
+  A Defensive tilt (team thesis): total -1 -> mixed
+  C Barbell (TOPDOWN2 structure): total -2 -> CONTRADICTED
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+
+Valuation context, long vs short basket (Bloomberg; NOT scored; file not committed):
+   rel_pe_now rel_pe_pct rel_rev_3m_pp    rev_pct                 asof
+A   0.852374  38.955823     -8.392509   8.943089  2026-09-30 00:00:00
+B   0.776289  20.481928     -3.030018  36.065574  2026-09-30 00:00:00
+C   0.770845  36.546185     -7.050587   11.47541  2026-09-30 00:00:00
+D   0.940498  28.514056     -5.713863   7.317073  2026-09-30 00:00:00
+E   1.103386  37.751004      2.678647  82.926829  2026-09-30 00:00:00

@@ -1,0 +1,140 @@
+========================================================================================== 
+MODULE 1 - MACRO REGIME (v2.1)
+  growth survey slot   : ISM manufacturing new orders (Bloomberg, lag 1)
+  inflation survey slot: ISM prices paid (Bloomberg, lag 1)
+  interpolated months  : {'RRSFS': ['2025-10'], 'CPILFESL': ['2025-10']}
+  ragged-edge carries  : {'growth.payrolls': ['2026-11'], 'growth.indpro': ['2026-11'], 'growth.real_retail': ['2026-11'], 'growth.claims_inv': ['2026-11'], 'growth.survey_orders': ['2026-11'], 'inflation.core_cpi': ['2026-11'], 'inflation.core_pce': ['2026-11'], 'inflation.survey_prices': ['2026-11']}
+  latest row Nov 2026 is PROVISIONAL (month in progress)
+
+Current state (last 8 months):
+             growth_z  inflation_z       regime  growth_mom  inflation_mom        direction  nowcast_growth  nowcast_inflation
+2026-04-30     -0.21         0.80  Stagflation        0.31           0.77      G up / I up            0.51               1.32
+2026-05-31      0.05         1.09   Transition        0.47           0.99      G up / I up            0.08               1.30
+2026-06-30      0.13         1.14   Transition        0.42           0.71      G up / I up            0.11               1.14
+2026-07-31      0.26         0.98    Reflation        0.47           0.18      G up / I up            0.64               0.85
+2026-08-31      0.13         0.67    Reflation        0.08          -0.42    G up / I down            0.71               0.61
+2026-09-30      0.17         0.39    Reflation        0.03          -0.75    G up / I down            0.60               0.83
+2026-10-31      0.13         0.48    Reflation       -0.13          -0.49  G down / I down            0.29               0.83
+2026-11-30      0.17         0.67    Reflation        0.04           0.00      G up / I up            0.28               0.54
+
+Transition share since 1999: 15%  (target 15-30%)
+Band sensitivity (Transition share since 1999, labels only):
+  band 0.10: 7%
+  band 0.15: 15%
+  band 0.20: 20%
+  band 0.25: 22%
+Share of months with inflation_z > 0, by decade:
+ 1960    0.56
+1970    0.95
+1980    0.60
+1990    0.56
+2000    0.68
+2010    0.22
+2020    0.86
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+
+Episodes per regime (return sample):
+              months  episodes  avg_len  longest  ep_3m_plus
+state                                                      
+Goldilocks       56         6      9.3       18           5
+Reflation        70        10      7.0       22           9
+Stagflation      90        11      8.2       18           8
+Slowdown         67         8      8.4       17           6
+Transition       50        23      2.2        8           5
+
+edge (sector x regime):
+ state   Goldilocks  Reflation  Stagflation  Slowdown  Transition
+series                                                          
+IYR            3.9        1.9         -4.9       5.2        -4.6
+XLB           -0.3       -8.8          0.5       7.3         2.0
+XLE           -7.5       22.3          0.9     -19.1         1.3
+XLF           -3.3       -2.8         -3.9       0.8        13.7
+XLI            3.8       -3.1         -1.2      -2.5         5.5
+XLK            1.7        1.2          0.7      -0.1        -4.8
+XLP           -3.2        3.9          1.2       2.3        -7.1
+XLU            1.0        7.0          1.9      -1.5       -12.3
+XLV            1.7        3.0         -1.6       1.6        -5.3
+XLY            0.4       -7.0         -3.7       7.0         6.6
+
+t (sector x regime):
+ state   Goldilocks  Reflation  Stagflation  Slowdown  Transition
+series                                                          
+IYR            1.0        0.5         -1.0       0.8        -0.8
+XLB           -0.1       -1.9          0.1       1.5         0.6
+XLE           -1.0        2.3          0.1      -2.1         0.2
+XLF           -0.9       -0.6         -0.8       0.1         2.7
+XLI            1.0       -1.0         -0.5      -1.1         1.9
+XLK            0.5        0.3          0.1      -0.0        -1.2
+XLP           -0.8        1.3          0.2       0.7        -2.0
+XLU            0.2        1.4          0.3      -0.3        -2.1
+XLV            0.5        1.0         -0.5       0.5        -1.2
+XLY            0.1       -2.7         -1.2       2.6         1.9
+
+q (sector x regime):
+ state   Goldilocks  Reflation  Stagflation  Slowdown  Transition
+series                                                          
+IYR           0.81       0.89         0.81      0.82        0.82
+XLB           0.96       0.45         0.94      0.76        0.89
+XLE           0.81       0.40         0.94      0.40        0.94
+XLF           0.81       0.89         0.84      0.94        0.40
+XLI           0.81       0.81         0.89      0.81        0.40
+XLK           0.89       0.94         0.94      0.99        0.81
+XLP           0.82       0.81         0.94      0.87        0.40
+XLU           0.94       0.77         0.94      0.94        0.40
+XLV           0.89       0.81         0.89      0.89        0.81
+XLY           0.94       0.40         0.81      0.40        0.40
+
+Credible cells (q<=0.10, sign-stable, >=5 episodes): none
+
+THESIS TEST - Defensives minus Growth by regime (annualized pp):
+              months  episodes    raw  raw_lo  raw_hi  raw_t  edge     t    hit  loeo_min  loeo_max  sign_stable
+state                                                                                                          
+Goldilocks       56         6  -4.03  -12.33    4.26  -1.25 -1.25 -0.34  51.79     -3.56      1.42        False
+Reflation        70        10   4.76   -2.83   12.34   1.42  7.54  2.09  54.29      6.26      9.62         True
+Stagflation      90        11  -0.80  -17.86   16.26  -0.10  1.98  0.35  52.22     -2.04      5.24        False
+Slowdown         67         8  -5.46  -20.44    9.51  -0.86 -2.68 -0.50  49.25     -5.82      0.79        False
+Transition       50        23 -11.91  -22.98   -0.84  -2.23 -9.13 -1.77  42.00    -11.80     -7.60         True
+
+Direction lens (3m change in composites) - DEF-GRW:
+                  months  episodes   raw  raw_t  edge     t    hit
+state                                                            
+G up / I down        59        29 -1.99  -0.29  0.79  0.13  49.15
+G up / I up         107        30 -6.30  -1.50 -3.52 -0.89  52.34
+G down / I up        63        29 -4.88  -0.71 -2.10 -0.34  46.03
+G down / I down     104        38  1.66   0.25  4.44  0.87  51.92
+
+One-month transition matrix:
+ to           Goldilocks  Reflation  Stagflation  Slowdown  Transition
+from                                                                 
+Goldilocks         0.90       0.00         0.00      0.04        0.06
+Reflation          0.01       0.87         0.06      0.00        0.06
+Stagflation        0.00       0.01         0.88      0.02        0.09
+Slowdown           0.01       0.00         0.01      0.87        0.10
+Transition         0.09       0.16         0.11      0.07        0.56
+
+Regime distribution for the next 3 return months (starting from Reflation):
+      Goldilocks  Reflation  Stagflation  Slowdown  Transition
+t+0        0.00       1.00         0.00      0.00        0.00
+t+1        0.01       0.87         0.06      0.00        0.06
+t+2        0.03       0.77         0.10      0.01        0.09
+
+Markov P(weak-growth state), latest: 0.01  (robustness check only)
+
+Nowcast inputs: growth ['claims_inv', 'philly_activity', 'philly_orders', 'empire_activity', 'ism_orders_minus_inv', 'hy_oas_inv']; inflation ['breakeven_5y', 'umich_1y', 'philly_prices', 'ism_prices']
+Nowcast validation - correlation of nowcast(t) with the lagged composite at t+k:
+  k=0: growth 0.79   inflation 0.89
+  k=1: growth 0.78   inflation 0.88
+  k=2: growth 0.67   inflation 0.81
+  k=3: growth 0.53   inflation 0.72
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  Regime, lagged composite (Nov 2026): Strong growth / high inflation  [growth +0.17, inflation +0.67]
+  Direction of travel (3m): G up / I up
+  Nowcast (Nov 2026): growth +0.28, inflation +0.54
+  Next-3-month regime odds: Strong growth / high inflation 88%, Weak growth / high inflation 5%
+  DEF-GRW in current regime: +4.8 pp/yr (95% CI -2.8 to +12.3), t=1.42, 10 episodes, hit 54%
+  Probability-weighted DEF-GRW, next 3 months: +3.5 pp/yr
+  Verdict (pre-registered, one-sided 5%): NEUTRAL
+  Input check - same model with free FRED surveys instead of ISM: Strong growth / high inflation, verdict SUPPORTS; labels agree 77% of months since 1999
+==========================================================================================

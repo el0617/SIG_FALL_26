@@ -1,0 +1,13 @@
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+
+Driver betas by window (oil per +10%):
+     window   n  R2  oil beta  oil t  breakeven beta  breakeven t  real beta  real t  spy beta  spy t  dollar beta  dollar t
+since 2003 249  31      2.57    3.0            6.42          2.2       1.31     0.8     -0.31   -2.3        -0.14      -0.7
+ 2003-2012  83  37      2.90    3.3            3.44          2.0       0.18     0.1     -0.35   -4.1        -0.15      -0.4
+ 2013-2019  84  44      2.45    6.6            9.67          3.6       0.42     0.2     -0.26   -3.2        -0.02      -0.1
+since 2020  82  27      2.35    1.8           10.69          1.5       3.21     0.6     -0.30   -0.8        -0.31      -0.6
+   ex 2020 237  42      3.47    9.3            4.29          2.3       0.26     0.2     -0.45   -5.0        -0.16      -0.8
+
+36-month correlation with the growth underweight: now +0.70, range -0.08 to +0.71, above +0.30 in 48% of windows

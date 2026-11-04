@@ -1,0 +1,83 @@
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+1. Module 8 decision rule vs Current, 12 settings
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+   Add defensives                 {'ROBUSTLY WORSE': 12}
+   Proposal                       {'ROBUSTLY BETTER': 12}
+   Base (half hedge)              {'ROBUSTLY BETTER': 12}
+   Base (full hedge, post hoc)    {'ROBUSTLY BETTER': 12}
+   Base capped (post hoc)         {'ROBUSTLY BETTER': 12}
+2. Oil-crash tail cost at each XLE active weight (Module 10 limit -1.0pp)
+   Current (drifted)              XLE +6.6pp -> worst -2.69pp
+   Add defensives                 XLE +6.6pp -> worst -2.69pp
+   Proposal                       XLE +4.1pp -> worst -1.67pp
+   Base (half hedge)              XLE +2.3pp -> worst -0.93pp
+   Base (full hedge, post hoc)    XLE +3.7pp -> worst -1.50pp
+   Base capped (post hoc)         XLE +2.3pp -> worst -0.93pp
+3. Real-yield exposure of active return (per +100bp), sign under different controls
+   Current (drifted)    60m, with SPY          -1.67% (t -2.1)
+   Current (drifted)    post-2020, no SPY      +0.91% (t +1.6)
+   Current (drifted)    post-2020, with SPY    -0.32% (t -0.4)
+   Base (half hedge)    60m, with SPY          -1.07% (t -2.3)
+   Base (half hedge)    post-2020, no SPY      +0.41% (t +1.2)
+   Base (half hedge)    post-2020, with SPY    -0.47% (t -1.1)

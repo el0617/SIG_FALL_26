@@ -1,0 +1,86 @@
+  running: baseline
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: drawdown -4%
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: drawdown -7%
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: breakeven 15bp
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: breakeven 25bp
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: real 20bp
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: real 35bp
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: shrinkage K=6
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: shrinkage K=24
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: sample 2010+
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: model betas post-2020
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  running: policy band 50bp
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+
+                  spec  sell-off p (C)  rec - cur (A)  rec - cur (C)           recommended       team direction
+             baseline            12.0          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)
+         drawdown -4%            14.9          -0.00          -0.01           MIXED (3/6) ROBUSTLY WORSE (0/6)
+         drawdown -7%             8.0          -0.00          -0.00           MIXED (4/6) ROBUSTLY WORSE (0/6)
+       breakeven 15bp            12.0          -0.00          -0.01           MIXED (3/6) ROBUSTLY WORSE (0/6)
+       breakeven 25bp            12.0          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)
+            real 20bp            12.0          -0.00          -0.01           MIXED (3/6) ROBUSTLY WORSE (0/6)
+            real 35bp            12.0          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)
+        shrinkage K=6            12.1          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)
+       shrinkage K=24            11.9          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)
+         sample 2010+            13.9           0.02          -0.00 ROBUSTLY BETTER (5/6) ROBUSTLY WORSE (0/6)
+model betas post-2020            12.0          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)
+     policy band 50bp            12.0          -0.00          -0.00           MIXED (3/6) ROBUSTLY WORSE (0/6)

@@ -1,0 +1,82 @@
+========================================================================================== 
+MODULE 3 - MONETARY POLICY, RATES AND LIQUIDITY (v1)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  ragged-edge carries: {'policy.core_pce_yoy': ['2026-11'], 'policy.real_fed_funds': ['2026-11'], 'policy.net_liquidity_bn': ['2026-11'], 'policy.dollar': ['2026-11']}
+
+Current state (last 6 months):
+             real10y  breakeven10y  fed_funds  real_fed_funds  path_2y_minus_ff  nfci  net_liquidity_bn
+2026-06-30     2.20          2.24       3.63            0.47              0.51 -0.51           5790.05
+2026-07-31     2.47          2.28       3.63            0.59              0.65 -0.53           5825.26
+2026-08-31     2.44          2.31       3.63            0.63              0.71 -0.55           5773.45
+2026-09-30     2.93          2.36       3.88            0.85              1.00 -0.51           5782.82
+2026-10-31     2.60          2.34       3.88            0.76              0.68 -0.47           5741.53
+2026-11-30     2.65          2.26       3.88            0.76              0.73 -0.46           5741.53
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+
+Rate betas, % return vs SPY per +100bp (monthly, 2003-02 on, HAC):
+            n  b_real10y  t_real10y  b_breakeven10y  t_breakeven10y
+series                                                            
+XLB      285      -0.41      -0.50            5.54            4.71
+XLE      285       2.15       1.35           10.62            3.91
+XLF      285       3.14       3.33            1.78            0.80
+XLI      285       0.71       1.21            2.03            2.14
+XLK      285      -0.56      -0.73            0.90            1.19
+XLP      285      -1.01      -0.97           -6.57           -4.98
+XLU      285      -4.18      -3.35           -8.52           -3.71
+XLV      285      -0.80      -0.78           -4.88           -2.95
+XLY      285      -1.09      -1.42            0.75            0.89
+IYR      285      -4.78      -3.63           -3.21           -1.55
+DEF-SPY  285      -2.00      -2.07           -6.65           -4.11
+GRW-SPY  285      -0.82      -1.48            0.83            1.51
+DEF-GRW  285      -1.17      -0.84           -7.48           -4.06
+
+With the trade-weighted dollar as a control (real-yield beta should barely move):
+            n  b_real10y  t_real10y  b_dollar  t_dollar
+series                                                
+DEF-SPY  249      -3.42      -3.10      0.45      3.16
+GRW-SPY  249      -1.33      -1.85      0.10      1.33
+DEF-GRW  249      -2.10      -1.24      0.35      1.83
+
+Stability: real-yield and breakeven betas by sub-period (% per +100bp):
+         2003-2012                                              2013-2019                                             2020-2026                                            
+        b_real10y t_real10y b_breakeven10y t_breakeven10y    n b_real10y t_real10y b_breakeven10y t_breakeven10y   n b_real10y t_real10y b_breakeven10y t_breakeven10y   n
+series                                                                                                                                                                    
+DEF-SPY     -2.94     -3.54          -5.26          -2.70  119     -5.30     -4.53         -12.19          -9.20  84      1.00      0.52          -7.38          -3.02  82
+GRW-SPY      0.66      1.20           0.96           1.59  119     -0.53     -0.71           0.81           0.73  84     -2.85     -2.85           0.90           0.61  82
+DEF-GRW     -3.59     -3.13          -6.22          -2.97  119     -4.77     -2.84         -13.00          -6.12  84      3.85      1.43          -8.28          -2.43  82
+
+Impulse inputs first available (z): real10y 2006-06, nfci 1974-06, neg_liquidity 2006-05
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+
+Impulse test DEF-GRW: next-3-month return on tightening impulse, 2006-06 to 2026-07, n=242
+  slope +4.85 pp/yr per 1 z (t=1.89); impulse now +0.79 (Nov 2026, month in progress)
+  expected -1.3 pp/yr (95% CI -8.8 to +6.1), t=-0.35 = average -5.2 + policy tilt +3.9 (t=1.89)
+
+Impulse test CYC-DEF: next-3-month return on tightening impulse, 2006-06 to 2026-07, n=242
+  slope -4.37 pp/yr per 1 z (t=-1.37); impulse now +0.79 (Nov 2026, month in progress)
+  expected -2.8 pp/yr (95% CI -10.0 to +4.4), t=-0.77 = average +0.7 + policy tilt -3.5 (t=-1.37)
+
+Impulse components now (z): {'real10y': 1.28, 'nfci': 0.28, 'neg_liquidity': 0.81}
+
+DEF-GRW next 3 months by Fed stance (6m change in fed funds, ±25bp):
+          months  episodes   raw  raw_lo  raw_hi  raw_t    hit
+state                                                        
+Cutting      76         8 -4.36  -18.40    9.68  -0.73  43.42
+On hold     166        13 -2.40   -6.52    1.72  -1.27  45.18
+Hiking       89         5 -3.12  -17.76   11.52  -0.59  38.20
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  State (Nov 2026, month in progress): real 10y 2.65% (6m chg +58bp), breakeven 2.26%, real fed funds +0.76%, 2y-FF +73bp, NFCI -0.46, net liquidity 6m -2.1%
+  Fed stance: On hold
+  Mechanism, per +50bp real yield in a month: GRW vs SPY -0.41% (t=-1.5), DEF vs SPY -1.00% (t=-2.1), DEF-GRW -0.59% (t=-0.8)
+  Mechanism stable? DEF-GRW real-yield beta (per 100bp) by sub-period: 2003-2012 -3.59, 2013-2019 -4.77, 2020-2026 +3.85
+  Inflation-expectations channel, per +25bp 10y breakeven in a month: DEF-GRW -1.87% (t=-4.1); by sub-period (per 100bp): 2003-2012 -6.22, 2013-2019 -13.00, 2020-2026 -8.28
+  Scenario: real 10y +50bp over 3 months -> DEF-GRW -0.6% (95% CI -2.0 to +0.8); a rise that large happened in 8% of 3-month windows since 2003
+  HEADLINE impulse test: tightening impulse now +0.79 z (Nov 2026, month in progress); expected DEF-GRW next 3m -1.3 pp/yr (95% CI -8.8 to +6.1), t=-0.35
+    = sample average -5.2 + policy tilt +3.9 pp/yr (t=1.89; slope +4.8 per z, t=1.89)
+  Verdict (pre-registered, one-sided 5%, on the expected spread): NEUTRAL
+  Policy-tilt verdict (same rule, on the tilt alone): SUPPORTS
+  Descriptive: DEF-GRW next 3m when Fed is 'On hold': -2.4 pp/yr, t=-1.27, 13 episodes
+==========================================================================================

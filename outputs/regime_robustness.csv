@@ -1,12 +1,12 @@
 spec,agree_%,transition_%,episodes,latest,g,i,DEF-GRW raw,t,verdict
-baseline,100,15,58,Reflation,0.13,0.42,2.8,0.82,NEUTRAL
-window 180m,85,16,70,Transition,0.02,0.72,-4.4,-0.9,NEUTRAL
-expanding window,60,21,73,Stagflation,-0.03,0.34,-7.9,-0.91,NEUTRAL
-no smoothing,74,14,92,Reflation,0.13,0.71,0.5,0.14,NEUTRAL
-band 0.10,92,7,62,Reflation,0.13,0.42,2.2,0.62,NEUTRAL
-band 0.25,90,22,57,Reflation,0.13,0.42,6.7,1.96,SUPPORTS
-no hysteresis,84,31,95,Transition,0.13,0.42,-1.9,-0.46,NEUTRAL
-inflation vs rolling median,89,14,68,Reflation,0.13,0.27,1.8,0.67,NEUTRAL
-+ 5y5y breakevens (2008+),78,8,36,Reflation,0.13,0.51,0.9,0.3,NEUTRAL
-FRED surveys (Philly),77,12,71,Reflation,0.16,0.21,6.2,2.39,SUPPORTS
-ISM surveys (Bloomberg),100,15,58,Reflation,0.13,0.42,2.8,0.82,NEUTRAL
+baseline,100,15,58,Reflation,0.17,0.67,4.8,1.42,NEUTRAL
+window 180m,84,17,70,Transition,0.07,1.07,-1.8,-0.32,NEUTRAL
+expanding window,60,21,74,Transition,0.0,0.57,-3.7,-0.48,NEUTRAL
+no smoothing,74,14,92,Reflation,0.13,0.85,2.3,0.51,NEUTRAL
+band 0.10,92,7,62,Reflation,0.17,0.67,4.0,1.03,NEUTRAL
+band 0.25,90,22,57,Reflation,0.17,0.67,8.8,2.57,SUPPORTS
+no hysteresis,84,31,96,Reflation,0.17,0.67,3.4,0.76,NEUTRAL
+inflation vs rolling median,89,14,68,Reflation,0.17,0.51,3.5,1.49,NEUTRAL
++ 5y5y breakevens (2008+),78,8,36,Reflation,0.17,0.6,3.4,1.38,NEUTRAL
+FRED surveys (Philly),77,12,71,Reflation,0.11,0.41,8.1,2.54,SUPPORTS
+ISM surveys (Bloomberg),100,15,58,Reflation,0.17,0.67,4.8,1.42,NEUTRAL

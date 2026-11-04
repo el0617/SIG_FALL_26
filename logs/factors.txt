@@ -1,0 +1,55 @@
+========================================================================================== 
+MODULE 4 - OPPORTUNITY COST, INSURANCE VALUE AND FUNDING CANDIDATES (v1)
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  sample 1999-01 to 2026-10; drawdown = SPY 3m <= -5%; ERP 5%
+
+Funding candidates (each = candidate minus growth):
+                               market_beta  beta_cost_pp_yr  alpha_pp_yr  alpha_t  mean_pp_yr  sharpe  carry_3m  protection_3m  p_star  real_beta_50bp_post2020  real_t_post2020  be_beta_25bp  be_t  be_beta_25bp_post2020  hedges_inflation_channel
+Defensives (current)                -0.66            -3.29         3.05     1.27       -3.14   -0.19     -2.01           6.91    0.23                     1.93             1.43         -1.87 -4.06                  -2.07                     False
+Defensives ex-utilities             -0.61            -3.04         2.61     1.16       -3.11   -0.20     -2.00           6.81    0.23                     2.10             1.59         -1.64 -4.02                  -2.06                     False
+Health care                         -0.51            -2.53         2.71     1.16       -2.05   -0.13     -1.54           5.68    0.21                     1.99             1.63         -1.43 -3.02                  -2.47                     False
+Staples                             -0.71            -3.55         2.51     0.92       -4.17   -0.23     -2.46           7.93    0.24                     2.20             1.49         -1.85 -4.88                  -1.66                     False
+Defensives + inflation hedge        -0.50            -2.50         2.45     0.96       -2.26   -0.15     -1.47           5.18    0.22                     2.13             1.64         -0.64 -1.97                  -0.65                      True
+Financials                          -0.08            -0.41        -2.76    -0.79       -3.54   -0.21     -0.68          -2.15     NaN                     2.36             2.02          0.24  0.41                   0.61                      True
+Broad market (SPY)                  -0.21            -1.06        -0.22    -0.17       -2.21   -0.28     -0.81           1.30    0.38                     1.42             2.85         -0.21 -1.51                  -0.22                      True
+
+Drawdown odds (SPY next 3m <= -5%): base rate 14% of 331 months; when real-time recession probability >= today's 24%: 13% (225 months)
+
+Factor loadings (Ken French, 1927-01 to 2026-09):
+                                 r2  alpha_pp_yr  alpha_t  Mkt-RF  Mkt-RF_t   SMB  SMB_t   HML  HML_t   RMW  RMW_t   CMA  CMA_t   Mom  Mom_t
+Defensives (current)          0.58        -2.45    -1.22   -0.46     -8.87 -0.12  -1.62  0.17   2.07  0.28   3.35  0.52   3.91  0.12   2.64
+Defensives ex-utilities       0.55        -2.51    -1.34   -0.42     -7.93 -0.11  -1.49  0.14   1.55  0.25   3.06  0.52   3.72  0.10   2.03
+Health care                   0.34        -0.83    -0.39   -0.38     -6.80 -0.07  -0.99  0.13   1.33  0.10   1.09  0.35   2.43  0.07   1.38
+Staples                       0.61        -4.19    -1.97   -0.46     -7.54 -0.15  -1.54  0.14   1.51  0.40   4.34  0.68   4.22  0.12   2.10
+Defensives + inflation hedge  0.54        -2.98    -1.53   -0.32     -6.09 -0.01  -0.15  0.31   3.73  0.29   3.45  0.48   3.77  0.10   1.93
+Financials                    0.55        -4.00    -1.77   -0.07     -1.13 -0.17  -1.80  1.09  11.20 -0.12  -1.03 -0.07  -0.56 -0.02  -0.29
+Broad market (SPY)            0.45        -2.28    -2.03   -0.13     -4.26 -0.07  -1.60  0.23   5.28  0.06   1.17  0.19   2.41  0.07   2.46
+
+Factor returns over the NEXT 3 months after real yields rose 50bp+ in 6 months (annualized pp):
+                                   months  episodes    raw  raw_t   edge     t     q  sign_stable
+series state                                                                                    
+SMB    Real yields up 50bp+ (6m)      30         8  -0.55  -0.17  -0.67 -0.22  0.87        False
+       Other months                  246         9   0.20   0.13   0.08  0.22  0.87        False
+HML    Real yields up 50bp+ (6m)      30         8 -10.22  -1.36 -10.49 -1.58  0.79         True
+       Other months                  246         9   1.56   0.90   1.28  1.58  0.79         True
+RMW    Real yields up 50bp+ (6m)      30         8   4.42   1.04   1.39  0.36  0.87        False
+       Other months                  246         9   2.86   1.88  -0.17 -0.36  0.87         True
+CMA    Real yields up 50bp+ (6m)      30         8  -0.27  -0.11  -0.44 -0.18  0.87        False
+       Other months                  246         9   0.23   0.17   0.05  0.18  0.87        False
+Mom    Real yields up 50bp+ (6m)      30         8   5.12   0.90   3.47  0.61  0.87         True
+       Other months                  246         9   1.23   0.37  -0.42 -0.61  0.87         True
+  today: real 10y 6m change +58bp -> 'Real yields up 50bp+ (6m)'
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  Defensive leg (DEF minus GRW): market beta -0.66 vs SPY -> forgoes about 3.3 pp/yr of equity premium at a 5% ERP
+    drift beyond beta 1999-2026: +3.1 pp/yr (t=1.27)
+  Insurance: carry -2.0% per normal quarter, protection +6.9% per drawdown quarter -> breakeven drawdown probability p* = 23%
+    vs base rate 14%, and 13% when the recession probability was >= today's 24%
+    -> on these odds the defensive leg DOES NOT pay for itself over a typical quarter (13% vs 23% needed)
+  Rate channels: post-2020 real-yield +50bp +1.93%, breakeven +25bp -1.87% (2003-26) / -2.07% (post-2020)
+  Candidates passing the inflation-channel screen: Defensives + inflation hedge, Financials, Broad market (SPY)
+  Largest factor bets in the defensive trade: Market -0.46 (t=-8.9), Investment (conservative) +0.52 (t=3.9), Profitability +0.28 (t=3.3); R² 58%
+==========================================================================================

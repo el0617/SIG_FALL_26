@@ -1,0 +1,59 @@
+========================================================================================== 
+MODULE 6b - FACTOR MODEL OF ACTIVE RISK
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  window: 60 months ending Sep 2026 (style lens ends when the French data ends)
+
+STYLE LENS: active exposures (t-stat in brackets)
+                          Current (drifted) Team direction: add defensives Recommended core: fix the defensive leg Core + extend growth underweight
+Market                        -0.074 (-3.4)                  -0.106 (-4.2)                           -0.063 (-2.8)                    -0.072 (-3.0)
+Size (small)                  +0.053 (+1.4)                  +0.068 (+1.5)                           +0.051 (+1.5)                    +0.062 (+1.7)
+Value                         +0.108 (+2.1)                  +0.124 (+1.9)                           +0.131 (+2.8)                    +0.139 (+2.7)
+Profitability                 +0.011 (+0.4)                  +0.037 (+1.3)                           +0.001 (+0.0)                    +0.011 (+0.4)
+Investment (conservative)     +0.110 (+1.7)                  +0.133 (+1.6)                           +0.087 (+1.4)                    +0.092 (+1.4)
+Momentum                      -0.055 (-2.4)                  -0.049 (-1.9)                           -0.060 (-2.6)                    -0.058 (-2.4)
+
+STYLE LENS: share of tracking-error variance (%)
+                                  Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight
+Market                                        12.2                            16.3                                      9.4                              10.3
+Size (small)                                   3.5                             3.1                                      3.9                               4.5
+Value                                         25.7                            24.1                                     32.9                              32.4
+Profitability                                  0.8                             2.6                                      0.1                               0.7
+Investment (conservative)                     18.9                            19.2                                     14.7                              14.6
+Momentum                                       3.6                             2.0                                      4.6                               3.8
+Sector-specific (not explained)               35.3                            32.7                                     34.3                              33.7
+  tracking error: Current (drifted) 3.94% (factors 65%), Team direction 4.82% (factors 67%), Recommended core 3.87% (factors 66%), Core + extend growth underweight 4.18% (factors 66%)
+
+MACRO LENS: active exposures (t-stat in brackets)
+                      Current (drifted) Team direction: add defensives Recommended core: fix the defensive leg Core + extend growth underweight
+Market (SPY)              -0.236 (-4.5)                  -0.301 (-4.9)                           -0.217 (-4.1)                    -0.237 (-4.1)
+Real 10y, per +100bp      -2.240 (-2.1)                  -2.585 (-2.0)                           -2.076 (-2.0)                    -2.183 (-1.9)
+Breakeven, per +100bp     +1.226 (+1.3)                  +1.370 (+1.3)                           +1.207 (+1.3)                    +1.280 (+1.3)
+Dollar, per +1%           -0.120 (-1.0)                  -0.165 (-1.2)                           -0.119 (-1.0)                    -0.136 (-1.0)
+
+MACRO LENS: share of tracking-error variance (%)
+                                  Current (drifted)  Team direction: add defensives  Recommended core: fix the defensive leg  Core + extend growth underweight
+Market (SPY)                                  33.5                            39.6                                     28.7                              30.3
+Real 10y, per +100bp                           1.9                            -0.1                                      2.2                               1.5
+Breakeven, per +100bp                         -0.6                            -0.8                                     -0.5                              -0.6
+Dollar, per +1%                               -0.3                            -0.6                                     -0.1                              -0.2
+Sector-specific (not explained)               65.6                            62.0                                     69.7                              68.8
+  tracking error: Current (drifted) 4.38% (factors 34%), Team direction 5.32% (factors 38%), Recommended core 4.29% (factors 30%), Core + extend growth underweight 4.62% (factors 31%)
+
+==========================================================================================
+EVIDENCE SUMMARY (what TOPDOWN2 is betting on)
+  style lens: factors explain 65% of active risk; largest: Value +26%, Investment (conservative) +19%, Market +12%
+    unintended exposures with |t| >= 2: Momentum -0.055 (t=-2.4)
+  macro lens: factors explain 34% of active risk; largest: Market (SPY) +33%, Real 10y, per +100bp +2%, Breakeven, per +100bp -1%
+    unintended exposures with |t| >= 2: none
+    Real 10y, per +100bp: -2.24% (t=-2.1) -> opposite to the thesis
+    Breakeven, per +100bp: +1.23% (t=1.3) -> as intended (not significant)
+  Reading: Ken French has no low-beta factor, so value/investment/profitability loadings largely stand in
+  for the low-beta defensive tilt (Bloomberg MAC3: Beta 38.7% of active risk, Valuation 2.6%, Momentum ~0).
+  Describe TOPDOWN2 as a low-beta / defensive style bet.
+  Recommended trade changes Value exposure +0.108 -> +0.131
+  Recommended trade changes Real 10y, per +100bp exposure -2.240 -> -2.076
+  Recommended trade changes Breakeven, per +100bp exposure +1.226 -> +1.207
+  Recommended trade changes Market exposure -0.074 -> -0.063
+==========================================================================================

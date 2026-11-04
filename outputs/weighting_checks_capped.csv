@@ -1,0 +1,6 @@
+check,value,pass
+1 TE vs benchmark below Current,2.51% vs 4.45%,True
+2 Sell-off payoff >= 75% of Current,+0.65% vs +0.60%,True
+3 |breakeven beta| below Current,-0.112 vs +0.005,False
+4 Expected (set A) within 0.10pp of Current,-0.114 vs -0.196,True
+5 Stable across 36/96m covariances,"max change 0.50pp, signs kept True",True

@@ -1,0 +1,19 @@
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+
+(XLC treated as matching SPY before June 2018: affects the 'since 2007' rows only)
+
+    window         portfolio  lens months factor share %    TE       Market        Value     Momentum Market (SPY)     Real 10y    Breakeven
+ 60 months Current (drifted) style     60             65  3.94 -0.07 (-3.4) +0.11 (+2.1) -0.05 (-2.4)                                       
+ 60 months Current (drifted) macro     60             34  4.38                                        -0.24 (-4.5) -2.24 (-2.1) +1.23 (+1.3)
+ 60 months  Recommended core style     60             66  3.87 -0.06 (-2.8) +0.13 (+2.8) -0.06 (-2.6)                                       
+ 60 months  Recommended core macro     60             30  4.29                                        -0.22 (-4.1) -2.08 (-2.0) +1.21 (+1.3)
+ 36 months Current (drifted) style     36             67  4.42 -0.11 (-2.8) +0.17 (+2.2) -0.04 (-0.7)                                       
+ 36 months Current (drifted) macro     36             58  5.11                                        -0.31 (-4.6) -4.19 (-3.4) -0.54 (-0.3)
+ 36 months  Recommended core style     36             67  4.31 -0.10 (-2.5) +0.18 (+2.4) -0.05 (-1.0)                                       
+ 36 months  Recommended core macro     36             56  4.96                                        -0.29 (-4.3) -4.05 (-3.3) -0.60 (-0.3)
+since 2007 Current (drifted) style    237             29  2.48 -0.02 (-1.1) +0.04 (+1.7) -0.02 (-1.6)                                       
+since 2007 Current (drifted) macro    238              6  2.65                                        -0.04 (-1.9) +0.17 (+0.6) +0.96 (+4.0)
+since 2007  Recommended core style    237             37  2.58 -0.00 (-0.3) +0.06 (+3.1) -0.03 (-2.1)                                       
+since 2007  Recommended core macro    238              8  2.73                                        -0.02 (-0.9) +0.42 (+1.4) +0.99 (+3.9)

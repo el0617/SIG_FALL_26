@@ -1,0 +1,25 @@
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  running: baseline
+  running: window 180m
+  running: expanding window
+  running: no smoothing
+  running: band 0.10
+  running: band 0.25
+  running: no hysteresis
+  running: inflation vs rolling median
+  running: + 5y5y breakevens (2008+)
+  running: FRED surveys (Philly)
+  running: ISM surveys (Bloomberg)
+
+                        spec  agree_%  transition_%  episodes     latest    g    i  DEF-GRW raw     t  verdict
+                   baseline      100            15        58  Reflation 0.17 0.67          4.8  1.42  NEUTRAL
+                window 180m       84            17        70 Transition 0.07 1.07         -1.8 -0.32  NEUTRAL
+           expanding window       60            21        74 Transition 0.00 0.57         -3.7 -0.48  NEUTRAL
+               no smoothing       74            14        92  Reflation 0.13 0.85          2.3  0.51  NEUTRAL
+                  band 0.10       92             7        62  Reflation 0.17 0.67          4.0  1.03  NEUTRAL
+                  band 0.25       90            22        57  Reflation 0.17 0.67          8.8  2.57 SUPPORTS
+              no hysteresis       84            31        96  Reflation 0.17 0.67          3.4  0.76  NEUTRAL
+inflation vs rolling median       89            14        68  Reflation 0.17 0.51          3.5  1.49  NEUTRAL
+  + 5y5y breakevens (2008+)       78             8        36  Reflation 0.17 0.60          3.4  1.38  NEUTRAL
+      FRED surveys (Philly)       77            12        71  Reflation 0.11 0.41          8.1  2.54 SUPPORTS
+    ISM surveys (Bloomberg)      100            15        58  Reflation 0.17 0.67          4.8  1.42  NEUTRAL

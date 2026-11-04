@@ -1,0 +1,14 @@
+/workspaces/SIG_FALL_26/src/portfolio.py:356: UserWarning: obj.round has no effect with datetime, timedelta, or period dtypes. Use obj.dt.round(...) instead.
+  M.round(3).to_csv(OUT / "portfolio_sizing.csv")
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+
+Sizing curve for the recommended trades (how risk and exposures scale):
+                      te  te_bench  beta  beta_cost  cvar3  Real yields +50bp (post-2020 betas)  Real yields +50bp (post-2020 ex-2022)  Breakevens +25bp (inflation scare)  Stagflation: breakevens +25bp, real +25bp  Equity -10% (risk-off)  Growth scare: equity -10%, real yields -50bp
+portfolio                                                                                                                                                                                                                                                                                 
+Current (drifted)  4.38      4.45  0.89      -0.57   3.65                                 0.05                                  -0.40                                0.16                                       0.18                    1.14                                          1.09
+Recommended x0.5   4.33      4.37  0.89      -0.54   3.62                                 0.05                                  -0.38                                0.19                                       0.22                    1.08                                          1.03
+Recommended x1.0   4.29      4.30  0.90      -0.51   3.60                                 0.05                                  -0.36                                0.22                                       0.25                    1.02                                          0.97
+Recommended x1.5   4.26      4.25  0.90      -0.48   3.57                                 0.06                                  -0.34                                0.25                                       0.28                    0.96                                          0.90
+Recommended x2.0   4.25      4.21  0.91      -0.45   3.55                                 0.06                                  -0.32                                0.29                                       0.31                    0.90                                          0.84

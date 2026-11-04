@@ -1,0 +1,27 @@
+==========================================================================================
+MODULE 9 - WALK-FORWARD OUT-OF-SAMPLE TEST OF THE TILTS
+==========================================================================================
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  WARNING PE: no data for S5RLST - left out
+  WARNING EPS: no data for S5RLST - left out
+
+Out-of-sample results (forecasts from month t use only outcomes complete by t):
+                                    module    start      end quarters  oos_r2  cw_t       verdict    hit  when_def  when_grw  share_def  slope_sign_same  tilt_now                                                in_sample
+Cycle momentum (level + change)  Module 2  2007-03  2026-07       77   -5.89 -0.93  NO OOS VALUE  53.65     -4.31     -6.20      48.50            100.0     -0.50                             NEUTRAL, tilt -0.5 (t -0.58)
+Policy tightening impulse        Module 3  2014-08  2026-07       48   -0.05  0.72  NO OOS VALUE  49.31     -4.82    -14.67      70.83            100.0      3.93                      SUPPORTS on the tilt, +2.8 (t 1.86)
+Market confirmation composite    Module 5  2011-12  2026-07       58    1.66  1.48  NO OOS VALUE  53.41     -1.29    -13.37      56.82            100.0     -3.02  CONTRADICTS on the expected spread; tilt -2.3 (t -1.56)
+Valuation gap (vs median)        Module 7  2017-02  2026-07       38   -3.86 -0.40  NO OOS VALUE  57.02    -46.44     -6.69       5.26            100.0      0.03                             NEUTRAL, tilt +0.0 (t +0.05)
+Relative EPS revisions           Module 7  2014-06  2026-07       48    0.84  0.94  NO OOS VALUE  50.68     -5.35    -10.39      58.22            100.0      3.12                             NEUTRAL, tilt +3.1 (t +1.12)
+
+==========================================================================================
+EVIDENCE SUMMARY (paste into the scorecard)
+  Cycle momentum (level + change) (Module 2): NO OOS VALUE  OOS R2 -5.9%, Clark-West t -0.93, 77 quarters 2007-03 to 2026-07; tilt sign right 54% of months; spread -4.3 when it pointed to defensives vs -6.2 when it pointed to growth; today's real-time tilt -0.5 pp/yr (in-sample: NEUTRAL, tilt -0.5 (t -0.58))
+  Policy tightening impulse (Module 3): NO OOS VALUE  OOS R2 -0.0%, Clark-West t +0.72, 48 quarters 2014-08 to 2026-07; tilt sign right 49% of months; spread -4.8 when it pointed to defensives vs -14.7 when it pointed to growth; today's real-time tilt +3.9 pp/yr (in-sample: SUPPORTS on the tilt, +2.8 (t 1.86))
+  Market confirmation composite (Module 5): NO OOS VALUE  OOS R2 +1.7%, Clark-West t +1.48, 58 quarters 2011-12 to 2026-07; tilt sign right 53% of months; spread -1.3 when it pointed to defensives vs -13.4 when it pointed to growth; today's real-time tilt -3.0 pp/yr (in-sample: CONTRADICTS on the expected spread; tilt -2.3 (t -1.56))
+  Valuation gap (vs median) (Module 7): NO OOS VALUE  OOS R2 -3.9%, Clark-West t -0.40, 38 quarters 2017-02 to 2026-07; tilt sign right 57% of months; spread -46.4 when it pointed to defensives vs -6.7 when it pointed to growth; today's real-time tilt +0.0 pp/yr (in-sample: NEUTRAL, tilt +0.0 (t +0.05))
+  Relative EPS revisions (Module 7): NO OOS VALUE  OOS R2 +0.8%, Clark-West t +0.94, 48 quarters 2014-06 to 2026-07; tilt sign right 51% of months; spread -5.4 when it pointed to defensives vs -10.4 when it pointed to growth; today's real-time tilt +3.1 pp/yr (in-sample: NEUTRAL, tilt +3.1 (t +1.12))
+  0 of 5 signals add value out of sample under the pre-registered rule.
+==========================================================================================

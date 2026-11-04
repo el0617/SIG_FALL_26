@@ -1,0 +1,22 @@
+  [units] WALCL: millions -> billions
+  [units] WTREGEN: millions -> billions
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  [data] prices_monthly.csv: dropped 2026-11 (month in progress when downloaded 2026-11-04, per manifest)
+  running: drop real10y
+  running: drop nfci
+  running: drop neg_liquidity
+
+                                        spec DEF-GRW be beta/25bp DEF-GRW beta/50bp t beta GRW beta/50bp DEF beta/50bp impulse now expected     t verdict tilt tilt t tilt verdict
+                                   baseline                -1.87             -0.59  -0.84         -0.41          -1.0        0.79     -1.3 -0.35 NEUTRAL  3.9   1.89     SUPPORTS
+      nominal 10y instead of real+breakeven                                  -1.62   -2.7         -0.14         -1.76                                                            
+                   + dollar control (2006+)                -1.61             -1.05  -1.24         -0.66         -1.71                                                            
+                           betas excl. 2020                -1.73             -0.75  -1.04         -0.34         -1.09                                                            
+                           betas 2013+ only                -2.57              0.49   0.45         -1.05         -0.56                                                            
+                           betas 2020+ only                -2.07              1.93   1.43         -1.42           0.5                                                            
+                        impulse: 3m changes                                                                                  0.57     -0.1 -0.03 NEUTRAL  4.7   2.43     SUPPORTS
+                       impulse: 12m changes                                                                                  0.58     -3.7 -0.98 NEUTRAL  1.4   0.73      NEUTRAL
+                      impulse: drop real10y                                                                                  0.55     -3.6 -1.17 NEUTRAL  1.5   1.18      NEUTRAL
+                         impulse: drop nfci                                                                                  1.05     -0.5 -0.15 NEUTRAL  4.7   1.91     SUPPORTS
+                impulse: drop neg_liquidity                                                                                  0.78     -2.8 -0.65 NEUTRAL  2.5   1.08      NEUTRAL
+                     impulse: real 10y only                                                                                  1.28     -1.2  -0.3 NEUTRAL  4.1    1.7     SUPPORTS
+impulse: 2016+ sample only (pre-fix window)                                                                                  0.79     -4.0 -0.86 NEUTRAL  5.0    2.7     SUPPORTS
