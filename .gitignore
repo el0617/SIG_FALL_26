@@ -6,3 +6,8 @@ data/raw/val_*.csv
 data/raw/ism_*.csv
 data/raw/hy_oas.csv
 outputs/tournament_valuation*
+
+# Bloomberg-derived outputs and logs (licensed: never commit)
+outputs/valuation_signals.csv
+outputs/valuation_sectors.csv
+logs/valuation*.txt
