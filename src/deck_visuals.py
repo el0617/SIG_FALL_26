@@ -3,7 +3,7 @@ Deck visuals for the TOPDOWN2 final presentation (13 Nov 2026).
 
     python -m src.deck_visuals
 
-Draws eight presentation charts from the FROZEN data (branch freeze-2026-11-04) and writes them to
+Draws ten presentation charts from the FROZEN data (branch freeze-2026-11-04) and writes them to
 outputs/deck/. No data are downloaded and no model is re-estimated: every number is read from
 data/raw caches or from outputs/*.csv written by the modules in the freeze run.
 
@@ -12,14 +12,16 @@ dpi 200, i.e. 2x) and uses the deck's background and palette, so it can replace 
 
   deck_v01_active_weights.png     Visual 1   current active weights vs IVV       weighting_weights.csv
   deck_v03_wti_2026.png           Visual 3   WTI daily, 2026, conflict events      data/raw/DCOILWTICO.csv
+  deck_v04_pe_premium.png         Visual 4   growth vs defensive fwd P/E premium   valuation_signals.csv
   deck_v05_def_minus_grw.png      Visual 5   defensives minus growth since 29 May  data/raw/prices_monthly.csv
   deck_v06_decomposition.png      Visual 6   (def - mkt) and (grw - mkt) legs      tournament_baseline.csv
+  deck_v07_valuation_revisions.png Visual 7  sector fwd P/E percentile vs revisions valuation_sectors.csv
   deck_v08_oil_collapse_loss.png  Visual 8   oil-glut loss by XLE active weight    energy_stress.csv, weighting_weights.csv
   deck_v09_weights_before_after.png Visual 9 active weights, current vs Base       weighting_weights.csv
   deck_v10_scenario_returns.png   Visual 10  3-month active return by scenario     consistency_scenario_payoffs.csv
   deck_v11_trigger_readings.png   Visual 11  review triggers: reading vs threshold T10YIE, DCOILWTICO, cycle_state, valuation_sectors
 
-Visual 4 and Visual 7 are module outputs (outputs/valuation_gap.png, outputs/valuation_sectors.png).
+Visuals 4 and 7 restyle Module 7 outputs (outputs/valuation_gap.png, outputs/valuation_sectors.png).
 Visual 2 (CPI composition) needs BLS energy-CPI data that are not cached; Visual 12 has no source in the repo.
 
 Conventions follow the models: DEF = XLP/XLU/XLV, GRW = VGT/XLY with XLK as the VGT proxy (the target
@@ -136,14 +138,14 @@ EVENTS = [("2026-02-28", "War begins", "left", 0), ("2026-04-08", "Ceasefire", "
 def v03():
     w = pd.read_csv(RAW / "DCOILWTICO.csv", index_col=0, parse_dates=True).iloc[:, 0].dropna()
     w = w.loc["2026-01-01":DECIDE]
-    fig, ax = figure(1040, 342)
+    fig, ax = figure(1040, 290)
     ax.plot(w.index, w.values, color=INK, lw=2)
     lo, hi = w.min(), w.max()
-    ax.set_ylim(lo - 8, hi + 22)
+    ax.set_ylim(lo - 6, hi + 26)
     for d, lab, ha, lvl in EVENTS:
         d = pd.Timestamp(d)
         ax.axvline(d, color=MUTED, lw=1, ls=(0, (3, 3)))
-        ax.text(d, hi + 20 - 9 * lvl, f" {lab} " if ha == "left" else f"{lab} ", fontsize=11, color=INK2,
+        ax.text(d, hi + 25 - 11 * lvl, f" {lab} " if ha == "left" else f"{lab} ", fontsize=11, color=INK2,
                 va="top", ha=ha)
     ax.plot(w.index[-1], w.iloc[-1], "o", ms=8, color=ORANGE, mec=BG, mew=2)
     ax.text(w.index[-1], w.iloc[-1] - 6, f"${w.iloc[-1]:.0f}", fontsize=12, color=INK, ha="right", va="top")
@@ -157,6 +159,57 @@ def v03():
     return w
 
 
+# ---- Visual 4 -------------------------------------------------------------------------------------
+def v04():
+    V = pd.read_csv(OUT / "valuation_signals.csv", index_col=0, parse_dates=True)
+    prem = (np.exp(V["gap"].dropna()) - 1) * 100            # gap = log(growth fwd P/E / defensive fwd P/E)
+    med = prem.expanding(min_periods=36).median()            # median of history known at each date
+    fig, ax = figure(952, 656)
+    ax.axhline(0, color=INK, lw=1)
+    ax.plot(prem.index, prem.values, color=ORANGE, lw=2, label="Growth premium over defensives")
+    ax.plot(med.index, med.values, color=INK, lw=1.4, ls=(0, (5, 3)), label="Median of history to date")
+    ax.plot(prem.index[-1], prem.iloc[-1], "o", ms=9, color=ORANGE, mec=BG, mew=2, zorder=3)
+    end = prem.index[-1] + pd.Timedelta(days=75)
+    ax.text(end, prem.iloc[-1] + 1.5, f"{prem.index[-1]:%b %Y}\n{pp(prem.iloc[-1], 0)}%", ha="left", va="bottom",
+            fontsize=12, color=INK, **BOLD)
+    ax.text(end, med.iloc[-1] - 1.5, f"Median\n{pp(med.iloc[-1], 0)}%", ha="left", va="top", fontsize=12, color=INK2)
+    ax.set_xlim(prem.index[0] - pd.Timedelta(days=120), prem.index[-1] + pd.Timedelta(days=900))
+    ax.set_ylabel("Forward P/E premium (%)"); ax.yaxis.grid(True); ax.set_axisbelow(True)
+    ax.legend(loc="upper left", bbox_to_anchor=(0.2, 1.0), fontsize=12)
+    title(fig, "Forward P/E premium of growth over defensives",
+          f"XLK and XLY vs XLP, XLU and XLV; monthly {prem.index[0]:%b %Y} – {prem.index[-1]:%b %Y}")
+    fig.subplots_adjust(left=0.085, right=0.98, bottom=0.07)
+    save(fig, "deck_v04_pe_premium.png", top=top_for(fig, True))
+    return prem, med
+
+
+# ---- Visual 7 -------------------------------------------------------------------------------------
+def v07():
+    T = pd.read_csv(OUT / "valuation_sectors.csv", index_col=0).drop(index="SPY", errors="ignore")
+    col = {t: (BLUE if t in DEF else ORANGE if t in ("XLK", "XLY") else GREY) for t in T.index}
+    fig, ax = figure(672, 656)
+    ax.axvline(50, color=RULE, lw=1.2); ax.axhline(0, color=INK, lw=1)
+    for t, r in T.iterrows():
+        ax.plot(r["pe_pct"], r["rev3"], "o", ms=12 if t in DEF else 10, color=col[t], mec=BG, mew=2, zorder=3)
+        lab = f"{t}  {r['fwd_pe']:.1f}x" if t in DEF else t
+        if t == "XLV":      # most expensive point: label below it, inside the frame
+            ax.text(104, r["rev3"] - 0.55, lab, fontsize=12, color=INK, va="top", ha="right", **BOLD)
+            continue
+        left = r["pe_pct"] > 85
+        ax.text(r["pe_pct"] + (-2 if left else 2), r["rev3"] + 0.35, lab, fontsize=12, color=INK, va="bottom",
+                ha="right" if left else "left", **(BOLD if t in DEF else {}))
+    ax.set_xlim(0, 105); ax.set_ylim(-1, max(18, T["rev3"].max() + 2))
+    ax.set_xlabel("Forward P/E percentile vs own history since 2006")
+    ax.set_ylabel("3-month change in forward EPS (%)")
+    ax.yaxis.grid(True); ax.set_axisbelow(True)
+    handles = [plt.Line2D([], [], marker="o", ls="", ms=10, color=c) for c in (BLUE, ORANGE, GREY)]
+    ax.legend(handles, ["Defensives (forward P/E)", "Growth", "Other"], loc="upper left", fontsize=11.5)
+    title(fig, "Valuation and earnings revisions by sector", "Bloomberg estimates as of 30 Sep 2026")
+    fig.subplots_adjust(left=0.12, right=0.97, bottom=0.10)
+    save(fig, "deck_v07_valuation_revisions.png", top=top_for(fig, True))
+    return T
+
+
 # ---- Visual 5 -------------------------------------------------------------------------------------
 def v05():
     r = pd.read_csv(RAW / "prices_monthly.csv", index_col=0, parse_dates=True).loc[:LAST_MONTH]
@@ -164,7 +217,7 @@ def v05():
     win = slice("2026-06-01", LAST_MONTH)
     cd, cg = (1 + D.loc[win]).cumprod() - 1, (1 + G.loc[win]).cumprod() - 1
     s = pd.concat([pd.Series([0.0], index=[ASOF]), (cd - cg) * 100])
-    fig, ax = figure(860, 352)
+    fig, ax = figure(860, 300)
     ax.axvspan(pd.Timestamp("2026-09-30"), pd.Timestamp("2026-10-31"), color=ORANGE, alpha=0.10, lw=0)
     ax.plot(s.index, s.values, color=BLUE, lw=2.2, marker="o", ms=8, mec=BG, mew=2)
     ax.axhline(0, color=INK, lw=1)
@@ -219,7 +272,7 @@ def v08():
              ("Full hedge", "Base (full hedge, post hoc)", GREY), ("Recommended", "Base (half hedge)", BLUE)]
     marks = [(lab, C.loc[k, "xle_active"], C.loc[k, "oil_crash_tail_pp"], c) for lab, k, c in marks]
     x = np.linspace(0, 7.5, 100)
-    fig, ax = figure(860, 465)
+    fig, ax = figure(860, 440)
     ax.axhspan(-1, 0, color=BLUE, alpha=0.07, lw=0)
     ax.plot(x, glut * x, color=INK, lw=2)
     ax.axhline(-1, color=ORANGE, lw=1.8, ls=(0, (5, 3)))
@@ -244,7 +297,7 @@ def v08():
 # ---- Visual 9 -------------------------------------------------------------------------------------
 def v09():
     A = active_weights().reindex(ORDER)
-    fig, ax = figure(820, 485)
+    fig, ax = figure(820, 440)
     y = np.arange(len(A))[::-1]; h = 0.38
     ax.barh(y + h / 2, A["Current"], height=h, color=GREY, edgecolor=BG, lw=1.5, label="Current")
     ax.barh(y - h / 2, A["Base"], height=h, color=BLUE, edgecolor=BG, lw=1.5, label="Recommended")
@@ -325,6 +378,8 @@ def main():
     print("\nDeck visuals from frozen data (freeze-2026-11-04)\n")
     v01()
     wti = v03()
+    prem, med = v04()
+    T7 = v07()
     s, oct_ = v05()
     d, g = v06()
     glut, marks = v08()
@@ -339,6 +394,8 @@ def main():
     print("  Active weights (Current -> Base): " + ", ".join(f"{t} {a:+.1f}->{b:+.1f}" for t, (a, b) in A.iterrows()))
     print("  Scenario returns (Current / Base): " + ", ".join(f"{s_}: {a:+.2f}/{b:+.2f}" for s_, (a, b) in P.iterrows()))
     print("  Triggers: " + "; ".join(f"{r[0]} = {r[1]} vs {r[3]:.2f}" for r in rows))
+    print(f"  P/E premium: {prem.iloc[-1]:+.1f}% vs median {med.iloc[-1]:+.1f}%; defensive fwd P/E "
+          + ", ".join(f"{t} {T7.loc[t, 'fwd_pe']:.1f}x (pct {T7.loc[t, 'pe_pct']:.0f})" for t in DEF))
     print(f"\nSaved to {DECK.relative_to(ROOT)}/\n")
 
 
