@@ -45,7 +45,9 @@ CPI_SEP26 = {"Gasoline": 34.2, "Energy": 20.4, "All items": 3.7, "Shelter": 3.2,
 
 BG, INK = "#FFFFFF", "#000000"
 GREEN, RED, TEAL, LIGHT, GREY, TRACK = "#13501B", "#A82B0B", "#104862", "#8ED974", "#A6ADA7", "#E6E8E6"
-FS = 13.0           # about 18px on the slide (1px = 0.01in = 0.72pt): lighter than the 24px body text
+FS = 17.28          # 24px on the slide (1px = 0.01in = 0.72pt); set per chart by @sized below
+TITLE_FS = 17.28    # chart titles always 24px bold
+L, M, S = 17.28, 15.84, 14.4   # 24px roomy charts, 22px dense charts, 20px small or busy charts
 DEF, INF, GRW = ["XLP", "XLU", "XLV"], ["XLE", "XLB"], ["VGT", "XLY"]
 GROUP_COLOR = {**{t: GREEN for t in DEF}, **{t: RED for t in GRW}, **{t: TEAL for t in INF}}
 ORDER = ["VGT", "XLY", "XLC", "XLF", "XLI", "SCHH", "XLB", "XLE", "XLP", "XLV", "XLU"]
@@ -69,12 +71,34 @@ plt.rcParams.update({
 })
 
 
+def sized(v):
+    """Draw a chart with tick, label, legend and annotation text at v points (titles stay at TITLE_FS)."""
+    import functools
+
+    def deco(fn):
+        @functools.wraps(fn)
+        def run(*a, **k):
+            global FS
+            old = FS
+            FS = v
+            keys = ("font.size", "axes.labelsize", "xtick.labelsize", "ytick.labelsize", "legend.fontsize", "axes.titlesize")
+            prev = {key: plt.rcParams[key] for key in keys}
+            plt.rcParams.update({key: v for key in keys})
+            try:
+                return fn(*a, **k)
+            finally:
+                FS = old
+                plt.rcParams.update(prev)
+        return run
+    return deco
+
+
 def figure(w_px, h_px, **kw):
     return plt.subplots(figsize=(w_px / 100, h_px / 100), **kw)
 
 
 def title(fig, text):
-    fig.text(0.5, 1 - 6 / (fig.get_figheight() * 100), text, ha="center", va="top", fontsize=FS, **BOLD)
+    fig.text(0.5, 1 - 6 / (fig.get_figheight() * 100), text, ha="center", va="top", fontsize=TITLE_FS, **BOLD)
 
 
 def save(fig, name, extra=0):
@@ -124,6 +148,7 @@ def date_axis(ax, months=(1, 7), fmt="%b %Y"):
 
 
 # ---- Proposal ----------------------------------------------------------------------------------------------
+@sized(L)
 def weights_active(w=700, h=708):
     A = active_weights().reindex(ORDER)
     fig, ax = figure(w, h)
@@ -140,6 +165,7 @@ def weights_active(w=700, h=708):
 
 
 # ---- Present -----------------------------------------------------------------------------------------------
+@sized(L)
 def performance():
     from src.portfolio import etf_returns, DEFAULT, HOLDINGS, GROUPS
     R = etf_returns().loc["2026-06-30":LAST_MONTH]
@@ -171,6 +197,7 @@ def performance():
     return M, C, groups
 
 
+@sized(L)
 def active_current():
     A = active_weights()["Current"].reindex(ORDER)
     fig, ax = figure(1100, 708)
@@ -192,6 +219,7 @@ def active_current():
 MW, MH = 880, 420        # macro slides: two charts per slide
 
 
+@sized(S)
 def cpi_components(w=MW, h=MH):
     S = pd.Series(CPI_SEP26)
     colors = [RED if k in ("Gasoline", "Energy") else (INK if k == "All items" else GREEN) for k in S.index]
@@ -210,6 +238,7 @@ def cpi_components(w=MW, h=MH):
     save(fig, "deck_cpi_components.png")
 
 
+@sized(S)
 def activity(w=MW, h=MH):
     ip, rs = series("INDPRO"), series("RRSFS")
     a = ((ip / ip.shift(12) - 1) * 100).loc["2024-01":]
@@ -227,6 +256,7 @@ def activity(w=MW, h=MH):
     return a.iloc[-1], b.iloc[-1]
 
 
+@sized(S)
 def payrolls(w=MW, h=MH):
     p = series("PAYEMS").diff().loc["2025-01":]
     avg3 = p.rolling(3).mean()
@@ -243,6 +273,7 @@ def payrolls(w=MW, h=MH):
     return p
 
 
+@sized(S)
 def fed_funds(w=MW, h=MH):
     f, t10 = series("DFF").loc["2022-01-01":DECIDE], series("DGS10").loc["2022-01-01":DECIDE]
     cut = pd.Timestamp("2024-09-18")
@@ -259,6 +290,7 @@ def fed_funds(w=MW, h=MH):
     return f
 
 
+@sized(S)
 def fed_expected(w=MW, h=MH):
     f, t2 = series("DFF").loc["2025-01-01":DECIDE], series("DGS2").loc["2025-01-01":DECIDE]
     fig, ax = figure(w, h)
@@ -276,6 +308,7 @@ def fed_expected(w=MW, h=MH):
     return f.iloc[-1], t2.iloc[-1], gap
 
 
+@sized(S)
 def curve(w=MW, h=MH):
     t10, t2, f = series("DGS10"), series("DGS2"), series("DFF")
     df = pd.concat([t10, t2, f], axis=1, keys=["t10", "t2", "ff"]).dropna().loc["2019-01-01":DECIDE]
@@ -294,6 +327,7 @@ def curve(w=MW, h=MH):
     return df.iloc[-1], s1.iloc[-1], s2.iloc[-1]
 
 
+@sized(S)
 def real_yields(w=MW, h=MH):
     n, r, b = series("DGS10"), series("DFII10"), series("T10YIE")
     df = pd.concat([n, r, b], axis=1, keys=["n", "r", "b"]).dropna().loc["2021-01-01":DECIDE]
@@ -317,6 +351,7 @@ EVENTS = [("2026-02-28", "War begins", "right", 0), ("2026-04-08", "Ceasefire", 
           ("2026-10-25", "Qatar draft", "right", 0)]
 
 
+@sized(S)
 def wti(w=1060, h=330):
     s = series("DCOILWTICO").loc["2026-01-01":DECIDE]
     fig, ax = figure(w, h)
@@ -337,6 +372,7 @@ def wti(w=1060, h=330):
     return s
 
 
+@sized(M)
 def pe_premium(w=760, h=708):
     V = pd.read_csv(OUT / "valuation_signals.csv", index_col=0, parse_dates=True)
     prem = (np.exp(V["gap"].dropna()) - 1) * 100
@@ -357,6 +393,7 @@ def pe_premium(w=760, h=708):
 
 
 # ---- Timing ------------------------------------------------------------------------------------------------
+@sized(S)
 def def_minus_grw(w=900, h=330):
     r = pd.read_csv(RAW / "prices_monthly.csv", index_col=0, parse_dates=True).loc[:LAST_MONTH]
     D, G = r[DEF].mean(axis=1), r[["XLK", "XLY"]].mean(axis=1)
@@ -380,6 +417,7 @@ def def_minus_grw(w=900, h=330):
 
 
 # ---- Trades ------------------------------------------------------------------------------------------------
+@sized(M)
 def decomposition(w=960, h=708):
     T = pd.read_csv(OUT / "tournament_baseline.csv", index_col=0)
     d, g = T.loc["D"], T.loc["E"]
@@ -408,6 +446,7 @@ LABEL_POS = {"XLC": (-1.5, 0.25, "right"), "XLF": (-1.5, 0.0, "right"), "XLI": (
              "XLV": (1.8, 0.0, "left")}
 
 
+@sized(M)
 def valuation_revisions(w=700, h=708):
     T = pd.read_csv(OUT / "valuation_sectors.csv", index_col=0).drop(index="SPY", errors="ignore")
     col = {t: (GREEN if t in DEF else RED if t in ("XLK", "XLY") else GREY) for t in T.index}
@@ -428,6 +467,7 @@ def valuation_revisions(w=700, h=708):
     return T
 
 
+@sized(M)
 def oil_collapse_loss(w=900, h=520):
     S = pd.read_csv(OUT / "energy_stress.csv", index_col=0)
     glut = S.loc[[i for i in S.index if i.startswith("Oil glut")][0], "XLE minus SPY (%)"] / 100
@@ -455,6 +495,7 @@ def oil_collapse_loss(w=900, h=520):
 
 
 # ---- Risks -------------------------------------------------------------------------------------------------
+@sized(M)
 def risk_metrics(w=860, h=460):
     M = team_metrics()
     worst = lambda k: -M.loc[k, [c for c in M.columns if c.startswith("scen_")]].min()
@@ -480,6 +521,7 @@ def risk_metrics(w=860, h=460):
     return rows
 
 
+@sized(M)
 def scenario_returns(w=700, h=708):
     M = team_metrics()
     P = M[[c for c in M.columns if c.startswith("scen_")]].T.rename(index=lambda c: c[5:])[[CUR, NEW]]
@@ -502,6 +544,7 @@ def scenario_returns(w=700, h=708):
     return P
 
 
+@sized(L)
 def fixed_income_mix(w=700, h=500):
     """Same style as the equity active-weight chart: current (grey) vs proposed (green), % of portfolio."""
     from src.team_weights import TEAM
@@ -520,6 +563,7 @@ def fixed_income_mix(w=700, h=500):
     return T
 
 
+@sized(M)
 def trades_by_holding(w=860, h=708):
     from src.team_weights import TEAM
     d = (TEAM["new"] - TEAM["old"]).drop(index=["Gold"]).sort_values()
@@ -542,6 +586,7 @@ def trades_by_holding(w=860, h=708):
     return d
 
 
+@sized(M)
 def rate_sensitivity(w=700, h=420):
     from src.team_weights import TEAM, DURATION
     rows = list(DURATION)
@@ -566,6 +611,7 @@ def rate_sensitivity(w=700, h=420):
     return L
 
 
+@sized(M)
 def trigger_readings(w=700, h=708):
     wt = series("DCOILWTICO")
     be = series("T10YIE"); be_ref = be.loc[:DECIDE].iloc[-1]
