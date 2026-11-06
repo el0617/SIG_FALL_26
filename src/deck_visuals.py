@@ -14,6 +14,9 @@ installed), black text and axes, no gridlines, one text size. Every chart is siz
 same size as the slides' body text; titles are the same size in bold. Series colours: dark green #13501B,
 red #A82B0B, teal #104862, grey #A6ADA7.
 
+Portfolio weights are the team's final decision (5 Nov 2026), evaluated by src.team_weights against S&P 500
+sector weights at the 4 Nov close; equity weights are % of the 60% equity allocation.
+
 Conventions follow the models: DEF = XLP/XLU/XLV, GRW = VGT/XLY with XLK as the VGT proxy (the target
 series), legs equal-weighted, monthly total returns, month in progress dropped.
 """
@@ -90,9 +93,19 @@ def series(name):
     return pd.read_csv(RAW / f"{name}.csv", index_col=0, parse_dates=True).iloc[:, 0].dropna()
 
 
+# Team final weights (5 Nov 2026) vs S&P 500 sector weights (4 Nov), from `python -m src.team_weights`
+CUR, NEW = "Old (5 Nov)", "New (team)"
+FI_TYPES = {"Treasury and agency": ["VGIT", "AGZ"], "TIPS": ["IBID"], "Investment-grade corporate": ["IGSB", "VCSH"],
+            "Cash": ["Cash"]}
+
+
 def active_weights():
-    W = pd.read_csv(OUT / "weighting_weights.csv", index_col=0)
-    return W[["Current", "Base"]].sub(W["benchmark"], axis=0)
+    A = pd.read_csv(OUT / "team_weights_active.csv", index_col=0)
+    return A[[CUR, NEW]].rename(columns={CUR: "Current", NEW: "Base"})
+
+
+def team_metrics():
+    return pd.read_csv(OUT / "team_weights_metrics.csv", index_col=0)
 
 
 def hbar_labels(ax, y, vals, fmt=lambda v: pp(v), pad=0.25, **kw):
@@ -111,17 +124,17 @@ def date_axis(ax, months=(1, 7), fmt="%b %Y"):
 
 
 # ---- Proposal ----------------------------------------------------------------------------------------------
-def weights_active(w=820, h=708):
+def weights_active(w=700, h=708):
     A = active_weights().reindex(ORDER)
     fig, ax = figure(w, h)
     y = np.arange(len(A))[::-1]; hh = 0.38
     ax.barh(y + hh / 2, A["Current"], height=hh, color=GREY, edgecolor=BG, lw=1.5, label="Current")
     ax.barh(y - hh / 2, A["Base"], height=hh, color=GREEN, edgecolor=BG, lw=1.5, label="Proposed")
     ax.set_yticks(y, A.index); ax.axvline(0, color=INK, lw=1.2)
-    ax.set_xlim(-13.5, 8.5); ax.set_xlabel("Active weight vs IVV (pp)")
+    ax.set_xlim(-10.5, 6); ax.set_xlabel("Active weight vs S&P 500 (pp)")
     bars_frame(ax); ax.legend(loc="lower left")
-    title(fig, "Active weights: current vs proposed")
-    fig.subplots_adjust(left=0.1, right=0.97, bottom=0.1)
+    title(fig, "Equity active weights: current vs proposed")
+    fig.subplots_adjust(left=0.13, right=0.97, bottom=0.1)
     save(fig, "deck_weights_active.png")
     return A
 
@@ -159,17 +172,21 @@ def performance():
 
 
 def active_current():
-    A = active_weights()["Current"].reindex(ORDER)
+    A = active_weights()["Current"].rename({"CASH": "Cash"}).reindex(ORDER + ["Cash"])
+    A["Cash"] = np.floor(A["Cash"] * 10 + 1e-6) / 10      # 100 - 96.55: shown as 3.4 so it matches 96.6 + 3.4 = 100
     fig, ax = figure(1100, 708)
     y = np.arange(len(A))[::-1]
-    ax.barh(y, A.values, height=0.62, color=[GROUP_COLOR.get(t, GREY) for t in A.index], edgecolor=BG, lw=2)
+    cols = [GROUP_COLOR.get(t, GREY) for t in A.index]; cols[-1] = "#FFFFFF"
+    ax.barh(y, A.values, height=0.62, color=cols, edgecolor=[BG] * (len(A) - 1) + [INK], lw=2,
+            hatch=[None] * (len(A) - 1) + ["//"])
     hbar_labels(ax, y, A.values)
     ax.set_yticks(y, A.index); ax.axvline(0, color=INK, lw=1.2)
-    ax.set_xlim(-15, 9.5); ax.set_xlabel("Active weight vs IVV (pp)")
+    ax.set_xlim(-11.5, 7.5); ax.set_xlabel("Active weight vs S&P 500 (pp of the 60% equity allocation)")
     bars_frame(ax)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in (RED, GREY, TEAL, GREEN)]
-    ax.legend(handles, ["Growth", "Other", "Inflation hedge", "Defensives"], loc="lower left")
-    title(fig, "Current active weights by ETF (31 Oct)")
+    handles.append(plt.Rectangle((0, 0), 1, 1, facecolor="#FFFFFF", edgecolor=INK, hatch="//"))
+    ax.legend(handles, ["Growth", "Other", "Inflation hedge", "Defensives", "Equities below 60%"], loc="lower left")
+    title(fig, "Current equity active weights by ETF (5 Nov)")
     fig.subplots_adjust(left=0.075, right=0.98, bottom=0.1)
     save(fig, "deck_active_current.png")
 
@@ -419,22 +436,22 @@ def valuation_revisions(w=700, h=708):
 def oil_collapse_loss(w=900, h=490):
     S = pd.read_csv(OUT / "energy_stress.csv", index_col=0)
     glut = S.loc[[i for i in S.index if i.startswith("Oil glut")][0], "XLE minus SPY (%)"] / 100
-    C = pd.read_csv(OUT / "consistency_summary.csv", index_col=0)
-    marks = [("Current", "Current (drifted)", GREY, (-0.15, -0.15, "right", "top")),
-             ("Team proposal", "Proposal", GREY, (0.15, 0.12, "left", "bottom")),
-             ("Full hedge", "Base (full hedge, post hoc)", GREY, (-0.15, -0.15, "right", "top")),
-             ("Recommended", "Base (half hedge)", GREEN, (-0.2, -0.17, "right", "top"))]
-    marks = [(lab, C.loc[k, "xle_active"], C.loc[k, "oil_crash_tail_pp"], c, pos) for lab, k, c, pos in marks]
-    x = np.linspace(0, 7.5, 100)
+    M, A = team_metrics(), pd.read_csv(OUT / "team_weights_active.csv", index_col=0)
+    marks = [("Current", CUR, GREY, (-0.12, -0.12, "right", "top")),
+             ("Model Base", "Model Base", GREY, (-0.15, -0.1, "right", "top")),
+             ("Full hedge", "New, full hedge", GREY, (-0.15, -0.12, "right", "top")),
+             ("Proposed", NEW, GREEN, (0.15, 0.1, "left", "bottom"))]
+    marks = [(lab, A.loc["XLE", k], M.loc[k, "oil_loss"], c, pos) for lab, k, c, pos in marks]
+    x = np.linspace(0, 6, 100)
     fig, ax = figure(w, h)
     ax.axhspan(-1, 0, color=LIGHT, alpha=0.25, lw=0)
     ax.plot(x, glut * x, color=INK, lw=2)
     ax.axhline(-1, color=RED, lw=2, ls=(0, (5, 3)))
-    ax.text(7.45, -0.9, "Limit −1pp", color=INK, fontsize=FS, ha="right", va="bottom", **BOLD)
+    ax.text(5.95, -0.9, "Limit −1pp", color=INK, fontsize=FS, ha="right", va="bottom", **BOLD)
     for lab, wv, y, c, (dx, dy, ha, va) in marks:
         ax.plot(wv, y, "o", ms=11, color=c, mec=INK if c == GREY else BG, mew=1.5 if c == GREY else 2, zorder=3)
-        ax.text(wv + dx, y + dy, lab, fontsize=FS, ha=ha, va=va, **(BOLD if lab == "Recommended" else {}))
-    ax.set_xlim(0, 7.5); ax.set_ylim(-3.6, 0.3)
+        ax.text(wv + dx, y + dy, lab, fontsize=FS, ha=ha, va=va, **(BOLD if lab == "Proposed" else {}))
+    ax.set_xlim(0, 6); ax.set_ylim(-2.6, 0.3)
     ax.set_xlabel("XLE active weight (pp)"); ax.set_ylabel("Loss (pp)")
     title(fig, "Loss in a 2014–16 oil collapse, by XLE weight")
     fig.subplots_adjust(left=0.1, right=0.98, bottom=0.15)
@@ -444,13 +461,12 @@ def oil_collapse_loss(w=900, h=490):
 
 # ---- Risks -------------------------------------------------------------------------------------------------
 def risk_metrics(w=860, h=460):
-    M = pd.read_csv(OUT / "weighting_metrics.csv", index_col=0)
-    C = pd.read_csv(OUT / "consistency_summary.csv", index_col=0)
-    P = pd.read_csv(OUT / "consistency_scenario_payoffs.csv", index_col=0)
-    rows = [("Tracking error (%)", M.loc["Current", "te_bench"], M.loc["Base", "te_bench"]),
-            ("3-month CVaR (%)", M.loc["Current", "cvar3"], M.loc["Base", "cvar3"]),
-            ("Oil-collapse loss (pp)", -C.loc["Current (drifted)", "oil_crash_tail_pp"], -C.loc["Base (half hedge)", "oil_crash_tail_pp"]),
-            ("Worst scenario (%)", -P["Current (drifted)"].min(), -P["Base (half hedge)"].min())]
+    M = team_metrics()
+    worst = lambda k: -M.loc[k, [c for c in M.columns if c.startswith("scen_")]].min()
+    rows = [("Tracking error (%)", M.loc[CUR, "te_bench"], M.loc[NEW, "te_bench"]),
+            ("3-month CVaR (%)", M.loc[CUR, "cvar3"], M.loc[NEW, "cvar3"]),
+            ("Oil-collapse loss (pp)", -M.loc[CUR, "oil_loss"], -M.loc[NEW, "oil_loss"]),
+            ("Worst scenario (%)", worst(CUR), worst(NEW))]
     fig, ax = figure(w, h)
     y = np.arange(len(rows))[::-1]; hh = 0.38
     cur = [r[1] for r in rows]; new = [r[2] for r in rows]
@@ -460,7 +476,7 @@ def risk_metrics(w=860, h=460):
         for yi, v in zip(yy, vals):
             ax.text(v + 0.06, yi, f"{v:.2f}", va="center", fontsize=FS)
     ax.set_yticks(y, [r[0] for r in rows])
-    ax.set_xlim(0, 5.6); ax.set_xticks([])
+    ax.set_xlim(0, 4.2); ax.set_xticks([])
     ax.spines["bottom"].set_visible(False); bars_frame(ax)
     ax.legend(loc="lower right")
     title(fig, "Risk measures (losses as positive numbers)")
@@ -470,7 +486,8 @@ def risk_metrics(w=860, h=460):
 
 
 def scenario_returns(w=700, h=708):
-    P = pd.read_csv(OUT / "consistency_scenario_payoffs.csv", index_col=0)[["Current (drifted)", "Base (half hedge)"]]
+    M = team_metrics()
+    P = M[[c for c in M.columns if c.startswith("scen_")]].T.rename(index=lambda c: c[5:])[[CUR, NEW]]
     names = {"Stagflationary sell-off": "Stagflation\nsell-off", "Real-yield squeeze": "Real-yield\nsqueeze",
              "Growth scare": "Growth\nscare", "Inflation scare": "Inflation\nscare", "Easing rally": "Easing\nrally",
              "Steady state": "Steady\nstate"}
@@ -481,13 +498,33 @@ def scenario_returns(w=700, h=708):
     for yy, c in ((y + hh / 2, 0), (y - hh / 2, 1)):
         hbar_labels(ax, yy, P.iloc[:, c].values, fmt=lambda v: pp(v, 2), pad=0.04)
     ax.set_yticks(y, [names.get(s, s) for s in P.index]); ax.axvline(0, color=INK, lw=1.2)
-    ax.set_xlim(-0.9, 1.75); ax.set_xticks([-0.5, 0, 0.5, 1.0, 1.5])
-    ax.set_xlabel("Active return vs SPY, 3 months (%)")
+    ax.set_xlim(-1.2, 1.85); ax.set_xticks([-0.5, 0, 0.5, 1.0, 1.5])
+    ax.set_xlabel("Active return vs S&P 500, 3 months (%)")
     bars_frame(ax); ax.legend(loc="lower right")
     title(fig, "Average 3-month return by scenario")
     fig.subplots_adjust(left=0.22, right=0.97, bottom=0.1)
     save(fig, "deck_scenario_returns.png")
     return P
+
+
+def fixed_income_mix(w=700, h=440):
+    from src.team_weights import TEAM
+    T = pd.DataFrame({k: TEAM.loc[v].sum() for k, v in FI_TYPES.items()}).T[["old", "new"]]
+    fig, ax = figure(w, h)
+    y = np.arange(len(T))[::-1]; hh = 0.38
+    ax.barh(y + hh / 2, T["old"], height=hh, color=GREY, edgecolor=BG, lw=1.5, label="Current")
+    ax.barh(y - hh / 2, T["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.5, label="Proposed")
+    for yy, c in ((y + hh / 2, "old"), (y - hh / 2, "new")):
+        for yi, v in zip(yy, T[c]):
+            ax.text(v + 0.3, yi, f"{v:.1f}", va="center", fontsize=FS)
+    ax.set_yticks(y, ["Treasury\nand agency", "TIPS", "IG\ncorporate", "Cash"])
+    ax.set_xlim(0, 27); ax.set_xticks([])
+    ax.spines["bottom"].set_visible(False); bars_frame(ax)
+    ax.legend(loc="lower right")
+    title(fig, "Fixed income by type (% of portfolio)")
+    fig.subplots_adjust(left=0.2, right=0.98, bottom=0.03)
+    save(fig, "deck_fixed_income_mix.png")
+    return T
 
 
 def trigger_readings(w=700, h=708):
@@ -527,7 +564,7 @@ def main():
     ff, t2, gap = fed_expected(); last, s1, s2 = curve(); ry = real_yields()
     w = wti(); prem, med = pe_premium(); s, oct_ = def_minus_grw()
     decomposition(); valuation_revisions(); glut, marks = oil_collapse_loss()
-    rows = risk_metrics(); scenario_returns(); trigger_readings()
+    rows = risk_metrics(); scenario_returns(); trigger_readings(); fixed_income_mix()
     print("\nNumbers drawn (check against the deck):")
     print("  Performance Jun–Oct (%): " + ", ".join(f"{k} {v:+.2f}" for k, v in C.iloc[-1].items()))
     print("  Active return by group vs sector benchmark (pp): " + ", ".join(f"{k} {v:+.2f}" for k, v in groups.items()))

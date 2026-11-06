@@ -1,0 +1,5 @@
+check,value,pass
+1 TE vs benchmark below Old,1.35% vs 3.43%,True
+2 Sell-off payoff >= 75% of Old,+0.32% vs +0.86%,False
+3 |breakeven beta| below Old,-0.064 vs -0.084,True
+4 Expected (set A) within 0.10pp of Old,-0.075 vs -0.248,True
