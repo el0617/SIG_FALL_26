@@ -511,24 +511,49 @@ def scenario_returns(w=700, h=708):
     return P
 
 
-def fixed_income_mix(w=700, h=440):
+def fixed_income_mix(w=700, h=420):
     from src.team_weights import TEAM
-    T = pd.DataFrame({k: TEAM.loc[v].sum() for k, v in FI_TYPES.items()}).T[["old", "new"]]
+    rows = ["IGSB", "VCSH", "VGIT", "AGZ", "IBID", "Cash", "Gold", "Silver"]
+    T = TEAM.loc[rows, ["old", "new"]]
     fig, ax = figure(w, h)
-    y = np.arange(len(T))[::-1]; hh = 0.38
-    ax.barh(y + hh / 2, T["old"], height=hh, color=GREY, edgecolor=BG, lw=1.5, label="Current")
-    ax.barh(y - hh / 2, T["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.5, label="Proposed")
+    y = np.arange(len(T))[::-1]; hh = 0.4
+    ax.barh(y + hh / 2, T["old"], height=hh, color=GREY, edgecolor=BG, lw=1.2, label="Current")
+    ax.barh(y - hh / 2, T["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.2, label="Proposed")
     for yy, c in ((y + hh / 2, "old"), (y - hh / 2, "new")):
         for yi, v in zip(yy, T[c]):
-            ax.text(v + 0.3, yi, f"{v:.1f}", va="center", fontsize=FS)
-    ax.set_yticks(y, ["Treasury\nand agency", "TIPS", "IG\ncorporate", "Cash"])
-    ax.set_xlim(0, 27); ax.set_xticks([])
+            ax.text(v + 0.25, yi, f"{v:.2f}", va="center", fontsize=FS * 0.8)
+    ax.set_yticks(y, rows)
+    ax.set_xlim(0, 17); ax.set_xticks([])
     ax.spines["bottom"].set_visible(False); bars_frame(ax)
     ax.legend(loc="lower right")
-    title(fig, "Fixed income by type (% of portfolio)")
-    fig.subplots_adjust(left=0.2, right=0.98, bottom=0.03)
+    title(fig, "Bonds, cash and commodities (% of portfolio)")
+    fig.subplots_adjust(left=0.13, right=0.98, bottom=0.02)
     save(fig, "deck_fixed_income_mix.png")
     return T
+
+
+def rate_sensitivity(w=700, h=440):
+    from src.team_weights import TEAM, DURATION
+    rows = list(DURATION)
+    L = pd.DataFrame({c: -TEAM.loc[rows, c] * pd.Series(DURATION) / 100 for c in ("old", "new")})
+    L.loc["Total"] = L.sum()
+    L = L.drop(index="Cash")
+    fig, ax = figure(w, h)
+    y = np.arange(len(L))[::-1]; hh = 0.4
+    ax.barh(y + hh / 2, L["old"], height=hh, color=GREY, edgecolor=BG, lw=1.2, label="Current")
+    ax.barh(y - hh / 2, L["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.2, label="Proposed")
+    for yy, c in ((y + hh / 2, "old"), (y - hh / 2, "new")):
+        for yi, v in zip(yy, L[c]):
+            ax.text(v - 0.02, yi, f"{v:.2f}".replace("-", "−") if abs(v) >= 0.005 else "0.00", va="center", ha="right", fontsize=FS * 0.8,
+                    **(BOLD if yi < 0.5 else {}))
+    ax.set_yticks(y, list(L.index)); ax.axvline(0, color=INK, lw=1.2)
+    ax.set_xlim(-1.45, 0.05); ax.set_xticks([])
+    ax.spines["bottom"].set_visible(False); bars_frame(ax)
+    ax.legend(loc="upper left")
+    title(fig, "Loss for a +100bp rise in yields (% of portfolio)")
+    fig.subplots_adjust(left=0.13, right=0.98, bottom=0.02)
+    save(fig, "deck_rate_sensitivity.png")
+    return L
 
 
 def trigger_readings(w=700, h=708):
@@ -568,7 +593,7 @@ def main():
     ff, t2, gap = fed_expected(); last, s1, s2 = curve(); ry = real_yields()
     w = wti(); prem, med = pe_premium(); s, oct_ = def_minus_grw()
     decomposition(); valuation_revisions(); glut, marks = oil_collapse_loss()
-    rows = risk_metrics(); scenario_returns(); trigger_readings(); fixed_income_mix()
+    rows = risk_metrics(); scenario_returns(); trigger_readings(); fixed_income_mix(); rate_sensitivity()
     print("\nNumbers drawn (check against the deck):")
     print("  Performance Jun–Oct (%): " + ", ".join(f"{k} {v:+.2f}" for k, v in C.iloc[-1].items()))
     print("  Active return by group vs sector benchmark (pp): " + ", ".join(f"{k} {v:+.2f}" for k, v in groups.items()))

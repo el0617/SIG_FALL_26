@@ -35,11 +35,15 @@ CASH = "CASH"
 TEAM = pd.DataFrame({
     "old": {"VGT": 16.47, "XLV": 6.59, "XLC": 4.48, "XLF": 6.12, "XLP": 6.08, "XLY": 3.70, "XLB": 3.70, "XLI": 3.24,
             "XLE": 4.99, "SCHH": 1.14, "XLU": 1.42, "IGSB": 3.00, "IBID": 9.00, "AGZ": 9.00, "VGIT": 13.50,
-            "Cash": 4.57, "VCSH": 3.00},
+            "Cash": 4.57, "VCSH": 3.00, "Gold": 4.31, "Silver": 1.24},
     "new": {"VGT": 19.50, "XLV": 7.00, "XLC": 5.50, "XLF": 6.00, "XLP": 4.00, "XLY": 5.00, "XLB": 2.00, "XLI": 4.00,
-            "XLE": 3.00, "SCHH": 2.50, "XLU": 1.50, "IGSB": 14.36, "IBID": 6.76, "AGZ": 8.09, "VGIT": 6.79,
-            "Cash": 4.00, "VCSH": 0.00}})
+            "XLE": 3.00, "SCHH": 2.50, "XLU": 1.50, "IGSB": 10.05, "IBID": 6.76, "AGZ": 8.09, "VGIT": 6.79,
+            "Cash": 4.00, "VCSH": 0.00, "Gold": 4.31, "Silver": 0.00}})
+# 6 Nov: gold (4.31%, held) is funded from IGSB (14.36 -> 10.05); silver (1.24%) is sold. Gold and silver are not in
+# the team's current table, which sums to 100% without them, so they are shown on a separate line.
 FI = ["IGSB", "IBID", "AGZ", "VGIT", "VCSH", "Cash"]
+COMMODITIES = ["Gold", "Silver"]
+DURATION = {"IGSB": 2.6, "VCSH": 2.6, "VGIT": 4.8, "AGZ": 3.42, "IBID": 0.54, "Cash": 0.0}   # IGSB, VCSH estimated
 
 # S&P 500 sector weights, 4 Nov 2026 close (ChartRow, SPY holdings), by ETF proxy
 SP500_RAW = {"VGT": 36.9, "XLF": 12.6, "XLV": 10.3, "XLY": 9.7, "XLC": 8.5, "XLI": 8.2, "XLP": 4.9, "XLE": 3.6,
