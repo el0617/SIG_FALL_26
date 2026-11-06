@@ -511,25 +511,57 @@ def scenario_returns(w=700, h=708):
     return P
 
 
-def fixed_income_mix(w=700, h=420):
+def fixed_income_mix(w=700, h=440):
+    """Dumbbell: current (grey) to proposed (green) weight for each non-equity holding."""
     from src.team_weights import TEAM
     rows = ["IGSB", "VCSH", "VGIT", "AGZ", "IBID", "Cash", "Gold", "Silver"]
     T = TEAM.loc[rows, ["old", "new"]]
     fig, ax = figure(w, h)
-    y = np.arange(len(T))[::-1]; hh = 0.4
-    ax.barh(y + hh / 2, T["old"], height=hh, color=GREY, edgecolor=BG, lw=1.2, label="Current")
-    ax.barh(y - hh / 2, T["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.2, label="Proposed")
-    for yy, c in ((y + hh / 2, "old"), (y - hh / 2, "new")):
-        for yi, v in zip(yy, T[c]):
-            ax.text(v + 0.25, yi, f"{v:.2f}", va="center", fontsize=FS * 0.8)
-    ax.set_yticks(y, rows)
-    ax.set_xlim(0, 17); ax.set_xticks([])
-    ax.spines["bottom"].set_visible(False); bars_frame(ax)
-    ax.legend(loc="lower right")
+    y = np.arange(len(T))[::-1]
+    for yi, (o, n) in zip(y, T.values):
+        if abs(n - o) > 1e-9:
+            ax.annotate("", xy=(n, yi), xytext=(o, yi), arrowprops=dict(arrowstyle="-|>", color=INK, lw=1.4, shrinkA=7, shrinkB=7, mutation_scale=16))
+        ax.plot(o, yi, "o", ms=12, color=GREY, mec=BG, mew=1.5, zorder=3)
+        ax.plot(n, yi, "o", ms=12, color=GREEN, mec=BG, mew=1.5, zorder=4)
+        if abs(n - o) < 1e-9:
+            ax.text(n + 0.45, yi, f"{n:.2f} held", va="center", ha="left", fontsize=FS)
+        elif n > o:
+            ax.text(o - 0.45, yi, f"{o:.2f}", va="center", ha="right", fontsize=FS, color="#595959")
+            ax.text(n + 0.45, yi, f"{n:.2f}", va="center", ha="left", fontsize=FS, **BOLD)
+        else:
+            ax.text(o + 0.45, yi, f"{o:.2f}", va="center", ha="left", fontsize=FS, color="#595959")
+            ax.text(n - 0.45, yi, f"{n:.2f}", va="center", ha="right", fontsize=FS, **BOLD)
+    ax.set_yticks(y, rows); ax.set_ylim(-0.6, len(T) - 0.4)
+    ax.set_xlim(-2.6, 17.2); ax.set_xticks([])
+    ax.spines["bottom"].set_visible(False); ax.spines["left"].set_visible(False); ax.tick_params(axis="y", length=0)
+    handles = [plt.Line2D([], [], ls="", marker="o", ms=12, color=c) for c in (GREY, GREEN)]
+    ax.legend(handles, ["Current", "Proposed"], loc="lower right")
     title(fig, "Bonds, cash and commodities (% of portfolio)")
     fig.subplots_adjust(left=0.13, right=0.98, bottom=0.02)
     save(fig, "deck_fixed_income_mix.png")
     return T
+
+
+def trades_by_holding(w=860, h=708):
+    from src.team_weights import TEAM
+    d = (TEAM["new"] - TEAM["old"]).drop(index=["Gold"]).sort_values()
+    d = d[d.abs() > 1e-9]
+    fig, ax = figure(w, h)
+    y = np.arange(len(d))
+    ax.barh(y, d.values, height=0.68, color=[GREEN if v > 0 else TEAL for v in d.values], edgecolor=BG, lw=1)
+    for yi, v in zip(y, d.values):
+        ax.text(v + (0.15 if v > 0 else -0.15), yi, f"{v:+.2f}".replace("-", "−"), va="center",
+                ha="left" if v > 0 else "right", fontsize=FS)
+    ax.set_yticks(y, [{"Cash": "Cash", "Silver": "Silver"}.get(k, k) for k in d.index])
+    ax.axvline(0, color=INK, lw=1.2)
+    ax.set_xlim(-8.6, 9.2); ax.set_xticks([]); ax.set_ylim(-0.6, len(d) - 0.4)
+    ax.spines["bottom"].set_visible(False); bars_frame(ax)
+    handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in (GREEN, TEAL)]
+    ax.legend(handles, [f"Purchases ({d[d > 0].sum():.1f}%)", f"Sales ({-d[d < 0].sum():.1f}%)"], loc="lower right")
+    title(fig, "Trades by holding (% of the $100M portfolio)")
+    fig.subplots_adjust(left=0.12, right=0.98, bottom=0.02)
+    save(fig, "deck_trades.png")
+    return d
 
 
 def rate_sensitivity(w=700, h=440):
@@ -593,7 +625,7 @@ def main():
     ff, t2, gap = fed_expected(); last, s1, s2 = curve(); ry = real_yields()
     w = wti(); prem, med = pe_premium(); s, oct_ = def_minus_grw()
     decomposition(); valuation_revisions(); glut, marks = oil_collapse_loss()
-    rows = risk_metrics(); scenario_returns(); trigger_readings(); fixed_income_mix(); rate_sensitivity()
+    rows = risk_metrics(); scenario_returns(); trigger_readings(); fixed_income_mix(); rate_sensitivity(); trades_by_holding()
     print("\nNumbers drawn (check against the deck):")
     print("  Performance Jun–Oct (%): " + ", ".join(f"{k} {v:+.2f}" for k, v in C.iloc[-1].items()))
     print("  Active return by group vs sector benchmark (pp): " + ", ".join(f"{k} {v:+.2f}" for k, v in groups.items()))
