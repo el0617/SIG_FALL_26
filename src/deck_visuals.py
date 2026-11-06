@@ -192,10 +192,13 @@ def active_current():
 
 
 # ---- Macro ------------------------------------------------------------------------------------------------
-def cpi_components():
+MW, MH = 880, 420        # macro slides: two charts per slide
+
+
+def cpi_components(w=MW, h=MH):
     S = pd.Series(CPI_SEP26)
     colors = [RED if k in ("Gasoline", "Energy") else (INK if k == "All items" else GREEN) for k in S.index]
-    fig, ax = figure(1060, 708)
+    fig, ax = figure(w, h)
     y = np.arange(len(S))[::-1]
     ax.barh(y, S.values, height=0.6, color=colors, edgecolor=BG, lw=2)
     hbar_labels(ax, y, S.values, fmt=lambda v: f"{v:.1f}%", pad=0.5)
@@ -206,15 +209,15 @@ def cpi_components():
     ax.set_xlabel("Change over 12 months (%)")
     bars_frame(ax)
     title(fig, "Consumer prices by component, September 2026")
-    fig.subplots_adjust(left=0.14, right=0.97, bottom=0.1)
+    fig.subplots_adjust(left=0.17, right=0.97, bottom=0.16)
     save(fig, "deck_cpi_components.png")
 
 
-def activity():
+def activity(w=MW, h=MH):
     ip, rs = series("INDPRO"), series("RRSFS")
     a = ((ip / ip.shift(12) - 1) * 100).loc["2024-01":]
     b = ((rs / rs.shift(12) - 1) * 100).loc["2024-01":]
-    fig, ax = figure(1060, 708)
+    fig, ax = figure(w, h)
     ax.axhline(0, color=INK, lw=1.2)
     ax.plot(a.index, a.values, color=GREEN, lw=2.6, label=f"Industrial production ({pp(a.iloc[-1])}%)")
     ax.plot(b.index, b.values, color=RED, lw=2.6, label=f"Real retail sales ({pp(b.iloc[-1])}%)")
@@ -222,15 +225,15 @@ def activity():
     ax.set_ylabel("Change over 12 months (%)")
     ax.legend(loc="lower right")
     title(fig, f"Industrial production and real retail sales, to {a.index[-1]:%b %Y}")
-    fig.subplots_adjust(left=0.085, right=0.98, bottom=0.08)
+    fig.subplots_adjust(left=0.1, right=0.98, bottom=0.12)
     save(fig, "deck_activity.png")
     return a.iloc[-1], b.iloc[-1]
 
 
-def payrolls():
+def payrolls(w=MW, h=MH):
     p = series("PAYEMS").diff().loc["2025-01":]
     avg3 = p.rolling(3).mean()
-    fig, ax = figure(1060, 708)
+    fig, ax = figure(w, h)
     ax.bar(p.index, p.values, width=22, color=[GREEN if v >= 0 else RED for v in p.values], edgecolor=BG, lw=1)
     ax.plot(avg3.index, avg3.values, color=INK, lw=2.2, label="3-month average")
     ax.axhline(0, color=INK, lw=1.2)
@@ -238,33 +241,34 @@ def payrolls():
     ax.set_ylabel("Monthly change (thousands)")
     ax.legend(loc="lower right")
     title(fig, f"Nonfarm payroll growth, Jan 2025 – {p.index[-1]:%b %Y}")
-    fig.subplots_adjust(left=0.1, right=0.98, bottom=0.08)
+    fig.subplots_adjust(left=0.12, right=0.98, bottom=0.12)
     save(fig, "deck_payrolls.png")
     return p
 
 
-def fed_funds():
-    f = series("DFF").loc["2022-01-01":DECIDE]
-    fig, ax = figure(1060, 708)
-    ax.plot(f.index, f.values, color=GREEN, lw=2.6, drawstyle="steps-post")
-    notes = [("2022-11-15", 5.65, "2022–23\n+525bp"), ("2024-10-15", 5.65, "2024\n−100bp"),
-             ("2025-10-15", 4.65, "2025\n−75bp"), ("2026-09-01", 2.55, "Sep 2026\n+25bp")]
-    for d, yv, t in notes:
-        ax.text(pd.Timestamp(d), yv, t, fontsize=FS, ha="center", va="bottom", **BOLD)
-    ax.plot(f.index[-1], f.iloc[-1], "o", ms=10, color=RED, mec=BG, mew=2, zorder=3)
-    ax.text(f.index[-1], f.iloc[-1] + 0.25, f"{f.iloc[-1]:.2f}%", ha="right", va="bottom", fontsize=FS)
-    ax.set_ylim(0, 6.8)
+def fed_funds(w=MW, h=MH):
+    f, t10 = series("DFF").loc["2022-01-01":DECIDE], series("DGS10").loc["2022-01-01":DECIDE]
+    cut = pd.Timestamp("2024-09-18")
+    fig, ax = figure(w, h)
+    ax.plot(t10.index, t10.values, color=RED, lw=1.8, label=f"10-year Treasury ({t10.iloc[-1]:.2f}%)")
+    ax.plot(f.index, f.values, color=GREEN, lw=2.6, drawstyle="steps-post", label=f"Effective fed funds ({f.iloc[-1]:.2f}%)")
+    ax.axvline(cut, color=INK, lw=1.2, ls=(0, (4, 3)))
+    d_f = (f.iloc[-1] - f.asof(cut)) * 100; d_t = (t10.iloc[-1] - t10.asof(cut - pd.Timedelta(days=1))) * 100
+    ax.text(cut + pd.Timedelta(days=20), 0.35, "Since the first cut:\nfed funds " + f"{d_f:+.0f}".replace("-", "−") + "bp\n10-year " + f"{d_t:+.0f}".replace("-", "−") + "bp",
+            fontsize=FS, va="bottom", ha="left", **BOLD)
+    ax.set_ylim(0, 7.3)
     date_axis(ax, (1,), "%Y")
-    ax.set_ylabel("Effective federal funds rate (%)")
-    title(fig, "Federal funds rate, 2022 – 2026")
-    fig.subplots_adjust(left=0.085, right=0.97, bottom=0.08)
+    ax.set_ylabel("Percent")
+    ax.legend(loc="upper left", ncol=2)
+    title(fig, "Fed funds rate and 10-year Treasury yield, 2022 – 2026")
+    fig.subplots_adjust(left=0.09, right=0.98, bottom=0.12)
     save(fig, "deck_fed_funds.png")
     return f
 
 
-def fed_expected():
+def fed_expected(w=MW, h=MH):
     f, t2 = series("DFF").loc["2025-01-01":DECIDE], series("DGS2").loc["2025-01-01":DECIDE]
-    fig, ax = figure(1000, 708)
+    fig, ax = figure(w, h)
     ax.plot(t2.index, t2.values, color=RED, lw=2, label=f"2-year Treasury yield ({t2.iloc[-1]:.2f}%)")
     ax.plot(f.index, f.values, color=GREEN, lw=2.6, drawstyle="steps-post", label=f"Effective fed funds rate ({f.iloc[-1]:.2f}%)")
     gap = (t2.iloc[-1] - f.iloc[-1]) * 100
@@ -276,42 +280,42 @@ def fed_expected():
     ax.set_ylabel("Percent")
     ax.legend(loc="upper left")
     title(fig, "Fed funds rate and the 2-year Treasury yield")
-    fig.subplots_adjust(left=0.09, right=0.98, bottom=0.08)
+    fig.subplots_adjust(left=0.1, right=0.98, bottom=0.12)
     save(fig, "deck_fed_expected.png")
     return f.iloc[-1], t2.iloc[-1], gap
 
 
-def curve():
+def curve(w=MW, h=MH):
     t10, t2, f = series("DGS10"), series("DGS2"), series("DFF")
     df = pd.concat([t10, t2, f], axis=1, keys=["t10", "t2", "ff"]).dropna().loc["2019-01-01":DECIDE]
     s1, s2 = (df.t10 - df.t2) * 100, (df.t10 - df.ff) * 100
-    fig, ax = figure(1060, 708)
+    fig, ax = figure(w, h)
     ax.axhline(0, color=INK, lw=1.2)
     ax.plot(s2.index, s2.values, color=RED, lw=1.8, label=f"10-year − fed funds ({s2.iloc[-1]:+.0f}bp)")
     ax.plot(s1.index, s1.values, color=GREEN, lw=1.8, label=f"10-year − 2-year ({s1.iloc[-1]:+.0f}bp)")
-    ax.set_ylim(-200, 330)
+    ax.set_ylim(-200, 420)
     date_axis(ax, (1,), "%Y")
     ax.set_ylabel("Spread (basis points)")
-    ax.legend(loc="upper left")
+    ax.legend(loc="upper left", ncol=2)
     title(fig, "Yield curve spreads, 2019 – 2026")
-    fig.subplots_adjust(left=0.1, right=0.98, bottom=0.08)
+    fig.subplots_adjust(left=0.12, right=0.98, bottom=0.12)
     save(fig, "deck_curve.png")
     return df.iloc[-1], s1.iloc[-1], s2.iloc[-1]
 
 
-def real_yields():
+def real_yields(w=MW, h=MH):
     n, r, b = series("DGS10"), series("DFII10"), series("T10YIE")
     df = pd.concat([n, r, b], axis=1, keys=["n", "r", "b"]).dropna().loc["2021-01-01":DECIDE]
-    fig, ax = figure(1060, 708)
+    fig, ax = figure(w, h)
     ax.axhline(0, color=INK, lw=1.2)
     for col, c, lab in (("n", INK, "10-year nominal"), ("r", GREEN, "10-year real (TIPS)"), ("b", RED, "10-year breakeven")):
         ax.plot(df.index, df[col], color=c, lw=2, label=f"{lab} ({df[col].iloc[-1]:.2f}%)")
     date_axis(ax, (1,), "%Y")
-    ax.set_ylim(-1.5, 6.2)
+    ax.set_ylim(-1.5, 7.4)
     ax.set_ylabel("Percent")
-    ax.legend(loc="upper left", ncol=1)
+    ax.legend(loc="upper left", ncol=2)
     title(fig, "10-year Treasury yield = real yield + breakeven inflation")
-    fig.subplots_adjust(left=0.08, right=0.98, bottom=0.08)
+    fig.subplots_adjust(left=0.1, right=0.98, bottom=0.12)
     save(fig, "deck_real_yields.png")
     return df.iloc[-1]
 
