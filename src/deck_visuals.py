@@ -45,7 +45,7 @@ CPI_SEP26 = {"Gasoline": 34.2, "Energy": 20.4, "All items": 3.7, "Shelter": 3.2,
 
 BG, INK = "#FFFFFF", "#000000"
 GREEN, RED, TEAL, LIGHT, GREY, TRACK = "#13501B", "#A82B0B", "#104862", "#8ED974", "#A6ADA7", "#E6E8E6"
-FS = 17.28          # 24px on the slide: 1px = 0.01in = 0.72pt
+FS = 13.0           # about 18px on the slide (1px = 0.01in = 0.72pt): lighter than the 24px body text
 DEF, INF, GRW = ["XLP", "XLU", "XLV"], ["XLE", "XLB"], ["VGT", "XLY"]
 GROUP_COLOR = {**{t: GREEN for t in DEF}, **{t: RED for t in GRW}, **{t: TEAL for t in INF}}
 ORDER = ["VGT", "XLY", "XLC", "XLF", "XLI", "SCHH", "XLB", "XLE", "XLP", "XLV", "XLU"]
@@ -172,20 +172,17 @@ def performance():
 
 
 def active_current():
-    A = active_weights()["Current"].rename({"CASH": "Cash"}).reindex(ORDER + ["Cash"])
-    A["Cash"] = np.floor(A["Cash"] * 10 + 1e-6) / 10      # 100 - 96.55: shown as 3.4 so it matches 96.6 + 3.4 = 100
+    A = active_weights()["Current"].reindex(ORDER)
     fig, ax = figure(1100, 708)
     y = np.arange(len(A))[::-1]
-    cols = [GROUP_COLOR.get(t, GREY) for t in A.index]; cols[-1] = "#FFFFFF"
-    ax.barh(y, A.values, height=0.62, color=cols, edgecolor=[BG] * (len(A) - 1) + [INK], lw=2,
-            hatch=[None] * (len(A) - 1) + ["//"])
+    cols = [RED if t == "XLC" else GROUP_COLOR.get(t, GREY) for t in A.index]
+    ax.barh(y, A.values, height=0.62, color=cols, edgecolor=BG, lw=2)
     hbar_labels(ax, y, A.values)
     ax.set_yticks(y, A.index); ax.axvline(0, color=INK, lw=1.2)
     ax.set_xlim(-11.5, 7.5); ax.set_xlabel("Active weight vs S&P 500 (pp of the 60% equity allocation)")
     bars_frame(ax)
     handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in (RED, GREY, TEAL, GREEN)]
-    handles.append(plt.Rectangle((0, 0), 1, 1, facecolor="#FFFFFF", edgecolor=INK, hatch="//"))
-    ax.legend(handles, ["Growth", "Other", "Inflation hedge", "Defensives", "Equities below 60%"], loc="lower left")
+    ax.legend(handles, ["Growth", "Cyclicals", "Inflation hedge", "Defensives"], loc="lower left")
     title(fig, "Current equity active weights by ETF (5 Nov)")
     fig.subplots_adjust(left=0.075, right=0.98, bottom=0.1)
     save(fig, "deck_active_current.png")
@@ -252,10 +249,6 @@ def fed_funds(w=MW, h=MH):
     fig, ax = figure(w, h)
     ax.plot(t10.index, t10.values, color=RED, lw=1.8, label=f"10-year Treasury ({t10.iloc[-1]:.2f}%)")
     ax.plot(f.index, f.values, color=GREEN, lw=2.6, drawstyle="steps-post", label=f"Effective fed funds ({f.iloc[-1]:.2f}%)")
-    ax.axvline(cut, color=INK, lw=1.2, ls=(0, (4, 3)))
-    d_f = (f.iloc[-1] - f.asof(cut)) * 100; d_t = (t10.iloc[-1] - t10.asof(cut - pd.Timedelta(days=1))) * 100
-    ax.text(cut + pd.Timedelta(days=20), 0.35, "Since the first cut:\nfed funds " + f"{d_f:+.0f}".replace("-", "−") + "bp\n10-year " + f"{d_t:+.0f}".replace("-", "−") + "bp",
-            fontsize=FS, va="bottom", ha="left", **BOLD)
     ax.set_ylim(0, 7.3)
     date_axis(ax, (1,), "%Y")
     ax.set_ylabel("Percent")
@@ -272,9 +265,7 @@ def fed_expected(w=MW, h=MH):
     ax.plot(t2.index, t2.values, color=RED, lw=2, label=f"2-year Treasury yield ({t2.iloc[-1]:.2f}%)")
     ax.plot(f.index, f.values, color=GREEN, lw=2.6, drawstyle="steps-post", label=f"Effective fed funds rate ({f.iloc[-1]:.2f}%)")
     gap = (t2.iloc[-1] - f.iloc[-1]) * 100
-    x = t2.index[-1] + pd.Timedelta(days=12)
-    ax.annotate("", xy=(x, t2.iloc[-1]), xytext=(x, f.iloc[-1]), arrowprops=dict(arrowstyle="<->", color=INK, lw=1.4))
-    ax.text(x - pd.Timedelta(days=10), (t2.iloc[-1] + f.iloc[-1]) / 2, f"{gap:+.0f}bp", ha="right", va="center", fontsize=FS, **BOLD)
+    x = t2.index[-1]
     ax.set_xlim(f.index[0], x + pd.Timedelta(days=15)); ax.set_ylim(3.3, 5.3)
     date_axis(ax)
     ax.set_ylabel("Percent")
@@ -346,7 +337,7 @@ def wti(w=1060, h=330):
     return s
 
 
-def pe_premium(w=1000, h=708):
+def pe_premium(w=760, h=708):
     V = pd.read_csv(OUT / "valuation_signals.csv", index_col=0, parse_dates=True)
     prem = (np.exp(V["gap"].dropna()) - 1) * 100
     med = prem.expanding(min_periods=36).median()
@@ -437,7 +428,7 @@ def valuation_revisions(w=700, h=708):
     return T
 
 
-def oil_collapse_loss(w=900, h=490):
+def oil_collapse_loss(w=900, h=520):
     S = pd.read_csv(OUT / "energy_stress.csv", index_col=0)
     glut = S.loc[[i for i in S.index if i.startswith("Oil glut")][0], "XLE minus SPY (%)"] / 100
     M, A = team_metrics(), pd.read_csv(OUT / "team_weights_active.csv", index_col=0)
@@ -551,7 +542,7 @@ def trades_by_holding(w=860, h=708):
     return d
 
 
-def rate_sensitivity(w=700, h=440):
+def rate_sensitivity(w=700, h=420):
     from src.team_weights import TEAM, DURATION
     rows = list(DURATION)
     L = pd.DataFrame({c: -TEAM.loc[rows, c] * pd.Series(DURATION) / 100 for c in ("old", "new")})
@@ -563,7 +554,7 @@ def rate_sensitivity(w=700, h=440):
     ax.barh(y - hh / 2, L["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.2, label="Proposed")
     for yy, c in ((y + hh / 2, "old"), (y - hh / 2, "new")):
         for yi, v in zip(yy, L[c]):
-            ax.text(v - 0.02, yi, f"{v:.2f}".replace("-", "−") if abs(v) >= 0.005 else "0.00", va="center", ha="right", fontsize=FS * 0.8,
+            ax.text(v - 0.02, yi, f"{v:.2f}".replace("-", "−") if abs(v) >= 0.005 else "0.00", va="center", ha="right", fontsize=FS,
                     **(BOLD if yi < 0.5 else {}))
     ax.set_yticks(y, list(L.index)); ax.axvline(0, color=INK, lw=1.2)
     ax.set_xlim(-1.45, 0.05); ax.set_xticks([])
