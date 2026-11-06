@@ -511,33 +511,20 @@ def scenario_returns(w=700, h=708):
     return P
 
 
-def fixed_income_mix(w=700, h=440):
-    """Dumbbell: current (grey) to proposed (green) weight for each non-equity holding."""
+def fixed_income_mix(w=700, h=500):
+    """Same style as the equity active-weight chart: current (grey) vs proposed (green), % of portfolio."""
     from src.team_weights import TEAM
     rows = ["IGSB", "VCSH", "VGIT", "AGZ", "IBID", "Cash", "Gold", "Silver"]
     T = TEAM.loc[rows, ["old", "new"]]
     fig, ax = figure(w, h)
-    y = np.arange(len(T))[::-1]
-    for yi, (o, n) in zip(y, T.values):
-        if abs(n - o) > 1e-9:
-            ax.annotate("", xy=(n, yi), xytext=(o, yi), arrowprops=dict(arrowstyle="-|>", color=INK, lw=1.4, shrinkA=7, shrinkB=7, mutation_scale=16))
-        ax.plot(o, yi, "o", ms=12, color=GREY, mec=BG, mew=1.5, zorder=3)
-        ax.plot(n, yi, "o", ms=12, color=GREEN, mec=BG, mew=1.5, zorder=4)
-        if abs(n - o) < 1e-9:
-            ax.text(n + 0.45, yi, f"{n:.2f} held", va="center", ha="left", fontsize=FS)
-        elif n > o:
-            ax.text(o - 0.45, yi, f"{o:.2f}", va="center", ha="right", fontsize=FS, color="#595959")
-            ax.text(n + 0.45, yi, f"{n:.2f}", va="center", ha="left", fontsize=FS, **BOLD)
-        else:
-            ax.text(o + 0.45, yi, f"{o:.2f}", va="center", ha="left", fontsize=FS, color="#595959")
-            ax.text(n - 0.45, yi, f"{n:.2f}", va="center", ha="right", fontsize=FS, **BOLD)
-    ax.set_yticks(y, rows); ax.set_ylim(-0.6, len(T) - 0.4)
-    ax.set_xlim(-2.6, 17.2); ax.set_xticks([])
-    ax.spines["bottom"].set_visible(False); ax.spines["left"].set_visible(False); ax.tick_params(axis="y", length=0)
-    handles = [plt.Line2D([], [], ls="", marker="o", ms=12, color=c) for c in (GREY, GREEN)]
-    ax.legend(handles, ["Current", "Proposed"], loc="lower right")
-    title(fig, "Bonds, cash and commodities (% of portfolio)")
-    fig.subplots_adjust(left=0.13, right=0.98, bottom=0.02)
+    y = np.arange(len(T))[::-1]; hh = 0.38
+    ax.barh(y + hh / 2, T["old"], height=hh, color=GREY, edgecolor=BG, lw=1.5, label="Current")
+    ax.barh(y - hh / 2, T["new"], height=hh, color=GREEN, edgecolor=BG, lw=1.5, label="Proposed")
+    ax.set_yticks(y, T.index); ax.axvline(0, color=INK, lw=1.2)
+    ax.set_xlim(0, 15); ax.set_xlabel("Weight (% of portfolio)")
+    bars_frame(ax); ax.legend(loc="lower right")
+    title(fig, "Bonds, cash and commodities: current vs proposed")
+    fig.subplots_adjust(left=0.13, right=0.97, bottom=0.14)
     save(fig, "deck_fixed_income_mix.png")
     return T
 
